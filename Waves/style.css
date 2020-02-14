@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+body{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+section{
+    width: 100%;
+    min-height: 1000px;
+}
+
+.topcurved{
+    height: 250px;
+    background-color: #BDBDBD;
+    color: #fff;
+    text-align: center;
+}
+.relative{
+    position: relative;
+}
+
+.boxes{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.cardlt{
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /*grid-template-columns: 1fr 1fr 1fr;*/
+    margin:auto;
+    justify-items: center;
+    
+}
+
+.card {
+    padding-top: 30px;
+    height: fit-content;
+    text-align: center;
+    border-radius: 5%;
+    box-shadow: 2px 2px 10px 0px #888888;
+    margin-bottom: 30px;
+
+
+    animation: 2s slide-up;
+}
+
+@keyframes slide-up {
+    from {
+      position: relative;
+      top:1000px ;
+      
+    }
+  
+    to {
+        top:0px;
+    }
+}
+
+.card img{
+    margin: auto;
+    border-radius: 30%;
+    height: 60%;
+    width: 60%;
+    background-color: #FFC107;
+}
+
+.card .btn-primary{
+    background-color: white;
+    color: #FFC107;
+    border:1px solid #FFC107 ;
+}
+
