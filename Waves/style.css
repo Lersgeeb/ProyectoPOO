@@ -6,6 +6,8 @@ body{
 
     /*global variable*/
     --principal: #FFC107;
+    --complement: #3E0A84;
+    --complementDark: #300667;
     --secondary: #757575;
     --lightsecondary: #BDBDBD;
     --myBlack: #373435;
@@ -14,9 +16,10 @@ body{
     
 }
 
-section{
+.firstView{
+    background-color: var(--lightsecondary);
+    height: 40vh;
     width: 100%;
-    min-height: 1000px;
 }
 
 .topcurved{
@@ -34,16 +37,7 @@ section{
     z-index: 1;
 }
 
-/*
-.cardlt{
-    width: 80%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    margin:auto;
-    justify-items: center;
-    
-}*/
-
+/*COMPONENT CARD*/
 .card {
     max-width: 370px;
 
@@ -57,14 +51,7 @@ section{
     animation: 2s slide-up;
 }
 
-.card-title{
-    color: var(--text);
-    font-size: 3em;
-}
 
-.card-text{
-    color:var(--secondary); 
-}
 
 @keyframes slide-up {
     from {
@@ -77,17 +64,26 @@ section{
     }
 }
 
-.card img{
+.card-img-top{
+    position: relative;
     margin: auto;
     border-radius: 30%;
     height: 60%;
     width: 60%;
     background-color: var(--principal);
+    border-bottom: 20px solid var(--complement);
+    border-left: 20px solid var(--complement);
+    border-top: 5px solid var(--complement);
+    border-right: 5px solid var(--complement);
 }
 
-.card .btn-primary{
-    background-color: white;
-    color: var(--principal);
-    border:1px solid var(--principal) ;
+.card-title{
+    color: var(--complement);
+    font-size: 3em;
+    font-weight: bolder;
+}
+
+.card-text{
+    color:var(--secondary); 
 }
 
