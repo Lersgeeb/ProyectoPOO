@@ -3,6 +3,7 @@ body{
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
+    min-width: 400px;
 
     /*global variable*/
     --principal: #FFC107;
@@ -16,30 +17,70 @@ body{
     
 }
 
-.firstView{
+.navbar{
+    background-color:var(--principal) ;
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+}
+
+header{
     background-color: var(--lightsecondary);
-    height: 40vh;
+    background-image: url(./img/collage/back.JPG);
+    background-repeat: no-repeat;
+    background-size:     cover;    
+    background-attachment: local;
+    background-position: center;
+    
+    height: 80vh;
     width: 100%;
 }
 
+/*.relative{
+    position: relative;
+}*/
+
+.overlay{
+    height: 100%;
+    background:rgba(189, 189, 189, 0.445);
+    background: linear-gradient(0deg, rgb(177, 175, 175) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.descDiv{
+    padding: 100px;
+}
+
+.description{
+    color: var(--principal);
+    font-size: 4em;
+    font-weight: bolder;
+}
+
+.gradient{
+    height: 200px;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgb(177, 175, 175) 100%);
+}
+
+/*
 .topcurved{
     height: 250px;
     background-color: var(--lightsecondary);
-}
+}*/
 
-.relative{
-    position: relative;
-}
 
-.boxes{
-    position: absolute;
+
+
+/*---------------COMPONENT CARD-------------------------*/
+/*.boxes{
+    position:absolute;
     width: 100%;
     z-index: 1;
-}
+}*/
 
-/*COMPONENT CARD*/
 .card {
     max-width: 370px;
+
 
     padding-top: 30px;
     height: fit-content;
@@ -51,7 +92,16 @@ body{
     animation: 2s slide-up;
 }
 
-
+@media only screen and (max-width: 768px) {
+    .card{
+        background-color: transparent;
+        top:100px;
+        min-width: none;
+        width:auto;
+        box-shadow: none;
+        border: none;
+    }
+}
 
 @keyframes slide-up {
     from {
@@ -87,3 +137,4 @@ body{
     color:var(--secondary); 
 }
 
+/*-----------------------------------------------------------*/
