@@ -4,6 +4,7 @@ body{
     margin: 0;
     padding: 0;
     min-width: 400px;
+    z-index: -1;
 
     /*global variable*/
     --principal: #FFC107;
@@ -17,58 +18,79 @@ body{
     
 }
 
+
+
+
 .navbar{
     background-color:var(--principal) ;
     position: fixed;
+    z-index: 1;
     top:0;
     left: 0;
     right: 0;
 }
 
-header{
-    background-color: var(--lightsecondary);
-    background-image: url(./img/collage/back.JPG);
-    background-repeat: no-repeat;
-    background-size:     cover;    
-    background-attachment: local;
-    background-position: center;
-    
-    height: 80vh;
-    width: 100%;
+.nav-link{
+    color: white;
 }
 
-/*.relative{
-    position: relative;
-}*/
+.navbar-collapse{
+    margin-left: auto;
+}
+
+header{
+    height: 100vh;
+    width: 100%;
+    
+    
+    background-image: url(./img/collage/backsa.JPG);
+    
+    background-repeat: no-repeat;
+     background-size: cover;
+    background-attachment: fixed;
+    background-position: center  center;
+    
+    /*position: sticky;
+    top: 0;
+    left: 0;*/
+}
+
 
 .overlay{
     height: 100%;
-    background:rgba(189, 189, 189, 0.445);
-    background: linear-gradient(0deg, rgb(177, 175, 175) 0%, rgba(255, 255, 255, 0) 100%);
+    background:rgba(122, 122, 122, 0.616);
+    position: relative;
 }
 
 .descDiv{
     padding: 100px;
 }
 
-.description{
+.descriptionTitle{
     color: var(--principal);
     font-size: 4em;
     font-weight: bolder;
 }
-
-.gradient{
-    height: 200px;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgb(177, 175, 175) 100%);
+.description{
+    color: white;
+    font-size: 2em;
+    
 }
 
-/*
-.topcurved{
-    height: 250px;
-    background-color: var(--lightsecondary);
-}*/
+section{
+    background-color: white;
+    z-index: 1;
+}
+.relative{
+    position: relative;
+}
 
-
+.absolute{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 
 /*---------------COMPONENT CARD-------------------------*/
@@ -89,7 +111,7 @@ header{
     box-shadow: 2px 2px 10px 0px #888888;
     margin:auto;
     margin-bottom: 30px;
-    animation: 2s slide-up;
+    animation: 2s slide-ups;
 }
 
 @media only screen and (max-width: 768px) {
@@ -115,7 +137,7 @@ header{
 }
 
 .card-img-top{
-    position: relative;
+    
     margin: auto;
     border-radius: 30%;
     height: 60%;
