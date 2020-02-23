@@ -15,10 +15,10 @@ body{
     --myBlack: #373435;
     --text:#212121;
 
-    
+    --border-size: 2px;
+    --alpha1:-4;
+    --alpha2:-2;
 }
-
-
 
 
 .navbar{
@@ -30,14 +30,14 @@ body{
     right: 0;
 }
 
-.nav-link{
+.nav-item{
     color: white;
 }
 
 .navbar-collapse{
     margin-left: auto;
 }
-
+/*------------------------HEADER------------------------*/
 header{
     height: 100vh;
     width: 100%;
@@ -50,37 +50,145 @@ header{
     background-attachment: fixed;
     background-position: center  center;
     
-    /*position: sticky;
-    top: 0;
-    left: 0;*/
 }
 
 
 .overlay{
     height: 100%;
     background:rgba(122, 122, 122, 0.616);
-    position: relative;
 }
 
 .descDiv{
     padding: 100px;
+    padding-top: 200px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
 }
 
 .descriptionTitle{
+    grid-row: 1/span 1;
     color: var(--principal);
     font-size: 4em;
     font-weight: bolder;
 }
 .description{
+    grid-row: 2/span 1;
     color: white;
     font-size: 2em;
-    
+    text-align: justify;
 }
 
+.descButton{
+    grid-row: 3/span 1;
+    margin-top: 30px;
+    padding-left: 10px;
+
+}
+
+.descButton button{
+    position: relative;
+    background-color: var(--principal);
+    border:none;
+    width: 100%;
+    height: 60px;
+    color: white;
+    font-size: 2em;
+    font-weight: bolder;
+    
+    border-radius: 6px 6px 6px 6px;
+    transition: color 300ms ease-in-out;
+}
+
+button:focus{
+    outline: 0px dotted;
+    outline: 0px auto -webkit-focus-ring-color;
+    box-shadow: none;
+    outline-color: red;
+}
+
+
+ /*Border-Pop*/
+
+ .descButton button{
+    z-index: 1; /*to make text put over the "before element" */
+
+    
+}
+.descButton button:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    z-index: -1;
+    background-color: var(--complement) ;
+
+    transform:scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease-in-out;
+}
+.descButton button:hover:before,
+.descButton button:focus:before{
+    transform:scaleX(1);
+}
+
+.descButton button:hover,
+.descButton button:focus{
+    color: var(--principal);
+}
+
+/*
+
+
+.descButton button:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 1;
+    
+    transition: top,left,right,bottom,150ms ease-in-out;
+}
+.descButton button:hover:before{
+    border: var(--border-size) solid var(--complement);
+    border-radius: 6px 6px 6px 6px;
+    top: calc(var(--border-size) * var(--alpha1) );
+    left: calc(var(--border-size) * var(--alpha1) );
+    right: calc(var(--border-size) * var(--alpha1) );
+    bottom: calc(var(--border-size) * var(--alpha1) );
+}
+.descButton button:focus:before{
+    outline-color: none;
+    box-shadow: none;
+    border: var(--border-size) solid var(--complement);
+    border-radius: 6px 6px 6px 6px;
+    top: calc(var(--border-size) * var(--alpha2) );
+    left: calc(var(--border-size) * var(--alpha2) );
+    right: calc(var(--border-size) * var(--alpha2) );
+    bottom: calc(var(--border-size) * var(--alpha2) );
+}*/
+/*-----------------*/
+.logo{
+    margin-left: auto;
+    /*margin-right: auto;*/
+
+    grid-column: 2/-1;
+    grid-row: 1/span 3;
+}
+
+/*------------------------------------------------*/
 section{
     background-color: white;
     z-index: 1;
 }
+
+
 .relative{
     position: relative;
 }
@@ -93,13 +201,11 @@ section{
 }
 
 
-/*---------------COMPONENT CARD-------------------------*/
-/*.boxes{
-    position:absolute;
-    width: 100%;
-    z-index: 1;
-}*/
 
+/*ACCOUNTS INFO*/
+
+
+/*---------------COMPONENT CARD-------------------------*/
 .card {
     max-width: 370px;
 
