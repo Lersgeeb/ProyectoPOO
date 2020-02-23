@@ -28,15 +28,27 @@ body{
     top:0;
     left: 0;
     right: 0;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.171);
 }
 
-.nav-item{
+.navbar-light .navbar-nav .nav-link {
+    color:white;
+}
+
+.navbar-light .navbar-brand {
+    color: white;
+    font-weight: bolder;
+    font-size: 2em;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--complement);
+}
+
+.navbar-light .navbar-brand:hover {
     color: white;
 }
 
-.navbar-collapse{
-    margin-left: auto;
-}
 /*------------------------HEADER------------------------*/
 header{
     height: 100vh;
@@ -82,7 +94,7 @@ header{
 .descButton{
     grid-row: 3/span 1;
     margin-top: 30px;
-    padding-left: 10px;
+    
 
 }
 
@@ -111,20 +123,22 @@ button:focus{
  /*Border-Pop*/
 
  .descButton button{
-    z-index: 1; /*to make text put over the "before element" */
+    z-index: 0;
 
     
 }
 .descButton button:before{
     content: "";
+    border-radius: 6px 6px 6px 6px;
+    background-color: var(--complement) ;
+
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    
+    bottom: 0; 
     z-index: -1;
-    background-color: var(--complement) ;
+    
 
     transform:scaleX(0);
     transform-origin: left;
@@ -140,39 +154,7 @@ button:focus{
     color: var(--principal);
 }
 
-/*
 
-
-.descButton button:before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    z-index: 1;
-    
-    transition: top,left,right,bottom,150ms ease-in-out;
-}
-.descButton button:hover:before{
-    border: var(--border-size) solid var(--complement);
-    border-radius: 6px 6px 6px 6px;
-    top: calc(var(--border-size) * var(--alpha1) );
-    left: calc(var(--border-size) * var(--alpha1) );
-    right: calc(var(--border-size) * var(--alpha1) );
-    bottom: calc(var(--border-size) * var(--alpha1) );
-}
-.descButton button:focus:before{
-    outline-color: none;
-    box-shadow: none;
-    border: var(--border-size) solid var(--complement);
-    border-radius: 6px 6px 6px 6px;
-    top: calc(var(--border-size) * var(--alpha2) );
-    left: calc(var(--border-size) * var(--alpha2) );
-    right: calc(var(--border-size) * var(--alpha2) );
-    bottom: calc(var(--border-size) * var(--alpha2) );
-}*/
 /*-----------------*/
 .logo{
     margin-left: auto;
