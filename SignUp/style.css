@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+body,html{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    --principal: #FFC107;
+    --complement: #3E0A84;
+    --complementDark: #300667;
+    --secondary: #757575;
+    --lightsecondary: rgb(230, 230, 230);
+    --myBlack: #373435;
+
+    background-color: var(--lightsecondary);
+    height: 100vh;
+}
+
+.imgBack{
+    
+    background-image: url(../img/signUp/signUpBack.jpg);
+    background-size: cover;
+}
+
+.overlay{
+    height: 100%;
+    background:rgba(122, 122, 122, 0.39);
+}
+
+/*.title{
+    padding-right: 30px;
+    padding-top: 20px;
+    text-align: center;
+    color: var(--principal);
+    
+    font-weight: bolder;
+    font-size: 3em;
+}*/
+
+
+/*-----------------------LOGO---------------------*/
+.imgDiv{
+    width: 100%;
+    display: flex;
+    justify-content:center ;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+img{
+    height: 150px;
+    width: 150px;
+}
+
+
+/*----------------------------------Sign Button-----------------------------------------*/
+.userSign{
+    background-color: white;
+    border-radius: 6px 6px 0px 0px;
+    max-height: 100px;
+    display: flex;
+    
+}
+
+.userSign button{
+    color: var(--myBlack);
+    font-weight: bolder;
+    padding: 0;
+    border: 1px solid var(--myBlack);
+    width: 50%;
+    margin:0;
+    background: radial-gradient(rgb(247, 209, 97),#FFC107);
+}
+
+.userSign button img{
+    /*background-color: var(--complement);*/
+    border-radius: 30%;
+    margin: 10px 0px;
+    padding: 10px 0px;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.signInButton{
+    border-radius: 6px 0px 0px 0px;
+    
+}
+.signUpButton{
+    border-radius: 0px 6px 0px 0px;
+}
+
+/*------------------------------form---------------------------------------*/
+
+.container{
+    border-radius: 0px 0px 6px 6px;
+    width: 500px;
+    padding: 30px 50px;
+    background-color: #373435e8;
+    margin-bottom: 300px;
+}
+
+.form-group{
+    color: white;
+}
+
+form h1{
+    color:var(--principal) ;
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bolder;
+}
+
+.btn-primary{
+    margin-top:30px;
+    background-color: var(--principal);
+    border: none;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
