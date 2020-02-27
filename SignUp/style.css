@@ -23,7 +23,7 @@ body,html{
 }
 
 .overlay{
-    height: 100%;
+    height: 100vh;
     background:rgba(122, 122, 122, 0.39);
 }
 
@@ -53,8 +53,8 @@ img{
 }
 
 
-/*----------------------------------Sign Button-----------------------------------------*/
-.userSign{
+/*----------------------------------nav-tabs-----------------------------------------*/
+/*.userSign{
     background-color: white;
     border-radius: 6px 6px 0px 0px;
     max-height: 100px;
@@ -70,9 +70,53 @@ img{
     width: 50%;
     margin:0;
     background: radial-gradient(rgb(247, 209, 97),#FFC107);
+}*/
+
+.nav-tabs{
+    width: 100% !important; 
 }
 
-.userSign button img{
+.nav-link{
+    background:  var(--principal);
+}
+
+
+.nav-item{
+    width: 50%;
+}
+
+
+.nav-tabs .nav-link {
+    
+    border-radius: 0;
+}
+
+#SignIn-tab{
+    border-radius: 6px 0px 0px 0px !important;
+}
+
+#SignUp-tab{
+    border-radius: 0px 6px 0px 0px !important;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    color: var(--myBlack);
+    border-color: var(--myBlack);
+    font-weight: bolder;
+}
+
+.nav-link{
+    color: var(--myBlack);
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    font-weight: bolder;
+    color: var(--myBlack);
+    color: white;
+    background:  rgb(214, 162, 7);
+    border-color: var(--myBlack);
+}
+a img{
     /*background-color: var(--complement);*/
     border-radius: 30%;
     margin: 10px 0px;
@@ -81,13 +125,14 @@ img{
     max-height: 80px;
 }
 
+/*
 .signInButton{
     border-radius: 6px 0px 0px 0px;
     
 }
 .signUpButton{
     border-radius: 0px 6px 0px 0px;
-}
+}*/
 
 /*------------------------------form---------------------------------------*/
 

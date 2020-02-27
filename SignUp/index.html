@@ -19,14 +19,42 @@
           
           <div class="">
             <div class="userSign">
-              <button class="signInButton"><img src="../img/SignUp/user.svg" alt=""> Iniciar Sesión</button>
-              
-              <button class="signUpButton"><img src="../img/SignUp/form.svg" alt=""> Registrarse</button>
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item ">
+                  <a class="nav-link active" id="SignIn-tab" data-toggle="tab" href="#SignIn" role="tab" aria-controls="SignIn" aria-selected="true"><img src="../img/SignUp/user.svg" alt=""> Iniciar Sesión</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" id="SignUp-tab" data-toggle="tab" href="#SignUp" role="tab" aria-controls="SignUp" aria-selected="false"><img src="../img/SignUp/form.svg" alt=""> Registrarse</a>
+                </li>
+              </ul>
             </div>
+
   
             <div class="container ">
-                
-                <form class="">
+
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="SignIn" role="tabpanel" aria-labelledby="SignIn-tab">
+                  <form class="">
+                    <h1 class="color-primary">Inicia Sesión</h1>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+        
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Contraseña</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                    </div>
+
+                    
+                    <button type="submit" class="btn btn-primary">Entra</button>
+                </form>    
+                </div>
+
+
+                <div class="tab-pane fade" id="SignUp" role="tabpanel" aria-labelledby="SignUp-tab">
+                  <form class="">
                     <h1 class="color-primary">Registrate</h1>
                     
                     <div class="form-group">
@@ -49,6 +77,10 @@
                     
                     <button type="submit" class="btn btn-primary">Únete</button>
                 </form>    
+                </div>
+              </div>
+                
+                
             </div>
           </div>
 
