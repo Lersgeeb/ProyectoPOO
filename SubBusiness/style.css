@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+html {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  .container {
+    max-width: 960px;
+  }
+  
+  .pricing-header {
+    max-width: 700px;
+  }
+  
+  .card-deck .card {
+    min-width: 220px;
+  }
+  
+  .border-top { border-top: 1px solid #e5e5e5; }
+  .border-bottom { border-bottom: 1px solid #e5e5e5; }
+  
+  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+  /*-----------------------------*/
+body,html{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    --principal: #FFC107;
+    --complement: #3E0A84;
+    --complementDark: #300667;
+    --secondary: #757575;
+    --lightsecondary: rgb(230, 230, 230);
+    --myBlack: #373435;
+
+    background-color: var(--lightsecondary);
+}
+
+/*---------------Header-----------------*/
+.divHeader{
+  background-color: var(--myBlack);
+  border-color: var(--myBlack);
+  
+}
+
+.divHeader h5{
+  color: var(--principal);
+  font-size: 1.5em;
+}
+
+.divHeader .btn-outline-primary{
+  border-color: var(--principal);
+  color: var(--principal);
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus, .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.btn-outline-primary.focus, .btn-outline-primary:focus {
+  box-shadow:none;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle {
+  color: var(--principal);
+  background-color: var(--myBlack);
+  border-color: var(--principal);
+}
+
+.btn-outline-primary:hover {
+  color: var(--principal);
+  background-color: var(--myBlack);
+  border-color: var(--principal);
+}
+/*------jumbotron--------*/
+.jumbotron{
+  background-image: url(../img/SubBusiness/business.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.jumbotronOverlay{
+  background-color: rgba(36, 36, 36, 0.637);
+}
+
+.jumbotron img{
+    max-height: 200px;
+}
+.jumbotron h1{
+  color: var(--principal);
+  
+  font-size: 3em;
+}
+.jumbotron .text-muted{
+  color: white !important;
+  
+}
+.jumbotron .btn-primary{
+  border-color: var(--principal);
+  color: var(--principal);
+  background-color: transparent;
+  width:50%;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  color: var(--principal);
+  background-color: transparent;
+  border-color: var(--principal);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+  
+  box-shadow: none;
+}

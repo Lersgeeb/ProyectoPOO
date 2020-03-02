@@ -112,9 +112,9 @@ img{
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     font-weight: bolder;
     color: var(--myBlack);
-    color: white;
+    color: var(--myBlack);
     background:  rgb(214, 162, 7);
-    border-color: var(--myBlack);
+    border-color: #373435e8;
 }
 a img{
     /*background-color: var(--complement);*/
@@ -125,14 +125,7 @@ a img{
     max-height: 80px;
 }
 
-/*
-.signInButton{
-    border-radius: 6px 0px 0px 0px;
-    
-}
-.signUpButton{
-    border-radius: 0px 6px 0px 0px;
-}*/
+
 
 /*------------------------------form---------------------------------------*/
 
@@ -162,9 +155,6 @@ form h1{
     border: none;
     width: 100%;
 }
-
-
-
 
 
 

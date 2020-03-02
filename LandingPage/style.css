@@ -20,7 +20,7 @@ body{
     --alpha2:-2;
 }
 
-
+/*--------------NAVBAR-------------------------*/
 .navbar{
     background-color:var(--principal) ;
     position: fixed;
@@ -34,7 +34,7 @@ body{
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color:white;
+    color:rgb(238, 238, 238);
 }
 
 .navbar-light .navbar-brand {
@@ -44,11 +44,11 @@ body{
     
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
-    color: var(--complement);
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover{
+    color: white;
 }
 
-.navbar-light .navbar-brand:hover {
+.navbar-light .navbar-nav .nav-link:hover,.navbar-light .navbar-nav .nav-link:focus {
     color: white;
 }
 
@@ -70,7 +70,7 @@ header{
 
 .overlay{
     height: 100%;
-    background:rgba(122, 122, 122, 0.616);
+    background:rgba(95, 95, 95, 0.616);
 }
 
 .descDiv{
@@ -123,7 +123,7 @@ button:focus{
 }
 
 
- /*Border-Pop*/
+ /*-------------Border-Pop------------------*/
 
  .descButton button{
     z-index: 0;
@@ -158,7 +158,7 @@ button:focus{
 }
 
 
-/*-----------------*/
+/*----------------------LOGO-----------------*/
 .logo{
     margin-left: auto;
     /*margin-right: auto;*/
@@ -184,11 +184,6 @@ section{
     left: 0;
     right: 0;
 }
-
-
-
-/*ACCOUNTS INFO*/
-
 
 /*---------------COMPONENT CARD-------------------------*/
 .card {
