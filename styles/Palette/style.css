@@ -1,0 +1,51 @@
+/*
+#606062 gris ocuro,#757575
+#FBB80E amarillo,#f6b93b ,#FFC107
+
+
+#373435 myBlack
+#FFECB3 ligth-primary
+#FFA000 dark-primary
+#FFC107 primary
+#212121 primary-text
+#757575 Secondary-text
+#BDBDBD Divider-color
+*/
+
+body{
+    margin: 0;
+    color: white;
+}
+
+.colorDiv{
+    margin-top: 30px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myBlack{
+    background-color: #373435;
+}
+.ligth-primary{
+    background-color: #FFECB3;
+}
+
+.dark-primary{
+    background-color: #FFA000;
+}
+
+.primary{
+    background-color:#FFC107 ;
+}
+
+.primary-text{
+    background-color: #212121;
+}
+.Secondary-text{
+    background-color: #757575;
+}
+
+.Divider-color{
+    background-color: #BDBDBD;
+}
