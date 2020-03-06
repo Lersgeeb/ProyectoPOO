@@ -346,7 +346,6 @@ button:focus{
 }
 /*-------------------features--------------------*/
 .techDIv{
-  background-image: url(../../img/Landing/technology.jpg);
   background-position: center bottom;
   background-size: cover;
 }

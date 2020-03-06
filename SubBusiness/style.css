@@ -121,3 +121,8 @@ body,html{
   
   box-shadow: none;
 }
+
+a:hover {
+  
+  text-decoration: none;
+}

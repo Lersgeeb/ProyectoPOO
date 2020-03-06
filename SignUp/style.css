@@ -13,7 +13,7 @@ body,html{
     --myBlack: #373435;
 
     background-color: var(--lightsecondary);
-    /*max-height: 100vh;
+   /* max-height: 100vh;
     overflow: hidden;*/
     
 }
@@ -43,7 +43,7 @@ body,html{
 /*-----------------------LOGO---------------------*/
 .imgDiv{
     width: 100%;
-    display: flex;
+    display: none;
     justify-content:center ;
     margin-bottom: 30px;
     margin-top: 30px;
