@@ -71,11 +71,14 @@ header{
 .overlay{
     height: 100%;
     background:rgba(95, 95, 95, 0.616);
+    position: flex;
+    align-items: center;
+    justify-items: center;
 }
 
 .descDiv{
     padding: 100px;
-    padding-top: 100px;
+    margin-bottom: 200px;
     display:grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr ;
@@ -96,9 +99,7 @@ header{
 
 .descButton{
     grid-row: 3/span 1;
-    margin-top: 30px;
-    
-
+    margin-top: 1em;
 }
 
 .descButton button{
@@ -126,7 +127,8 @@ button:focus{
 
  .descButton button{
     z-index: 0;
-
+    width: 40%;
+    height: auto;
     
 }
 .descButton button:before{
@@ -156,22 +158,61 @@ button:focus{
     color: var(--principal);
 }
 
-
 /*----------------------LOGO-----------------*/
 .logo{
-    margin-left: auto;
-    /*margin-right: auto;*/
-
-    grid-column: 2/-1;
-    grid-row: 1/span 3;
-    height: 250px;
     
+    margin-left: auto;
+    
+    grid-row: 1/span 3;
 }
 
 #logoImg{
-    height: 250px;
+    max-height: 400px;
 }
+/*---------------------------media header----------------------------*/
+@media only screen and (max-width: 768px){
+    .descDiv{
+        padding: 1em;
+        padding-top: 3em;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr 1fr 1fr ;
+        
+    }
 
+    .descriptionTitle{
+        text-align: center;
+        grid-row: 2/span 1;
+    }
+    .description{
+        grid-row: 3/span 1;
+    }
+    
+    .descButton{
+        grid-row: 4/span 1;  
+        height: auto; 
+        width: auto;
+    }
+
+    .logo{
+        grid-row: 1/span 1;
+        margin-right: auto;
+        margin-top: auto;
+        
+    }
+
+    #logoImg{    
+        max-height: 100px;
+        
+    }
+        
+    .descButton button{
+        font-size: 1.5em;
+        justify-self: center;
+        
+        width: 80%;
+    }   
+}
 /*------------------------------------------------*/
 section{
     background-color: white;
@@ -191,12 +232,14 @@ section{
 }
 
 /*---------------COMPONENT CARD-------------------------*/
+
+
 .card {
-    max-width: 370px;
+    
 
 
     padding-top: 30px;
-    height: fit-content;
+    
     text-align: center;
     border-radius: 5%;
     box-shadow: 3px 2px 3px 0px #84888747;
@@ -231,23 +274,24 @@ section{
     
     margin: auto;
     border-radius: 30%;
-    height: 60%;
+    
     width: 60%;
     background-color: var(--principal);
-    border-bottom: 20px solid var(--complement);
-    border-left: 20px solid var(--complement);
-    border-top: 5px solid var(--complement);
-    border-right: 5px solid var(--complement);
+    border-bottom: 1em solid var(--complement);
+    border-left: 1em solid var(--complement);
+    border-top: 0.3em solid var(--complement);
+    border-right: 0.3em solid var(--complement);
 }
 
 .card-title{
     color: var(--complement);
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: bolder;
 }
 
 .card-text{
     color:var(--secondary); 
+    font-size: 1.2em;
 }
 
 /*-----------------------------------------------------------*/
