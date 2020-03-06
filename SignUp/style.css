@@ -13,8 +13,8 @@ body,html{
     --myBlack: #373435;
 
     background-color: var(--lightsecondary);
-    max-height: 100vh;
-    overflow: hidden;
+    /*max-height: 100vh;
+    overflow: hidden;*/
     
 }
 
