@@ -13,8 +13,8 @@ body,html{
     --myBlack: #373435;
 
     background-color: var(--lightsecondary);
-   /* max-height: 100vh;
-    overflow: hidden;*/
+
+    /*overflow: hidden;*/
     
 }
 
@@ -22,11 +22,15 @@ body,html{
     
     background-image: url(../img/signUp/signUpBack.jpg);
     background-size: cover;
+    min-height: 100vh;
+    
 }
 
 .overlay{
-    height: 100vh;
+    
+    
     background:rgba(122, 122, 122, 0.39);
+    min-height: 100vh;
 }
 
 /*.title{
@@ -42,11 +46,10 @@ body,html{
 
 /*-----------------------LOGO---------------------*/
 .imgDiv{
-    width: 100%;
-    display: none;
+    
     justify-content:center ;
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 img{
@@ -68,12 +71,18 @@ img{
     background: radial-gradient(rgb(247, 209, 97),#FFC107);
 }*/
 
+
 .nav-tabs{
     width: 100% !important; 
 }
 
 .nav-link{
+    height: 3em;
     background:  var(--principal);
+    font-size: 1.2em;
+    display: flex;
+    justify-items: center ;
+    align-items: center;
 }
 
 
@@ -83,7 +92,6 @@ img{
 
 
 .nav-tabs .nav-link {
-    
     border-radius: 0;
 }
 
@@ -112,16 +120,6 @@ img{
     background:  rgb(214, 162, 7);
     border-color: #373435e8;
 }
-a img{
-    /*background-color: var(--complement);*/
-    border-radius: 30%;
-    margin: 10px 0px;
-    padding: 10px 0px;
-    max-width: 80px;
-    max-height: 80px;
-}
-
-
 
 /*------------------------------form---------------------------------------*/
 
@@ -130,7 +128,8 @@ a img{
     width: 500px;
     padding: 30px 50px;
     background-color: #373435e8;
-    margin-bottom: 300px;
+    margin-bottom: 3em;
+    
 }
 
 .form-group{
@@ -141,7 +140,7 @@ form h1{
     color:var(--principal) ;
     color: white;
     text-align: center;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: bolder;
 }
 
