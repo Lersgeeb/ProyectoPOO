@@ -57,7 +57,10 @@ body {
   ------------------------- */
   
   .featurette-divider {
-    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    margin: 4rem 0; /* Space out the Bootstrap <hr> more */
+  }
+  .featurette-dividerf {
+    margin: 1rem 0; /* Space out the Bootstrap <hr> more */
   }
   
   /* Thin out the marketing headings */
@@ -161,7 +164,7 @@ main{
   background-size: cover;
   background-attachment: fixed;
   background-position: center  center;
-  text-align: start!important;
+  text-align: center!important;
   width: 100%;
 }
 
@@ -193,7 +196,7 @@ main{
 }
 
 .logo{
-  text-align: center!important;
+  
   margin-bottom: 2em;
 }
 
@@ -213,7 +216,7 @@ main{
   color: white !important;
   font-size: 1.5em !important;
 
-  text-align: justify;
+  text-align: center;
 }
 
 .descButton{
@@ -327,3 +330,79 @@ button:focus{
     display: none;
   }
 }
+/*------------------cards---------------*/
+.rounded-circle{
+  background-color: var(--principal);
+  
+  border: 2px solid var(--complement) ;
+  border-radius: 30% !important;
+    
+  
+  background-color: var(--principal);
+  border-bottom: 0.8em solid var(--complement);
+  border-left: 0.8em solid var(--complement);
+  border-top: 0.3em solid var(--complement);
+  border-right: 0.3em solid var(--complement);
+}
+/*-------------------features--------------------*/
+.techDIv{
+  background-image: url(../../img/Landing/technology.jpg);
+  background-position: center bottom;
+  background-size: cover;
+}
+
+.featurette-heading{
+  color: var(--myBlack);
+}
+
+.featureSection{
+  background-color: var(--myBlack);
+  height: 8em ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.featureSection h2{
+  color: var(--principal);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+.colfeature{
+  margin: 0;
+  padding: 0;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+
+.overlaytxt{
+  display: none;
+  background-color: #373435ab;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; 
+  
+}
+.colfeature:hover .overlaytxt{
+  display: inline;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.featurette{
+  height: 10em;
+  padding:  0em 1em;
+}
+
+
+/*<img class="featurette-image img-fluid mx-auto"  src="../img/Landing/technology.jpg" alt="Generic placeholder image">*/
