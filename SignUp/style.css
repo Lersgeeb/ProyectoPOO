@@ -152,8 +152,70 @@ form h1{
 }
 
 
+@media only screen and (max-width:768px){
+
+    
+    img{
+        height: 100px;
+        width: 100px;
+    }
 
 
+    .nav-link{
+        height: 3em;
+        font-size: 0.8em;
+    }
+
+    .sign{
+        width: 70% ;
+        padding: 0;
+    }
+
+    .container{
+        margin: 0;
+        width: 100%;
+        padding: 1em 2em;
+    }
+
+    .tab-content{
+        width: 100%;
+    }
+
+    form h1{
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+}
+
+@media only screen and (max-width:576px){
+    .imgBack{
+        background-image: none;
+        background-color: var(--myBlack);  
+    }
+    .overlay{
+        background-color: transparent;
+    }
+
+    .sign{
+        width: 100% ;
+        padding: 0;
+    }
+    #SignIn-tab{
+        border-radius:0px !important;
+    }
+    
+    #SignUp-tab{
+        border-radius: 0px !important;
+    }
+
+
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 0px ;
+        background-color: transparent;
+    }
+}
 
 
 
