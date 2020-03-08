@@ -40,6 +40,10 @@ body,html{
 
     background-color: var(--lightsecondary);
 }
+/*-----------------------Nav--------------------*/
+a:hover {
+  text-decoration: none;
+}
 
 /*---------------Header-----------------*/
 .divHeader{
@@ -48,6 +52,9 @@ body,html{
   
 }
 
+.container{
+  padding: 2em 0em;
+}
 .divHeader h5{
   color: var(--principal);
   font-size: 1.5em;
@@ -121,8 +128,35 @@ body,html{
   
   box-shadow: none;
 }
+/*--------------------Plans---------------------*/
 
-a:hover {
-  
-  text-decoration: none;
+
+
+.card-body{
+  background-color: var(--myBlack);
+  color: white;
+}
+ .text-muted{
+  color: var(--secondary) !important;
+}
+
+.card-header{
+  background-color: var(--principal);
+}
+
+.btn-outline-primary {
+  color: var(--principal);
+  border-color: var(--principal);
+}
+
+.btn-outline-primary:hover {
+  background-color: rgba(218, 166, 8, 0.329);
+}
+.btn-primary {
+  background-color: var(--principal);
+  border-color: var(--principal);
+}
+.btn-primary:hover {
+  background-color: rgb(218, 165, 8);
+  border-color: wheat ;
 }
