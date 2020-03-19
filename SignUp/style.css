@@ -6,10 +6,11 @@ body,html{
     padding: 0;
 
     --principal: #FFC107;
+    --principalDark: #d6a207;
     --complement: #3E0A84;
     --complementDark: #300667;
     --secondary: #757575;
-    --lightsecondary: rgb(230, 230, 230);
+    --lightsecondary: #e6e6e6;
     --myBlack: #373435;
 
     background-color: var(--lightsecondary);
@@ -110,6 +111,7 @@ img{
 }
 
 .nav-link{
+    text-align: center;
     color: var(--myBlack);
 }
 
@@ -117,7 +119,7 @@ img{
     font-weight: bolder;
     color: var(--myBlack);
     color: var(--myBlack);
-    background:  rgb(214, 162, 7);
+    background:  var(--principalDark);
     border-color: #373435e8;
 }
 

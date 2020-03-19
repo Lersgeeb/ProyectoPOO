@@ -89,7 +89,7 @@ body {
   
   @media (min-width: 62em) {
     .featurette-heading {
-      margin-top: 7rem;
+      margin-top: 3rem;
     }
   }
 
@@ -331,7 +331,7 @@ button:focus{
   }
 }
 /*------------------cards---------------*/
-.rounded-circle{
+.benefits{
   background-color: var(--principal);
   
   border: 2px solid var(--complement) ;
@@ -350,11 +350,15 @@ button:focus{
   background-size: cover;
 }
 
-.featurette-heading{
-  color: var(--myBlack);
+.featurette-heading{ 
+  background-color: rgba(37, 37, 37, 0.39);
+  color: white;
+  text-shadow: 2px 2px rgba(37, 37, 37, 0.39);
+  text-align: center;
 }
 
 .featureSection{
+  
   background-color: var(--myBlack);
   height: 8em ;
   display: flex;
@@ -363,7 +367,9 @@ button:focus{
 }
 .featureSection h2{
   color: var(--principal);
-  font-weight: 300;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: -.05rem;
 }
@@ -389,8 +395,14 @@ button:focus{
 }
 .colfeature:hover .overlaytxt{
   display: inline;
+  cursor: pointer;
 }
 
+.colfeature:hover .featurette-heading{
+  
+  background-color: rgba(37, 37, 37, 0);
+
+}
 .centered {
   position: absolute;
   top: 50%;
@@ -403,5 +415,7 @@ button:focus{
   padding:  0em 1em;
 }
 
-
+.fa-star{
+  color: var(--principal);
+}
 /*<img class="featurette-image img-fluid mx-auto"  src="../img/Landing/technology.jpg" alt="Generic placeholder image">*/
