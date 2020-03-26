@@ -102,7 +102,10 @@
     background-color: var(--principal)!important;
 }
 
+.sale h2{
+  margin: 0.3em auto;
 
+}
 
 
 .jumbotron{
@@ -114,7 +117,8 @@
 
     color: white;
     background-color: #373435b2;
-    padding-bottom: 15px;
+    padding-bottom: 1em;
+    padding-top: 1em;
 }
 .text-muted{
     color: var(--lightsecondary) !important;

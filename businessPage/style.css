@@ -1,37 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
-html {
-    font-size: 14px;
-  }
-  @media (min-width: 768px) {
-    html {
-      font-size: 16px;
-    }
-  }
-  
-  .container {
-    max-width: 960px;
-  }
-  
-  .pricing-header {
-    max-width: 700px;
-  }
-  
-  .card-deck .card {
-    min-width: 220px;
-  }
-  
-  .border-top { border-top: 1px solid #e5e5e5; }
-  .border-bottom { border-bottom: 1px solid #e5e5e5; }
-  
-  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-  /*-----------------------------*/
 body,html{
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
 
     --principal: #FFC107;
+    --principalDark:#D6A207;
     --complement: #3E0A84;
     --complementDark: #300667;
     --secondary: #757575;
@@ -39,6 +13,7 @@ body,html{
     --myBlack: #373435;
 
     background-color: var(--lightsecondary);
+    height: 100%;
 }
 /*-----------------------Nav--------------------*/
 a:hover {
@@ -84,3 +59,96 @@ a:hover {
     background-color: var(--myBlack);
     border-color: var(--principal);
   }
+
+  /*collapse*/
+  /*.navbar{
+    background-color: var(--myBlack);
+  }
+
+  .navbar-light .navbar-brand {
+    color: var(--principal);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: white;
+}
+
+.divHeader{
+    display: none !important;
+  }
+*/
+
+  
+  .navbar-toggler{
+    color: white;
+  }
+  .horizontalNavs{
+    display: none;
+  }
+
+  .collapseButton{
+    display: none;
+  }
+
+  @media only screen  and (max-width: 768px){
+    .horizontalNavs{
+      display: inline;
+    }
+
+    .verticalNavs{
+      display: none;
+    }
+
+  }
+
+  /*nav-pills*/
+
+.verticalNavs{
+  height: 100%;
+}
+.nav-pills{
+  background-color: var(--myBlack);
+  height: 100%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color:var(--principalDark);
+  text-decoration: none;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: var(--principalDark);
+}
+
+.nav-pills .nav-link {
+  border-radius: 0;
+}
+
+/*---home---*/
+#v-home h2{
+  color: var(--myBlack);
+  font-weight: bold;
+  
+}
+
+.titleNav{
+  width: 100%;
+  margin-bottom: 2em;
+  border-bottom: 1px solid var(--principalDark);
+}
+
+.titleNav h1{  
+  font-weight: bolder;
+  color: var(--principalDark);
+}
