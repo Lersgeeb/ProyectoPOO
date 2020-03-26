@@ -9,14 +9,28 @@
     <title>Wachalo | Empresas</title>
 </head>
 <body>
-    <div class="divHeader d-flex flex-column flex-md-row align-items-center p-3 px-md-4 box-shadow">
-        <a class="my-0 mr-md-auto" href="../LandingPageV2/index.html"><h5 class="my-0 mr-md-auto font-weight-normal">Wachalo</h5></a>
+    <div class="divHeader d-flex flex-column flex-md-row align-items-center p-3 px-md-4 box-shadow" id='navBarPage' >
+        <a class="my-0 mr-md-auto" href="../LandingPageV2/index.html"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
         <nav class="my-2 my-md-0 mr-md-3">
-
         </nav>
-        <a class="btn btn-outline-primary" href="#">Iniciar Sesion</a>
+
+        <div class="dropdown mr-1">
+          <button type="button" class="btn  btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+            <span>Gabriel &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
+            <div class="px-4 accountInfo">
+                <small class="userName">Gabriel Escobar</small>
+                <small class="userEmail" >gabriel@gmail.com</small>
+            </div>
+            
+            <a class="dropdown-item" href="../businessPage/index.html">Mi empresa</a>
+            <a class="dropdown-item" href="#">Cerrar Sesion</a>
+          </div>
+        </div>
+
       </div>
-      
+     
       <section class="jumbotron text-center">
           <div class="jumbotronOverlay">
             <div class="container">
@@ -58,7 +72,7 @@
  
       </div>
       
-      <!-- Modal -->
+      <!-- Modal signUp -->
       <div class="modal fade" id="modalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -108,6 +122,45 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal login -->
+      <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Accede</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+            
+                <form class="">
+            
+
+                  <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmailLogin" placeholder="Email">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Contraseña</label>
+                    <input type="password" class="form-control" id="passwordLogin" placeholder="Contraseña">
+                  </div>
+
+                  
+                </form>    
+              
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" onclick="login()" class="btn btn-primary">Entrar</button>
             </div>
           </div>
         </div>

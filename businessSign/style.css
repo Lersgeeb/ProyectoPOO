@@ -32,6 +32,7 @@ body,html{
     padding: 0;
 
     --principal: #FFC107;
+    --principalDark:#D6A207;
     --complement: #3E0A84;
     --complementDark: #300667;
     --secondary: #757575;
@@ -45,6 +46,35 @@ a:hover {
   text-decoration: none;
 }
 
+.userLink{
+  color: var(--principal);
+}
+
+/*NAV logged*/
+.userEmail{
+  color: var(--secondary);
+  margin-bottom: 1em;
+  
+}
+.userName{
+  color: var(--myBlack);
+  margin-bottom: 0;
+}
+
+.accountInfo{
+  border-bottom: 1px solid var(--lightsecondary);
+}
+
+.dropdown .btn-outline-primary{
+  border: none;
+}
+
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--principalDark);
+}
+
 /*---------------Header-----------------*/
 .divHeader{
   background-color: var(--myBlack);
@@ -55,7 +85,7 @@ a:hover {
 .container{
   padding: 2em 0em;
 }
-.divHeader h5{
+.divHeader .brandName{
   color: var(--principal);
   font-size: 1.5em;
 }
@@ -160,3 +190,6 @@ a:hover {
   background-color: rgb(218, 165, 8);
   border-color: wheat ;
 }
+
+/**/
+
