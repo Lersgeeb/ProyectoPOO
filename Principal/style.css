@@ -93,6 +93,7 @@
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
 }
+
 /*-----------------------------------------*/
 
 
@@ -188,6 +189,16 @@
     min-height:250px;
 } 
 
+.rateProduct{
+ color: var(--principal); 
+ text-align: center;
+ text-shadow: 1px 1px 0px #7575754a;
+}
+
+.quantUser{
+  color: var(--myBlack);
+}
+
 .saleProduct{
   padding: 10px 0px;
   display: grid;
@@ -209,6 +220,8 @@
 .prices{
   text-align: right;
   grid-row: auto/span 2; 
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .beforePrice{
   text-decoration: line-through;
@@ -230,4 +243,16 @@
   border-color:var(--principal);
   border-color:white;
   background-color: var(--principal);
+}
+
+.companyName:hover{
+ text-decoration: underline;
+ cursor: pointer;
+}
+
+.productDate{
+  text-align: right !important;
+  color: brown;
+  font-size: 0.8em;
+  
 }
