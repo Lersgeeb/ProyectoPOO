@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/all.min.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="../img/logo.svg">
     <title>Wachalo | Empresas</title>
@@ -23,7 +24,7 @@
 
       <div class="row rowNavs" style="height: 100%;" >
 
-        <div class="col-md-3 verticalNavs" >
+        <div class="col-md-3 verticalNavs pr-0" >
           <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="v-home-tab" data-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">Inicio</a>
             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">perfil</a>
@@ -86,10 +87,10 @@
        
 
 
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-9 pl-0 pr-0">
           <div class="tab-content" id="v-pills-tabContent">
             
-            <!--INICIO-->
+            <!--INICIO <div class="banner"><img src="../img/businessPage/banner1.jpg"  alt=""></div>-->
             <div class="tab-pane fade show active" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
               
               <div class="container">
@@ -106,10 +107,131 @@
               </div>
             </div>
 
+            <!-- Profile -->
+            <div class="tab-pane fade"  id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+              <div style = "height: 18em; overflow: hidden; background-image: url(../img/businessPage/banner1.jpg); background-position: center center; background-size: cover;"></div>
+              <div class="container" id="sectionProfilebusiness">
 
+                <div id="headerprofiles">
 
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Seccion de Perfil</div>
-            <div class="tab-pane fade" id="v-pills-Productregistry" role="tabpanel" aria-labelledby="v-pills-Productregistry-tab">Seccion de Registro de producto</div>
+                  <div class="businessInfo">
+                    <div class="businessName">Jetstereo</div>
+                    <div class="businesDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi at ad voluptatibus, obcaecati id assumenda dolor consequatur? Earum ducimus maiores nulla, dignissimos ullam voluptatum quam, magni tempore velit, ad facere?</div>
+                    <div class="businessSocial mt-3">                      
+                      <ul class="pl-0">
+                        <li class="btn btn-outline-info"><i class="fab fa-facebook"></i></li>
+                        <li class="btn btn-outline-info"><i class="fab fa-instagram"></i></li>
+                        <li class="btn btn-outline-info"><i class="fab fa-twitter"></i></li>
+                      </ul>
+                    </div>
+                  </div>                
+                  <img style="height: 15em;" class="rounded-circle businessLogo" src="../img/businessPage/logo1.png" alt="">                                  
+                  
+                </div>
+                
+                <div id="selfProductsBusiness">
+                  <h5 style="font-weight: bold;">Mis productos en Oferta</h5>
+                  
+                  <div class="row">
+
+                    <div class="col-md-6 col-lg-3">
+                      <div class="card mb-4 box-shadow">
+                        <img style="height: 1em;" class="card-img-top imageProducts" src="../img/Principal/products/pcHP.jpg" alt="Card image cap">
+                        <div class="card-body">
+                          <p class="rateProduct mb-0">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>                    
+                          </p>
+                          <div class="quantUser" style="text-align: center;">
+                            200 <i class="fas fa-user"></i>
+                          </div>
+      
+                          <div class="saleProduct"> 
+                            <div class="sale"><h3 class="mb-0">65%</h3></div>
+                            <div class="prices">
+                              <div class="price beforePrice">Antes: L.15,000</div> 
+                              <div class="price nowPrice">Ahora: L.9,750</div>
+                            </div>                      
+                        </div>
+                          <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-sm btn-outline-secondary">+ Detalles</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-cart-plus"></i> Comprar</button>
+                            </div>
+                          </div>                                              
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                
+                </div>
+
+              </div>   
+            </div>
+
+            <div class="tab-pane fade" id="v-pills-Productregistry" role="tabpanel" aria-labelledby="v-pills-Productregistry-tab">
+                <div class="container">
+                  <div class="titleNav">
+                    <h1 class="homeTitle">Registro de producto</h1>          
+                  </div>
+
+                  <h2>Agregar Producto nuevo</h2>
+                  <div class="formProducts">
+                    <h4 class="formTitle">Crea tu producto</h4>
+
+                    <div class="form-group">
+                      <label for="productNameInput">Nombre del Producto</label>
+                      <input type="text" name="" id="productNameInput" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="imageUrlInput">URL de la imagen</label>
+                      <input type="text" name="" id="imageUrlInput" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="productPriceInput">Precio del producto</label>
+                      <input type="text" name="" id="productPriceInput" class="form-control" placeholder="" aria-describedby="helpId">
+                      <small id="helpId" class="text-muted">Help text</small>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                      <label for="productDescInput">Descripción del producto</label>
+                      <textarea class="form-control" name="" id="productDescInput" cols="30" rows="3"></textarea>
+                      
+                    </div>
+
+                  </div>
+                  
+                  
+                  <h2>Productos registrados Actuales</h2>
+                  <div class="row">
+
+                    <div class="col-md-6 col-lg-3">
+                      <div class="card mb-4 box-shadow">
+                        <img style="height: 1em;" class="card-img-top imageProducts" src="../img/Principal/products/pcHP.jpg" alt="Card image cap">
+                        <div class="card-body">
+                          <div class="price nowPrice">Ahora: L.9,750</div>
+                          <p class="card-text descProducts mb-0">HP Pavilion 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)</p>                        
+                          <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-sm btn-outline-secondary">+ Detalles</button>                          
+                              <button type="button" class="btn btn-sm btn-outline-secondary">- Borrar</button>                          
+                            </div>
+                          </div>                                              
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+            </div>
             <div class="tab-pane fade" id="v-pills-branchOffice" role="tabpanel" aria-labelledby="v-pills-branchOffice-tab">Seccion de Registro de Sucursales</div>
             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Seccion de Mensajes</div>
           </div>

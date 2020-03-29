@@ -12,8 +12,7 @@ body,html{
     --lightsecondary: rgb(230, 230, 230);
     --myBlack: #373435;
 
-    background-color: var(--lightsecondary);
-    height: 100%;
+    background-color: var(--myBlack);
 }
 /*-----------------------Nav--------------------*/
 a:hover {
@@ -106,9 +105,9 @@ a:hover {
   }
 
   /*nav-pills*/
-
 .verticalNavs{
   height: 100%;
+
 }
 .nav-pills{
   background-color: var(--myBlack);
@@ -135,10 +134,11 @@ a:hover {
   border-radius: 0;
 }
 
-/*---home---*/
-#v-home h2{
+/*-------------------------------------------------------home/*-------------------------------------------------------*/
+.tab-pane h2{
   color: var(--myBlack);
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 1.5em;
   
 }
 
@@ -151,4 +151,137 @@ a:hover {
 .titleNav h1{  
   font-weight: bolder;
   color: var(--principalDark);
+}
+
+.tab-content{
+  background-color: var(--lightsecondary);
+}
+
+/*-------------------------------------------------------PROFILE-------------------------------------------------------*/
+#v-pills-profile{
+  
+}
+
+/*Banner and header*/
+#sectionProfilebusiness{
+  
+  margin-top: 3em ;
+  padding-right: 3em ;
+  padding-left: 3em;
+  background-color: white;
+}
+
+#headerprofiles{
+  display: flex;
+}
+
+.businessInfo{
+  margin-top: 1.5em;
+}
+
+.businessName{
+  color: var(--myBlack);
+  font-size: 3em;
+  font-weight: bold;
+  border-bottom: 1px solid var(--principal);
+  margin-right: 1em;
+  margin-bottom: 16px;
+}
+
+.businesDesc{
+  padding-right: 2em;
+  color: var(--secondary);
+  font-size: 0.9em;
+}
+
+.btn-outline-info{
+  color: var(--principal);
+  border: 1px solid var(--principal);
+}
+
+.btn-outline-info:hover{
+  color: var(--lightsecondary);
+  background-color: var(--principalDark);
+  border: 1px solid var(--principalDark);
+}
+
+/*profile-products (cards)*/
+
+.card{
+  background-color: var(--myBlack);
+  margin-top: 1em;
+}
+.card-img-top{
+  background-size: cover;
+  background-position: center center;
+  min-height:250px;
+} 
+
+.rateProduct{
+color: var(--principal); 
+text-align: center;
+text-shadow: 1px 1px 0px #7575754a;
+}
+
+.quantUser{
+color: white;
+}
+
+.saleProduct{
+padding: 10px 0px;
+display: grid;
+grid-template:1fr 1fr/1fr 2fr ;
+}
+
+.sale{
+grid-row: auto/span 2;
+display: flex;
+justify-content: center;
+align-items: center;
+border: 1px solid var(--principal);
+border-radius: 6px;
+color: var(--principal);
+padding: 5px;
+font-weight: bolder;
+}
+
+.prices{
+text-align: right;
+grid-row: auto/span 2; 
+margin-top: auto;
+margin-bottom: auto;
+}
+.beforePrice{
+text-decoration: line-through;
+font-size: 0.8em;
+color:var(--secondary);
+}
+.nowPrice{
+  color: white;
+font-weight: bold;
+}
+
+
+.btn-outline-secondary {
+color: var(--principal);
+border-color:var(--principal);
+background-color: var(--myBlack);
+}
+
+/*ProductForm*/
+
+.descProducts{
+  color: var(--lightsecondary);
+}
+
+.formProducts{
+  border-radius: 5px;
+  background-color: white;
+  margin: 2em 15em;
+  padding: 1em 3em;
+}
+
+.formTitle{
+  text-align: center;
+  font-weight: 500;
 }
