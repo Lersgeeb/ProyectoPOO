@@ -2,9 +2,27 @@
 /* Not Working :c*/
 
 class GlobalJS{
-    
+    static online = false;
+    static userOnline = false;
 
-    static getUsers(){
+    constructor(){
+        this.users = {
+            'gabriel@gmail.com':{
+                password:1234,
+                userName:'Lersgeeb',
+                firstname:'Gabriel Enrique',
+                lastName:'Escobar Banegas'
+            },
+            'noGabriel@gmail.com':{
+                password:4321,
+                userName:'NoGabriel',
+                firstname:'NoGabriel NoEnrique',
+                lastName:'NoEscobar NoBanegas'
+            },
+        }
+    }
+
+        getUsers(){
         var users = {
             'gabriel@gmail.com':{
                 password:1234,
@@ -24,10 +42,13 @@ class GlobalJS{
 
     authentication(email,passwordInput){
         
-        var users = GlobalJS.getUsers();
+        var users = this.users;
+        
 
         if(users[email]){
             if(users[email].password==passwordInput){
+                GlobalJS.online = true;
+                GlobalJS.userOnline = users[email];
                 return users[email];
             }
         }
@@ -36,9 +57,7 @@ class GlobalJS{
 
 
 class Prueba1 extends GlobalJS{
-    constructor(){
-        super()
-    }
+  
 
     readInputs(){
         
@@ -66,6 +85,7 @@ class Prueba2 extends GlobalJS{
         var user = super.authentication(email,pw);
         if(user){
             console.log(`bienvenido ${user.userName}`);
+            
         }
         else{
             console.log("Correo o contraseña incorrecto")
@@ -80,16 +100,26 @@ class Prueba2 extends GlobalJS{
 
 
 
+function conect1(){
+    prueba1.readInputs();
+    console.log(GlobalJS.userOnline);
+}
+function conect2(){
+    prueba2.readInputs();
+    console.log(GlobalJS.userOnline);
+}
+
 /*page1*/
 prueba1  = new Prueba1();
-document.getElementById('buttonCLick1').addEventListener('click',prueba1.readInputs);
+document.getElementById('buttonCLick1').addEventListener('click',conect1);
 prueba1.printalgo();
 
 
 /*page2*/
 prueba2  = new Prueba2();
-document.getElementById('buttonCLick2').addEventListener('click',prueba2.readInputs);
+document.getElementById('buttonCLick2').addEventListener('click',conect2);
 
 
 
 
+    
