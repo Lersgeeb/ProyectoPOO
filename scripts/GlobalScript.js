@@ -1,7 +1,50 @@
 /*Temporary js script until backend be implemented  */
 /* Not Working :c*/
 
-class GlobalJS{
+var localstorage = window.localStorage
+
+if(localstorage.getItem('userOnline')){
+    var userOnline = JSON.parse(localstorage.getItem('userOnline'));
+}
+else{
+    var userOnline = false;
+}
+
+
+var users = {
+    'gabriel@gmail.com':{
+        password:1234,
+        userName:'Lersgeeb',
+        firstname:'Gabriel Enrique',
+        lastName:'Escobar Banegas',
+        email:'gabriel@gmail.com'
+    },
+    'noGabriel@gmail.com':{
+        password:4321,
+        userName:'NoGabriel',
+        firstname:'NoGabriel NoEnrique',
+        lastName:'NoEscobar NoBanegas',
+        email:'noGabriel@gmail.com'
+    },
+}
+
+function authentication(emailValue,passwordValue){
+
+    if(users[emailValue]){
+        if(users[emailValue].password==passwordValue){
+            userOnline = users[emailValue];
+            localstorage.setItem('userOnline', JSON.stringify(userOnline));
+            return userOnline;
+        }
+    }
+}
+
+function logOut(){
+    userOnline = null;
+    localstorage.setItem('userOnline', JSON.stringify(userOnline));
+}
+
+/*class GlobalJS{
     static online = false;
     static userOnline = false;
 
@@ -107,18 +150,19 @@ function conect1(){
 function conect2(){
     prueba2.readInputs();
     console.log(GlobalJS.userOnline);
-}
+}*/
 
-/*page1*/
+/*
+page1
 prueba1  = new Prueba1();
 document.getElementById('buttonCLick1').addEventListener('click',conect1);
 prueba1.printalgo();
 
 
-/*page2*/
+/*page2
 prueba2  = new Prueba2();
 document.getElementById('buttonCLick2').addEventListener('click',conect2);
-
+*/
 
 
 

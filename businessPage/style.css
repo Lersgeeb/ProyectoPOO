@@ -16,9 +16,41 @@ body,html{
 }
 /*-----------------------Nav--------------------*/
 a:hover {
-    text-decoration: none;
-  }
+  text-decoration: none;
+}
+
+.userLink{
+  color: var(--principal);
+}
+
+/*NAV logged*/
+.userEmail{
+  color: var(--secondary);
+  margin-bottom: 1em;
   
+}
+.userName{
+  color: var(--myBlack);
+  margin-bottom: 0;
+}
+
+.accountInfo{
+  border-bottom: 1px solid var(--lightsecondary);
+}
+
+.dropdown .btn-outline-primary{
+  border: none;
+}
+
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--principalDark);
+}
+
+.btn-outline-primary:hover {
+  background-color: rgba(218, 166, 8, 0.329);
+}
   /*---------------Header-----------------*/
   .divHeader{
     background-color: var(--myBlack);
@@ -34,6 +66,7 @@ a:hover {
     font-size: 1.5em;
   }
   
+/*BUTTONs*/
   .divHeader .btn-outline-primary{
     border-color: var(--principal);
     color: var(--principal);
@@ -58,6 +91,30 @@ a:hover {
     background-color: var(--myBlack);
     border-color: var(--principal);
   }
+
+  .divHeader .btn-outline-primary{
+    border-color: var(--principal);
+    color: var(--principal);
+  }
+  
+  .btn-outline-primary {
+    color: var(--principal);
+    border-color: var(--principal);
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: rgba(218, 166, 8, 0.329);
+  }
+  .btn-primary {
+    background-color: var(--principal);
+    border-color: var(--principal);
+  }
+  .btn-primary:hover {
+    background-color: rgb(218, 165, 8);
+    border-color: white ;
+  }
+
+  
 
   /*collapse*/
   /*.navbar{

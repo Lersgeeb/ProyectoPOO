@@ -23,7 +23,7 @@ plans = [
     }
 ]
 
-users = {
+/*users = {
     'gabriel@gmail.com':{
         password:1234,
         userName:'Gabriel',
@@ -32,10 +32,10 @@ users = {
 
 
     }
-}
+}*/
 
 function render(){
-    renderNav();
+    renderNav(userOnline);
     renderPlan();
 }
 
@@ -62,9 +62,9 @@ function renderPlan(){
     }
 }
 
-function renderNav(email){
+function renderNav(user){
     navBarPage = document.getElementById('navBarPage');
-    if(email==null){
+    if(user==null){
         navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2/index.html"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
@@ -76,16 +76,16 @@ function renderNav(email){
                                     </nav>
                                     <div class="dropdown mr-1">
                                         <button type="button" class="btn  btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                        <span>${users[email].userName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
+                                        <span>${user.userName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
                                         <div class="px-4 accountInfo">
-                                            <small class="userName">${users[email].firstname.split(" ")[0]} ${users[email].lastName.split(" ")[0]}</small>
-                                            <small class="userEmail" >${email}</small>
+                                            <small class="userName">${user.firstname.split(" ")[0]} ${user.lastName.split(" ")[0]}</small>
+                                            <small class="userEmail" >${user.email}</small>
                                         </div>
                                         
                                         <a class="dropdown-item" href="../businessPage/index.html">Mi empresa</a>
-                                        <a class="dropdown-item" onclick="logout()">Cerrar Sesion</a>
+                                        <a class="dropdown-item" onclick="logoutBusinessSign()">Cerrar Sesion</a>
                                         </div>
                                     </div>`
     }
@@ -104,26 +104,22 @@ function showLogin(){
 }
 
 function login(){
-    email = document.getElementById('inputEmailLogin').value;
-    password = document.getElementById('passwordLogin').value;
+    emailValue = document.getElementById('inputEmailLogin').value;
+    passwordValue = document.getElementById('passwordLogin').value;
 
-
-    if(users[email]){
-        if(users[email].password==password){
-            renderNav(email);
-            $('#modalLogin').modal('hide');
-        }
-            
-        else
-            console.log('Contraseña Incorrecta');
+    user =  authentication(emailValue,passwordValue)
+    if(user){
+        renderNav(user);
+        $('#modalLogin').modal('hide');
     }
     else
-        console.log('Este Usuario no Existe');
+        console.log('Usuario o Contraseña incorrecta');
 
         
 }
 
-function logout(){
+function logoutBusinessSign(){
+    logOut()
     renderNav();
 }
 
