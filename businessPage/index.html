@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/all.min.css">
     <link rel="stylesheet" href="./style.css">
@@ -29,7 +38,7 @@
             <a class="nav-link active" id="v-home-tab" data-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">Inicio</a>
             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">perfil</a>
             <a class="nav-link" id="v-pills-Productregistry-tab" data-toggle="pill" href="#v-pills-Productregistry" role="tab" aria-controls="v-pills-Productregistry" aria-selected="false">Registro de producto</a>
-            <a class="nav-link" id="v-pills-branchOffice-tab" data-toggle="pill" href="#v-pills-branchOffice" role="tab" aria-controls="v-pills-branchOffice" aria-selected="false">Registro de Sucursales</a>
+            <a class="nav-link" onclick="renderMap()" id="v-pills-branchOffice-tab" data-toggle="pill" href="#v-pills-branchOffice" role="tab" aria-controls="v-pills-branchOffice" aria-selected="false">Registro de Sucursales</a>
             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mensajes</a>
           </div>
         </div>
@@ -41,7 +50,7 @@
               <a class="nav-item nav-link active" id="v-home-tab" data-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">Inicio</a>
               <a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">perfil</a>
               <a class="nav-item nav-link" id="v-pills-Productregistry-tab" data-toggle="pill" href="#v-pills-Productregistry" role="tab" aria-controls="v-pills-Productregistry" aria-selected="false">Registro de producto</a>
-              <a class="nav-item nav-link" id="v-pills-branchOffice-tab" data-toggle="pill" href="#v-pills-branchOffice" role="tab" aria-controls="v-pills-branchOffice" aria-selected="false">Registro de Sucursales</a>
+              <a class="nav-item nav-link" onclick="renderMap()" id="v-pills-branchOffice-tab" data-toggle="pill" href="#v-pills-branchOffice" role="tab" aria-controls="v-pills-branchOffice" aria-selected="false">Registro de Sucursales</a>
               <a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mensajes</a>
             </div>
           </nav>
@@ -90,7 +99,7 @@
         <div class="col-12 col-md-9 pl-0 pr-0">
           <div class="tab-content" id="v-pills-tabContent">
             
-            <!--INICIO <div class="banner"><img src="../img/businessPage/banner1.jpg"  alt=""></div>-->
+            <!------------------INICIO ----------------<div class="banner"><img src="../img/businessPage/banner1.jpg"  alt=""></div>-->
             <div class="tab-pane fade show active" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
               
               <div class="container">
@@ -107,7 +116,7 @@
               </div>
             </div>
 
-            <!-- Profile -->
+            <!------------------ Profile ------------------>
             <div class="tab-pane fade"  id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
               <div style = "height: 18em; overflow: hidden; background-image: url(../img/businessPage/banner1.jpg); background-position: center center; background-size: cover;"></div>
               <div class="container" id="sectionProfilebusiness">
@@ -119,9 +128,9 @@
                     <div class="businesDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi at ad voluptatibus, obcaecati id assumenda dolor consequatur? Earum ducimus maiores nulla, dignissimos ullam voluptatum quam, magni tempore velit, ad facere?</div>
                     <div class="businessSocial mt-3">                      
                       <ul class="pl-0">
-                        <li class="btn btn-outline-info"><i class="fab fa-facebook"></i></li>
-                        <li class="btn btn-outline-info"><i class="fab fa-instagram"></i></li>
-                        <li class="btn btn-outline-info"><i class="fab fa-twitter"></i></li>
+                        <li class="btn btn-outline-warning"><i class="fab fa-facebook"></i></li>
+                        <li class="btn btn-outline-warning"><i class="fab fa-instagram"></i></li>
+                        <li class="btn btn-outline-warning"><i class="fab fa-twitter"></i></li>
                       </ul>
                     </div>
                   </div>                
@@ -155,11 +164,11 @@
                               <div class="price beforePrice">Antes: L.15,000</div> 
                               <div class="price nowPrice">Ahora: L.9,750</div>
                             </div>                      
-                        </div>
+                          </div>
                           <div class="d-flex justify-content-between align-items-center mt-3">
                             <div class="btn-group">
-                              <button type="button" class="btn btn-sm btn-outline-secondary">+ Detalles</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-cart-plus"></i> Comprar</button>
+                              <button type="button" class="btn btn-sm btn-outline-warning">+ Detalles</button>
+                              <button type="button" class="btn btn-sm btn-outline-warning"><i class="fas fa-cart-plus"></i> Comprar</button>
                             </div>
                           </div>                                              
                         </div>
@@ -173,6 +182,8 @@
               </div>   
             </div>
 
+
+            <!------------------ ProductForm ---------------->
             <div class="tab-pane fade" id="v-pills-Productregistry" role="tabpanel" aria-labelledby="v-pills-Productregistry-tab">
                 <div class="container">
                   <div class="titleNav">
@@ -180,59 +191,191 @@
                   </div>
 
                   <h2>Agregar Producto nuevo</h2>
-                  <div class="formProducts">
-                    <h4 class="formTitle">Crea tu producto</h4>
-
-                    <div class="form-group">
-                      <label for="productNameInput">Nombre del Producto</label>
-                      <input type="text" name="" id="productNameInput" class="form-control" placeholder="" aria-describedby="helpId">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="imageUrlInput">URL de la imagen</label>
-                      <input type="text" name="" id="imageUrlInput" class="form-control" placeholder="" aria-describedby="helpId">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="productPriceInput">Precio del producto</label>
-                      <input type="text" name="" id="productPriceInput" class="form-control" placeholder="" aria-describedby="helpId">
-                      <small id="helpId" class="text-muted">Help text</small>
-                    </div>
-                    
-                    
-                    <div class="form-group">
-                      <label for="productDescInput">Descripción del producto</label>
-                      <textarea class="form-control" name="" id="productDescInput" cols="30" rows="3"></textarea>
-                      
-                    </div>
-
-                  </div>
-                  
-                  
-                  <h2>Productos registrados Actuales</h2>
                   <div class="row">
+                    <div class="col-1 col-md-2 col-lg-3"></div>
 
-                    <div class="col-md-6 col-lg-3">
-                      <div class="card mb-4 box-shadow">
-                        <img style="height: 1em;" class="card-img-top imageProducts" src="../img/Principal/products/pcHP.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <div class="price nowPrice">Ahora: L.9,750</div>
-                          <p class="card-text descProducts mb-0">HP Pavilion 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)</p>                        
-                          <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-sm btn-outline-secondary">+ Detalles</button>                          
-                              <button type="button" class="btn btn-sm btn-outline-secondary">- Borrar</button>                          
-                            </div>
-                          </div>                                              
+                    <div class="col-10 col-md-8 col-lg-6">
+                      <div class="formProducts">
+                        <h4 class="formTitle">Crea tu producto</h4>
+    
+                        <div class="form-group">
+                          <label for="productNameInput">Codigo del Producto</label>
+                          <input type="text" name="" id="productIdInput" class="form-control" placeholder="" aria-describedby="helpId">
+                        </div>
+    
+                        <div class="form-group">
+                          <label for="imageUrlInput">URL de la imagen</label>
+                          <input type="text" name="" id="imageUrlInput" class="form-control" placeholder="" aria-describedby="helpId">
+                        </div>
+    
+                        <div class="form-group">
+                          <label for="productPriceInput">Precio del producto</label>
+                          <input type="text" name="" id="productPriceInput" class="form-control" placeholder="" aria-describedby="helpId">
+                          <small id="helpId" class="text-muted">Precio sin descuento</small>
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                          <label for="productDescInput">Descripción del producto</label>
+                          <textarea class="form-control" name="" id="productDescInput" cols="30" rows="3"></textarea>
+                          
                         </div>
                       </div>
                     </div>
 
+                    <div class="col-1 col-md-2 col-lg-3"></div>
                   </div>
+                  
+                  
+                  
+                  <h2>Productos registrados</h2>
+                  <div class="container productsSection" id="registeredProducts">
+                    <div class="row">
+
+                      <div class="col-md-6 col-lg-3">
+                        <div class="card mb-4 box-shadow">
+                          <img style="height: 1em;" class="card-img-top imageProducts" src="../img/Principal/products/pcHP.jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <div class="price nowPrice">Precio: L.15,000</div>
+                            <p class="card-text descProducts mb-0">HP Pavilion 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)</p>                        
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>                          
+                                <button type="button" class="btn btn-sm btn-outline-warning">+ Promocion</button>                          
+                                <button type="button" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>                          
+                              </div>
+                            </div>                                              
+                          </div>
+                        </div>
+                      </div>
+  
+                    </div>
+                  </div>
+                 
+                  
+                  <h2 class="">Productos en oferta</h2>
+                  <div class="container productsSection" id="onSaleProducts">
+                    <div class="row">
+
+                      <div class="col-md-6 col-lg-3">
+                        <div class="card mb-4 box-shadow">
+                          <img style="height: 1em;" class="card-img-top imageProducts" src="../img/Principal/products/pcHP.jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <p class="rateProduct mb-0">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>                    
+                            </p>
+                            <div class="quantUser" style="text-align: center;">
+                              200 <i class="fas fa-user"></i>
+                            </div>
+        
+                            <div class="saleProduct"> 
+                              <div class="sale"><h3 class="mb-0">65%</h3></div>
+                              <div class="prices">
+                                <div class="price beforePrice">Antes: L.15,000</div> 
+                                <div class="price nowPrice">Ahora: L.9,750</div>
+                              </div>                      
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                <button type="button" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>
+                              </div>
+                            </div>                                              
+                          </div>
+                        </div>
+                      </div>
+  
+                    </div>
+                  </div>
+                  
 
                 </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-branchOffice" role="tabpanel" aria-labelledby="v-pills-branchOffice-tab">Seccion de Registro de Sucursales</div>
+
+            <!----------------branchOffice---------------->
+            <div class="tab-pane fade" id="v-pills-branchOffice" role="tabpanel" aria-labelledby="v-pills-branchOffice-tab">
+              <div class="container">
+                
+                <div class="titleNav">
+                  <h1 class="homeTitle">Registro de Sucursales</h1>          
+                </div>
+
+                <h2 class="">Agrega tus sucursales</h2>
+                <div class="row">
+
+                  <div class="col-6">
+
+                    <div class="row">
+                      <div class="col-1 col-md-2 col-lg-3"></div>
+                      <div class="col-10 col-md-8 col-lg-6">
+                        <div class="form-group">
+                          <label for="lat">Latitud</label>
+                          <input type="text" name="" id="lat" class="form-control" placeholder="" aria-describedby="helpId">
+                        </div>
+      
+                        <div class="form-group">
+                          <label for="lat">Longitud</label>
+                          <input type="text" name="" id="lon" class="form-control" placeholder="" aria-describedby="helpId">
+                        </div>
+    
+                        <div class="btn-group mt-3" style="width: 100%;"> 
+                          <button type="button" class="btn btn-sm btn-primary saveBO">Guardar</button>
+                        </div>
+                      </div>
+                      <div class="col-1 col-md-2 col-lg-3"></div>
+                    </div>
+                    
+                  </div>
+
+
+                  <div class="col-6 pr-5">
+                    <div id="mapDiv">
+                      <div id="map"></div>
+                      <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
+                    </div>
+                  
+                  </div>
+                </div>    
+                <!--Table-->
+                <div class="row">
+                  <div class="col-1 col-md-2 col-lg-3"></div>
+                  <div class="col-10 col-md-8 col-lg-6">
+                    <table class="table  table-hover">
+                      <thead class="thead-dark">
+                        <tr class="text-center">
+                          <th scope="col">#</th>
+                          <th scope="col">Latitud</th>
+                          <th scope="col">Longitud</th>
+                          <th scope="col">Ver</th>
+                          <th scope="col">Eliminar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        <tr class="text-center LatLonRow" >
+                          <th scope="row">1</th>
+                          <td>14.087338</td>
+                          <td>-87.183140</td>
+                          <td><i onclick="renderMap(14.087338,-87.183140)" class="fas fa-map-marker-alt"></i></td>
+                          <td><i class="far fa-trash-alt"></i></td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                    
+                   
+                  </div>
+                  <div class="col-1 col-md-2 col-lg-3"></div>
+                </div>
+                
+
+              </div>
+            </div>
+
             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Seccion de Mensajes</div>
           </div>
         </div>

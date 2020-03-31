@@ -3,6 +3,7 @@ body,html{
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
+    padding-right: 0.5em;
 
     --principal: #FFC107;
     --principalDark:#D6A207;
@@ -251,13 +252,13 @@ a:hover {
   font-size: 0.9em;
 }
 
-.btn-outline-info{
+ul .btn-outline-warning{
   color: var(--principal);
   border: 1px solid var(--principal);
 }
 
-.btn-outline-info:hover{
-  color: var(--lightsecondary);
+ul .btn-outline-warning:hover{
+  color: white;
   background-color: var(--principalDark);
   border: 1px solid var(--principalDark);
 }
@@ -325,7 +326,7 @@ border-color:var(--principal);
 background-color: var(--myBlack);
 }
 
-/*ProductForm*/
+/*-----------------------------------------------------------ProductForm-----------------------------------------------------------*/
 
 .descProducts{
   color: var(--lightsecondary);
@@ -334,11 +335,58 @@ background-color: var(--myBlack);
 .formProducts{
   border-radius: 5px;
   background-color: white;
-  margin: 2em 15em;
+  
   padding: 1em 3em;
+  margin: 2em 0em ;
 }
 
 .formTitle{
   text-align: center;
   font-weight: 500;
+}
+
+.productsSection{
+  padding: 1em 2em;
+  
+}
+
+/*Map*/
+
+#mapDiv{
+  margin-left: auto;
+  height: 20em;
+  position: relative;
+}
+
+#map{
+  height: 20em;
+  position: absolute;
+  top: 0; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+
+.saveBO{
+  margin-left: auto;
+}
+
+.LatLonRow .fa-map-marker-alt{
+  cursor: pointer;
+}
+
+.LatLonRow .fa-trash-alt{
+  cursor: pointer;
+}
+
+.table {
+  color: var(--myBlack);
+}
+
+.table .thead-dark th {
+  color: #fff;
+  background-color: var(--myBlack);
+  border-color: var(--myBlack);
 }

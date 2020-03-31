@@ -193,19 +193,3 @@ a:hover {
 
 /**/
 
-#mapDiv{
-  margin-left: auto;
-  height: 20em;
-  position: relative;
-}
-
-#map{
-  height: 20em;
-  position: absolute;
-  top: 0; 
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-}
-

@@ -101,5 +101,29 @@ function getData(sells){
     return data;
 }
 
+function renderMap(lat,lon){
+   
+    document.getElementById('mapDiv').innerHTML = `<div id="map"></div>
+                                                    <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>`;
+    
+    var zoom = 6;
+    if(lat && lon){
+        zoom = 15
+    }
+    var mymap = L.map('map').setView([14.087338, -87.183140], zoom );
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+    if(lat && lon){
+        var marker = L.marker([lat, lon]).addTo(mymap);
+    }
+    setTimeout(function(){ mymap.invalidateSize()}, 400);
+}
+
 
 render();
