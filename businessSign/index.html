@@ -79,12 +79,10 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Registrate</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              
             </div>
             <div class="modal-body">
-
+      
             
                 <form class="">
                   
@@ -94,45 +92,46 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    <label for="emailInput" >Email</label>
+                    <input type="email"  onchange="emailValidation(this)" class="form-control" id="emailInput" placeholder="Email">
                   </div>
 
                   <div class="form-group">
-                    <label for="inputName">Nombre de La empresa</label>
-                    <input type="name" class="form-control" id="inputName" placeholder="Nombre de la Empresa">
+                    <label for="nameInput">Nombre de La empresa</label>
+                    <input type="name" onchange="businessNameValidation(this)" class="form-control" id="nameInput" placeholder="Nombre de la Empresa">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" id="countryInputDiv">
                     <label for="countryInput">Pais</label>
                     <input type="text" class="form-control" id="countryInput" aria-describedby="emailHelp" placeholder="Pais">
       
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="password" class="form-control" id="passwordInput" autocomplete="on" placeholder="Contraseña">
+                    <label for="passwordInput">Contraseña</label>
+                    <input type="password" onchange="passwordValidation(this)" class="form-control" id="passwordInput" autocomplete="on" placeholder="Contraseña">
+                    <small id="helpId" class="text-muted"> Debera tener almenos 6 caracteres con numeros, mayúsculas y minúsculas</small>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Confirmar Contraseña</label>
-                    <input type="password" class="form-control" id="passwordInputConfirm" autocomplete="on" placeholder="Confirmar Contraseña">
+                    <label for="passwordConfirmInput">Confirmar Contraseña</label>
+                    <input type="password"  class="form-control" id="passwordConfirmInput" autocomplete="on" placeholder="Confirmar Contraseña">
                   </div>
 
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Codigo de tarjeta</label>
-                        <input type="number" class="form-control" id="passwordInputConfirm" autocomplete="on" >
+                        <label for="cardNumberInput">Numero de tarjeta</label>
+                        <input type="number" onchange="creditNumberValidation(this)" class="form-control" id="cardNumberInput" autocomplete="on" >
                       </div>
                     </div>
                     <div class="col-7">
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Vencimiento</label>
-                        <input type="month" class="form-control" id="passwordInputConfirm" autocomplete="on">
+                        <label for="expirationInput">Vencimiento</label>
+                        <input type="text" onchange="expirationValidation(this)" class="form-control" id="expirationInput" placeholder="MM/AAAA" autocomplete="on">
                       </div>
                     </div>
                     <div class="col-3">
                       <div class="form-group">
-                        <label for="exampleInputPassword1">CVV</label>
-                        <input type="number" class="form-control" id="passwordInputConfirm" autocomplete="on" >
+                        <label for="cvvInput">CVV</label>
+                        <input type="number" onchange="cvvValidation(this)" class="form-control" id="cvvInput" autocomplete="on"  placeholder="***">
                       </div>
                     </div>
                   </div>
@@ -142,8 +141,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-outline-primary" onclick="signUpBusiness()" >Enviar</button>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
             </div>
           </div>
         </div>
@@ -155,9 +154,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Accede</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              
             </div>
             <div class="modal-body">
 
@@ -181,8 +178,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" onclick="login()" class="btn btn-primary">Entrar</button>
+              <button type="button" onclick="login()" class="btn  btn-outline-primary"">Entrar</button>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
             </div>
           </div>
         </div>
@@ -193,7 +190,7 @@
       <script src="../scripts/jquery.min.js"></script>
       <script src="../scripts/pooper.min.js"></script>
       <script src="../scripts/bootstrap.min.js" ></script>
-      <script src="../scripts/GlobalScript.js"></script>
+      <script type="text/javascript" src="../scripts/countries.js"></script>
       <script src="../scripts/GlobalScript.js"></script>
       <script src="./script.js"></script>
 </body>

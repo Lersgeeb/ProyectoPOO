@@ -191,5 +191,56 @@ a:hover {
   border-color: white ;
 }
 
-/**/
+/*signUp*/
 
+
+/*.modal-content {
+  color: var(--principal);
+  background-color: var(--secondary);
+  border: 1px solid rgba(0,0,0,.2);
+}*/
+
+.correct{
+  /*box-shadow: 0 1px 0 0.1rem  #28a745;*/
+  border-bottom: 2px solid #28a745;
+}
+
+.wrong{
+  
+  border-bottom: 2px solid #dc3545;
+  
+}
+
+.form-control:focus {
+  border:none ;
+  box-shadow: 0 0 0 0.1rem #37343554; 
+}
+
+/*input{
+  background-color: var(--myBlack) !important;
+  color: white !important;
+  border:none !important;
+}*/
+
+.modal-header {
+ color: var(--principal);
+ background-color: var(--myBlack);
+ border-radius: 2px;
+}
+
+.modal-footer {
+  color: var(--principal);
+ background-color: var(--myBlack);
+ border-radius: 2px;
+}
+
+.modal-body {
+  background-color: var(--lightsecondary);
+}
+
+.modal-title {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2em;
+  
+}

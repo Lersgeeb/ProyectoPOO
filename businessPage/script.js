@@ -13,11 +13,10 @@ function renderNav(user){
                                     </nav>
                                     <div class="dropdown mr-1">
                                         <button type="button" class="btn  btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                        <span>${user.userName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
+                                        <span>${user.businessName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
                                         <div class="px-4 accountInfo">
-                                            <small class="userName">${user.firstname.split(" ")[0]} ${user.lastName.split(" ")[0]}</small>
                                             <small class="userEmail" >${user.email}</small>
                                         </div>
                                         

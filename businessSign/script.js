@@ -62,9 +62,9 @@ function renderPlan(){
     }
 }
 
-function renderNav(user){
+function renderNav(businessUser){
     navBarPage = document.getElementById('navBarPage');
-    if(user==null){
+    if(businessUser==null){
         navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2/index.html"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
@@ -76,12 +76,11 @@ function renderNav(user){
                                     </nav>
                                     <div class="dropdown mr-1">
                                         <button type="button" class="btn  btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                        <span>${user.userName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
+                                        <span>${businessUser.businessName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
                                         <div class="px-4 accountInfo">
-                                            <small class="userName">${user.firstname.split(" ")[0]} ${user.lastName.split(" ")[0]}</small>
-                                            <small class="userEmail" >${user.email}</small>
+                                            <small class="userEmail" >${businessUser.email}</small>
                                         </div>
                                         
                                         <a class="dropdown-item" href="../businessPage/index.html">Mi empresa</a>
@@ -93,12 +92,65 @@ function renderNav(user){
 
 function showForm(planIndex){
     document.getElementById("planInput").value = `${plans[planIndex].name}`;
+
+    options = [];
+    for(country of countries){
+        options.push( `<option value="${country.name}">${country.name}</option>`);
+    }
+    countryInputDiv = document.getElementById('countryInputDiv')
+    countryInputDiv.innerHTML = `   <label for="countryInput">Pais</label>
+                                    <select class="form-control" name="countryInput" id="countryInput" >
+                                        ${options.join("")}
+                                    </select>
+                                `
+    
+
     $('#modalSignUp').modal('show');
     
 }
 function showLogin(){
     $('#modalLogin').modal('show');
 }
+
+
+
+
+
+
+function signUpBusiness(){   
+    planInput = document.getElementById('planInput');
+    emailInput = document.getElementById('emailInput');
+    nameInput = document.getElementById('nameInput');
+    countryInput = document.getElementById('countryInput');
+    passwordInput = document.getElementById('passwordInput');
+
+    cardNumberInput = document.getElementById('cardNumberInput');
+    expirationInput = document.getElementById('expirationInput');
+    cvvInput = document.getElementById('cvvInput');
+
+    if(emailInput.value && nameInput.value && countryInput.value && passwordInput.value && cardNumberInput.value && expirationInput.value && cvvInput.value ){
+        
+        businessUser = {
+            email: emailInput.value,
+            password: passwordInput.value,
+            businessName: nameInput.value,
+            plan:planInput.value,
+            country: countryInput.value,
+            cardNumber: cardNumberInput.value,
+            expiration: expirationInput.value,
+            cvv: cvvInput.value,
+        }
+       
+
+        createBusinessUser(businessUser);
+        console.log(businessUser);
+        
+    }
+
+
+}
+
+
 
 function login(){
     emailValue = document.getElementById('inputEmailLogin').value;
@@ -111,7 +163,6 @@ function login(){
     }
     else
         console.log('Usuario o Contraseña incorrecta');
-
         
 }
 
@@ -119,6 +170,8 @@ function logoutBusinessSign(){
     logOut()
     renderNav();
 }
+
+
 
 
 render();
