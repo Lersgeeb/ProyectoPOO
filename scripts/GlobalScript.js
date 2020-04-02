@@ -28,11 +28,11 @@
 
 var localstorage = window.localStorage
 
-if(localstorage.getItem('userOnline')){
-    var userOnline = JSON.parse(localstorage.getItem('userOnline'));
+if(localstorage.getItem('businessOnline')){
+    var businessOnline = JSON.parse(localstorage.getItem('businessOnline'));
 }
 else{
-    var userOnline = false;
+    var businessOnline = false;
 }
 
 
@@ -100,9 +100,9 @@ function authentication(emailValue,passwordValue){
     business = businesses.find(businesses => businesses.email==emailValue);
     if(business){
         if(business.password==passwordValue){
-            userOnline = business;
-            localstorage.setItem('userOnline', JSON.stringify(userOnline));
-            return userOnline;
+            businessOnline = business;
+            localstorage.setItem('businessOnline', JSON.stringify(businessOnline));
+            return businessOnline;
         }
     }
 }
@@ -118,8 +118,8 @@ function createBusinessUser(newBusiness){
 }
 
 function logOut(){
-    userOnline = null;
-    localstorage.setItem('userOnline', JSON.stringify(userOnline));
+    businessOnline = null;
+    localstorage.setItem('businessOnline', JSON.stringify(businessOnline));
 }
 
 
@@ -199,28 +199,45 @@ function cvvValidation(input) {
 /*BusinessPage */
 
 function getProductsOfBusiness(){
-    return userOnline.products
+    return businessOnline.products
 }
 
 function addSaleOnlinebusiness(newSale, productIndex){
-    userOnline.products[productIndex].inSale =  newSale;
+    businessOnline.products[productIndex].inSale =  newSale;
 }
 
 function removeSaleOnlinebusiness(productIndex){
-    userOnline.products[productIndex].inSale =  null;
+    businessOnline.products[productIndex].inSale =  null;
 }
 
 function addProductOnBusiness(newProduct){
-    userOnline.products.push(newProduct);
+    businessOnline.products.push(newProduct);
 }
 
 function removeProductOfBusiness(productIndex){
-    userOnline.products.splice(productIndex,1);
+    businessOnline.products.splice(productIndex,1);
 }
 
 function addBranchOfficeBusiness(lat,lon){
-    userOnline.branchOffices.push([lat,lon])
+    businessOnline.branchOffices.push([lat,lon])
 }
 function removeBranchOfficeBusiness(branchIndex){
-    userOnline.branchOffices.splice(branchIndex,1)
+    businessOnline.branchOffices.splice(branchIndex,1)
+}
+
+/* Principal */
+
+var users = {
+        email:'gee@gmail.com',
+        password:1234,
+        userName:'Gee',
+}
+
+var localstorage = window.localStorage
+
+if(localstorage.getItem('userOnline')){
+    var userOnline = JSON.parse(localstorage.getItem('userOnline'));
+}
+else{
+    var userOnline = false;
 }

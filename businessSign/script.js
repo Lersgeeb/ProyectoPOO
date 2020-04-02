@@ -35,7 +35,7 @@ plans = [
 }*/
 
 function render(){
-    renderNav(userOnline);
+    renderNav(businessOnline);
     renderPlan();
 }
 

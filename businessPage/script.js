@@ -7,8 +7,8 @@ function logoutBusinessPage(){
 }
 
 function render(){
-    if(userOnline){
-        renderNav(userOnline);
+    if(businessOnline){
+        renderNav(businessOnline);
         renderChart();
 
         /*productForm */
@@ -205,7 +205,7 @@ function newProduct(){
             category: categoryInput.value,
             price: productPriceInput.value,
             description: productDescInput.value,
-            from: userOnline.businessName,
+            from: businessOnline.businessName,
             urlImg: imageUrlInput.value,
             inSale:null,
         }
@@ -259,7 +259,7 @@ function removeProduct(productIndex){
 function renderMap(zoom,lat,lon,withMarker){
    
     if(!(lat && lon)){
-        country = userOnline.country
+        country = businessOnline.country
         lat = country.lat
         lon = country.lon
     }
@@ -293,7 +293,7 @@ function renderMap(zoom,lat,lon,withMarker){
 function renderBranchOfficeTableRows(){
     LatLonRow = document.getElementById('LatLonRow')
     LatLonRow.innerHTML = ''
-    branchOffices = userOnline.branchOffices;
+    branchOffices = businessOnline.branchOffices;
     
     count=1;
     for (branchOffice of branchOffices){
