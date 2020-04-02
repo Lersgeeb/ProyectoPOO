@@ -167,7 +167,7 @@ function login(){
 }
 
 function logoutBusinessSign(){
-    logOut()
+    logOut();
     renderNav();
 }
 

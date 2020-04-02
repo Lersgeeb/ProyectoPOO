@@ -45,12 +45,48 @@ var businesses = [
         country:"Honduras",
         cardNumber:'1234567891234567',
         expiration: '12/2020',
-        cvv: '190'
+        cvv: '190',
+        products:[
+            {
+                id:'2131231',
+                category:"Tecnología",
+                price:15000,
+                description:'HP Pavilion 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)',
+                from:"Jetstereo Co.",
+                urlImg:"../img/Principal/products/pcHP.jpg",
+                inSale:{
+                    sale:0.35,
+                    rate:5,
+                    rateQuant:200,
+                    duration:"10 Días",
+                },
+            },
+            {
+                id:'4121232',
+                category:"Tecnología",
+                price:15000,
+                description:'ASUS 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)',
+                from:"Jetstereo Co.",
+                urlImg:"../img/Principal/products/pc2.jpg",
+                inSale:null,
+            },
+        ]
     },
     
 ]
 
-
+var categories = [
+    'Autos, Motos y Otros',
+    'Salud y Fitness',
+    'Belleza',
+    'Educación y Cursos',
+    'Hogar y Jardín',
+    'Infantiles',
+    'Joyería',
+    'Mascotas',
+    'Moda',
+    'Tecnología'
+]
 
 function authentication(emailValue,passwordValue){
 
@@ -153,3 +189,24 @@ function cvvValidation(input) {
     }
 }
 
+/*BusinessPage */
+
+function getProductsOfBusiness(){
+    return userOnline.products
+}
+
+function addSaleOnlinebusiness(newSale, productIndex){
+    userOnline.products[productIndex].inSale =  newSale;
+}
+
+function removeSaleOnlinebusiness(productIndex){
+    userOnline.products[productIndex].inSale =  null;
+}
+
+function addProductOnBusiness(newProduct){
+    userOnline.products.push(newProduct);
+}
+
+function removeProductOfBusiness(productIndex){
+    userOnline.products.splice(productIndex,1);
+}

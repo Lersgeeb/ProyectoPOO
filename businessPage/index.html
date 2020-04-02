@@ -203,6 +203,10 @@
                           <input type="text" name="" id="productIdInput" class="form-control" placeholder="" aria-describedby="helpId">
                         </div>
     
+                        <div class="form-group" id="categoryInputDiv">
+                          
+                        </div>
+    
                         <div class="form-group">
                           <label for="imageUrlInput">URL de la imagen</label>
                           <input type="text" name="" id="imageUrlInput" class="form-control" placeholder="" aria-describedby="helpId">
@@ -218,25 +222,30 @@
                         <div class="form-group">
                           <label for="productDescInput">Descripción del producto</label>
                           <textarea class="form-control" name="" id="productDescInput" cols="30" rows="3"></textarea>
+                        </div>
+
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-warning" onclick="newProduct()">Crear</button>
                           
                         </div>
                       </div>
                     </div>
-
+                    
                     <div class="col-1 col-md-2 col-lg-3"></div>
                   </div>
                   
                   
                   
                   <h2>Productos registrados</h2>
-                  <div class="container productsSection" id="registeredProducts">
-                    <div class="row">
+                  <div class="container productsSection" >
+                    <div class="row" id="registeredProducts">
 
                       <div class="col-md-6 col-lg-3">
                         <div class="card mb-4 box-shadow">
                           <img style="height: 1em;" class="card-img-top imageProducts" src="../img/Principal/products/pcHP.jpg" alt="Card image cap">
                           <div class="card-body">
                             <div class="price nowPrice">Precio: L.15,000</div>
+                            <small class="text-muted">Tecnologia</small>
                             <p class="card-text descProducts mb-0">HP Pavilion 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)</p>                        
                             <div class="d-flex justify-content-between align-items-center mt-3">
                               <div class="btn-group">
@@ -254,8 +263,8 @@
                  
                   
                   <h2 class="">Productos en oferta</h2>
-                  <div class="container productsSection" id="onSaleProducts">
-                    <div class="row">
+                  <div class="container productsSection">
+                    <div class="row"  id="onSaleProducts">
 
                       <div class="col-md-6 col-lg-3">
                         <div class="card mb-4 box-shadow">
@@ -381,8 +390,44 @@
         </div>
       </div>
 
-      
+      <!-- addSaleOnProduct-->
+      <div class="modal fade" id="modalSaleOnProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Accede</h5>
+              
+            </div>
+            <div class="modal-body">
 
+            
+                <form class="">
+            
+
+                  <div class="form-group">
+                    <label for="saleOnProductInput">Oferta</label>
+                    <input type="text" class="form-control" id="saleOnProductInput" placeholder="0.##">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="saleDurationInput">Duracion de la oferta</label>
+                    <input type="text" class="form-control" id="saleDurationInput" >
+                  </div>
+
+                 
+
+                  
+                </form>    
+              
+
+            </div>
+            <div class="modal-footer" id="saleOnProductButtons">
+              <button type="button" onclick="addSaleOnProduct()" class="btn  btn-outline-primary">Nueva Oferta</button>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <script src="../scripts/jquery.min.js"></script>
       <script src="../scripts/pooper.min.js"></script>
