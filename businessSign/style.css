@@ -63,6 +63,8 @@ a:hover {
 
 .accountInfo{
   border-bottom: 1px solid var(--lightsecondary);
+  margin-bottom: 6px;
+  padding-bottom: 6px;
 }
 
 .dropdown .btn-outline-primary{

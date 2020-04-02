@@ -227,11 +227,16 @@ function removeBranchOfficeBusiness(branchIndex){
 
 /* Principal */
 
-var users = {
+var users = [
+    {
+        firstname:'Gabriel Enrique',
+        lastName:'Escobar Banegas',
         email:'gee@gmail.com',
-        password:1234,
         userName:'Gee',
-}
+        password:1234,
+        imageProfile:'../img/profile.jpg',
+    },
+]
 
 var localstorage = window.localStorage
 
@@ -240,4 +245,22 @@ if(localstorage.getItem('userOnline')){
 }
 else{
     var userOnline = false;
+}
+
+
+function userAuthentication(emailValue,passwordValue){
+
+    user = users.find(users => users.email==emailValue);
+    if(user){
+        if(user.password==passwordValue){
+            userOnline = user;
+            localstorage.setItem('userOnline', JSON.stringify(userOnline));
+            return userOnline;
+        }
+    }
+}
+
+function userLogOut(){
+    userOnline = null;
+    localstorage.setItem('userOnline', JSON.stringify(userOnline));
 }

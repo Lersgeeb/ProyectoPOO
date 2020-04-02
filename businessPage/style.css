@@ -52,6 +52,32 @@ a:hover {
 .btn-outline-primary:hover {
   background-color: rgba(218, 166, 8, 0.329);
 }
+/*logged*/
+.userEmail{
+  color: var(--secondary);
+  margin-bottom: 1em;
+  
+}
+.userName{
+  color: var(--myBlack);
+  margin-bottom: 0;
+}
+
+.accountInfo{
+  border-bottom: 1px solid var(--lightsecondary);
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+}
+
+.dropdown .btn-outline-primary{
+  border: none;
+}
+
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--principalDark);
+}
   /*---------------Header-----------------*/
   .divHeader{
     background-color: var(--myBlack);

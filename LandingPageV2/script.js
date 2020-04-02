@@ -17,6 +17,60 @@ recomendations = [
 ];
 
 
+function render(){
+    renderNav();
+    /*userLogOut()*/
+    renderRecomendations(recomendations);
+}
+
+function renderNav(){
+    navbarLanding = document.getElementById('navbarLanding');
+    if(!userOnline){
+        navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/index.html">Wachalo</a>
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse  " id="navbarNav">
+                                    <ul class="navbar-nav ml-auto ">
+                                        <li class="nav-item">
+                                        <a class="nav-link" href="../Principal/index.html">Ofertas </a>
+                                        </li>
+                                        <li class="nav-item">
+                                        <a class="nav-link" href="../SignUp/index.html">Accede</a>
+                                        </li>
+                                        <li class="nav-item">
+                                        <a class="nav-link" href="../businessSign/index.html">Empresa</a>
+                                        </li>
+                                
+                                    </ul>
+                                    </div>`
+    }
+    else{
+        navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/index.html">Wachalo</a>
+                                    <div class="dropdown ml-auto">
+                                    <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                        <span>${userOnline.userName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
+                                        <div class="px-4 accountInfo">
+                                            <small class="userName">${userOnline.firstname.split(" ")[0]} ${userOnline.lastName.split(" ")[0]}</small>
+                                            <small class="userEmail" >${userOnline.email}</small>
+                                        </div>
+                                        
+                                        <a class="dropdown-item" href="../UserPage/index.html">Mi perfil</a>
+                                        <a class="dropdown-item" href="../Principal/index.html">Ofertas </a>
+                                        <a class="dropdown-item" onclick="logOut()">Cerrar Sesion</a>
+                                    </div>
+                                    </div>`
+    }
+
+}
+
+function logOut(){
+    userLogOut();
+    renderNav();
+}
+
 function renderRecomendations(recomendations){
     recomendationDiv = document.getElementById('recomendationDiv');
     recomendationDiv.innerHTML = '';
@@ -39,4 +93,4 @@ function renderRate(rate){
     return `${'<i class="fas fa-star"></i>'.repeat(rate)}${'<i class="far fa-star"></i>'.repeat(5-rate)}`
 }
 
-renderRecomendations(recomendations);
+render();

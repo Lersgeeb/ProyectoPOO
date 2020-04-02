@@ -94,6 +94,45 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
 }
 
+
+.userEmail{
+  color: var(--secondary);
+  margin-bottom: 1em;
+  
+}
+.userName{
+  color: var(--myBlack);
+  margin-bottom: 0;
+}
+
+.accountInfo{
+  border-bottom: 1px solid var(--lightsecondary);
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+}
+
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--principal);
+}
+
+#navBarPage .btn-outline-warning{
+  border: none;
+  color: rgb(238, 238, 238);
+}
+
+#navBarPage .btn-outline-warning:hover{
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+#navBarPage .btn-outline-warning:focus,#navbarLanding .btn-outline-warning:active{
+  box-shadow:none;
+  background-color: transparent;
+}
+
 /*-----------------------------------------*/
 
 

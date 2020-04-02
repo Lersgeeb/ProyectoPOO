@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wachalo - Accede</title>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
-    <link rel="stylesheet" href="../styles/all.css">
+    <link rel="stylesheet" href="../styles/all.min.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="../img/logo.svg">
 </head>
@@ -41,18 +41,18 @@
                     <h1 class="color-primary">Inicia Sesión</h1>
 
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                      <label for="emailInput">Email</label>
+                      <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Email"  autocomplete="on">
         
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Contraseña</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                      <label for="passwordInput">Contraseña</label>
+                      <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña"  autocomplete="off">
                     </div>
 
                     
-                    <button type="submit" class="btn btn-primary">Entra</button>
-                </form>    
+                  </form>    
+                  <button class="btn btn-primary" onclick="login()">Entra</button>
                 </div>
 
 
@@ -61,25 +61,25 @@
                     <h1 class="color-primary">Registrate</h1>
                     
                     <div class="form-group">
-                      <label for="inputName">Nombre</label>
-                      <input type="name" class="form-control" id="inputName" placeholder="Nombre">
+                      <label for="nameSignInput">Nombre</label>
+                      <input type="name" class="form-control" id="nameSignInput" placeholder="Nombre"  autocomplete="off">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                      <label for="emailSignInput">Email</label>
+                      <input type="email" class="form-control" id="emailSignInput" aria-describedby="emailHelp" placeholder="Email"   autocomplete="on">
         
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Contraseña</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                      <label for="passwordSignInput">Contraseña</label>
+                      <input type="password" class="form-control" id="passwordSignInput" placeholder="Contraseña"  autocomplete="off">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Confirmar Contraseña</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirmar Contraseña">
+                      <label for="passwordConfirmSignInput">Confirmar Contraseña</label>
+                      <input type="password" class="form-control" id="passwordConfirmSignInput" placeholder="Confirmar Contraseña"  autocomplete="off" >
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Únete</button>
-                </form>    
+                  </form>    
+                  <button class="btn btn-primary">Únete</button>
                 </div>
               </div>
                 
@@ -97,6 +97,7 @@
   <script src="../scripts/jquery.min.js"></script>
   <script src="../scripts/pooper.min.js"></script>
   <script src="../scripts/bootstrap.min.js" ></script>
-  <script src="../fontawesome-free-5.12.1-web/js/all.min.js"></script>
+  <script src="../scripts/GlobalScript.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
