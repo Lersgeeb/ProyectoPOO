@@ -373,11 +373,11 @@ background-color: var(--myBlack);
   margin-left: auto;
 }
 
-.LatLonRow .fa-map-marker-alt{
+#LatLonRow .fa-map-marker-alt{
   cursor: pointer;
 }
 
-.LatLonRow .fa-trash-alt{
+#LatLonRow .fa-trash-alt{
   cursor: pointer;
 }
 

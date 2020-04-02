@@ -42,10 +42,17 @@ var businesses = [
         password:1234,
         businessName:'Jetstereo',
         plan:'Plan Empresarial',
-        country:"Honduras",
         cardNumber:'1234567891234567',
         expiration: '12/2020',
         cvv: '190',
+        branchOffices:[
+            [14.087338,-87.183140],
+        ],
+        country:{
+            name:'Honduras',
+            lat:15,
+            lon:-86.5,
+        },
         products:[
             {
                 id:'2131231',
@@ -209,4 +216,11 @@ function addProductOnBusiness(newProduct){
 
 function removeProductOfBusiness(productIndex){
     userOnline.products.splice(productIndex,1);
+}
+
+function addBranchOfficeBusiness(lat,lon){
+    userOnline.branchOffices.push([lat,lon])
+}
+function removeBranchOfficeBusiness(branchIndex){
+    userOnline.branchOffices.splice(branchIndex,1)
 }

@@ -124,6 +124,11 @@ function signUpBusiness(){
     countryInput = document.getElementById('countryInput');
     passwordInput = document.getElementById('passwordInput');
 
+    c = countries.find(country => country.name == countryInput.value);
+    latValue = c.latlng[0]
+    lngValue = c.latlng[1]
+
+
     cardNumberInput = document.getElementById('cardNumberInput');
     expirationInput = document.getElementById('expirationInput');
     cvvInput = document.getElementById('cvvInput');
@@ -135,7 +140,11 @@ function signUpBusiness(){
             password: passwordInput.value,
             businessName: nameInput.value,
             plan:planInput.value,
-            country: countryInput.value,
+            country:{ 
+                name:countryInput.value,
+                lat:latValue,
+                lon:lngValue
+            },
             cardNumber: cardNumberInput.value,
             expiration: expirationInput.value,
             cvv: cvvInput.value,

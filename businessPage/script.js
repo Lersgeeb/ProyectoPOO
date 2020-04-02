@@ -107,29 +107,7 @@ function getData(sells){
     return data;
 }
 
-function renderMap(lat,lon){
-   
-    document.getElementById('mapDiv').innerHTML = `<div id="map"></div>
-                                                    <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>`;
-    
-    var zoom = 6;
-    if(lat && lon){
-        zoom = 15
-    }
-    var mymap = L.map('map').setView([14.087338, -87.183140], zoom );
-    
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'your.mapbox.access.token'
-    }).addTo(mymap);
-    if(lat && lon){
-        var marker = L.marker([lat, lon]).addTo(mymap);
-    }
-    setTimeout(function(){ mymap.invalidateSize()}, 400);
-}
+
 
 /*---------------------------------productForm ---------------------------------------*/
 
@@ -275,7 +253,80 @@ function removeProduct(productIndex){
     renderProduts();
 }
 
+/*Branch Offices */
 
+/*MAP*/
+function renderMap(zoom,lat,lon,withMarker){
+   
+    if(!(lat && lon)){
+        country = userOnline.country
+        lat = country.lat
+        lon = country.lon
+    }
+    document.getElementById('mapDiv').innerHTML = `<div id="map"></div>
+                                                    <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>`;
+    
+    var mymap = L.map('map').setView([lat, lon], zoom );
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+
+    var popup = L.popup();
+    mymap.on('click', onMapClick = (e) => {popup.setLatLng(e.latlng)
+                                            .setContent( e.latlng.toString())
+                                            .openOn(mymap);})
+
+    if(withMarker){
+        var marker = L.marker([lat, lon]).addTo(mymap);
+    }
+
+    setTimeout(function(){ mymap.invalidateSize()}, 400);
+
+    renderBranchOfficeTableRows();
+}
+
+function renderBranchOfficeTableRows(){
+    LatLonRow = document.getElementById('LatLonRow')
+    LatLonRow.innerHTML = ''
+    branchOffices = userOnline.branchOffices;
+    
+    count=1;
+    for (branchOffice of branchOffices){
+        LatLonRow.innerHTML +=  ` <tr class="text-center"  >
+                        <th scope="row">${count}</th>
+                        <td>${branchOffice[0]}</td>
+                        <td>${branchOffice[1]}</td>
+                        <td><i onclick="renderMap(15,${branchOffice[0]},${branchOffice[1]},1)" class="fas fa-map-marker-alt"></i></td>
+                        <td><i onclick="removeBranchOffice(${(count - 1)})" class="far fa-trash-alt"></i></td>
+                        </tr>`
+
+    count++;                   
+    }
+    
+}
+
+function addBranchOffice(){
+    lat = document.getElementById('lat');
+    lon = document.getElementById('lon');
+    
+    if(lat.value && lon.value){
+        addBranchOfficeBusiness(lat.value,lon.value);
+        renderBranchOfficeTableRows();    
+    }
+    
+
+}
+
+function removeBranchOffice(branchIndex){
+    removeBranchOfficeBusiness(branchIndex);
+    renderBranchOfficeTableRows(); 
+    
+}
 
 
 render();
