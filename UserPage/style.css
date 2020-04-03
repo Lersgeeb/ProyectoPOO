@@ -254,3 +254,9 @@ font-size: 0.8em;
   display: flex;
   justify-content: center;
 }
+
+/**/
+
+.table-image td, .table-image th{
+  vertical-align: middle;
+}

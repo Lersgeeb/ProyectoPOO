@@ -232,7 +232,7 @@ var users = [
         firstname:'Gabriel Enrique',
         lastName:'Escobar Banegas',
         email:'gee@gmail.com',
-        userName:'Gee',
+        userName:'Lersgeeb',
         password:1234,
         imageProfile:'../img/profile.jpg',
     },

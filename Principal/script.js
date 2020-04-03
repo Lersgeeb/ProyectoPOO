@@ -197,7 +197,7 @@ function renderProducts(value){
         if(value == 'Mejores Promociones' || value == null || value==product.category){
             productRows.innerHTML += `  <div class="col-md-6 col-lg-3">
                                             <div class="card mb-4 box-shadow">
-                                            <div class="card-img-top imageProducts" style="background-image:url(${product.urlImg}); background-position: 30% 50%; " ></div>
+                                            <img class="card-img-top imageProducts" style="max-height:15em;" src="${product.urlImg}" alt="Card image cap">
                                             <div class="card-body">
                                                 <p class="rateProduct mb-0">
                                                 ${renderRate(product.rate)}
