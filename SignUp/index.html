@@ -62,24 +62,36 @@
                     
                     <div class="form-group">
                       <label for="nameSignInput">Nombre</label>
-                      <input type="name" class="form-control" id="nameSignInput" placeholder="Nombre"  autocomplete="off">
+                      <input type="name" onchange="namesValidation(this)" class="form-control" id="nameSignInput" placeholder="Nombre"  autocomplete="off">
                     </div>
+
+                    <div class="form-group">
+                      <label for="lastnameInput">Apellidos</label>
+                      <input type="email" onchange="namesValidation(this)" class="form-control" id="lastnameSignInput" aria-describedby="emailHelp"   placeholder="Apellidos" autocomplete="on">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="usernameInput">Nombre de Usuario</label>
+                      <input type="email"  onchange="namesValidation(this)" class="form-control" id="usernameSignInput" aria-describedby="emailHelp" placeholder="Nombre de Usuario"   autocomplete="on">
+                    </div>
+
                     <div class="form-group">
                       <label for="emailSignInput">Email</label>
-                      <input type="email" class="form-control" id="emailSignInput" aria-describedby="emailHelp" placeholder="Email"   autocomplete="on">
+                      <input type="email"   onchange="emailValidation(this)" class="form-control" id="emailSignInput" aria-describedby="emailHelp" placeholder="Email"   autocomplete="on">
         
                     </div>
                     <div class="form-group">
                       <label for="passwordSignInput">Contraseña</label>
-                      <input type="password" class="form-control" id="passwordSignInput" placeholder="Contraseña"  autocomplete="off">
+                      <input type="password"   onchange="passwordValidation(this)" class="form-control" id="passwordSignInput" placeholder="Contraseña"  autocomplete="off">
+                      <small id="helpId" class="text-muted"> Debera tener almenos 6 caracteres con numeros, mayúsculas y minúsculas</small>
                     </div>
                     <div class="form-group">
                       <label for="passwordConfirmSignInput">Confirmar Contraseña</label>
-                      <input type="password" class="form-control" id="passwordConfirmSignInput" placeholder="Confirmar Contraseña"  autocomplete="off" >
+                      <input type="password" onchange="confirmPasswordVal()" class="form-control" id="passwordConfirmSignInput" placeholder="Confirmar Contraseña"  autocomplete="off" >
                     </div>
                     
                   </form>    
-                  <button class="btn btn-primary">Únete</button>
+                  <button class="btn btn-primary" onclick="signUpUser()">Únete</button>
                 </div>
               </div>
                 
@@ -97,6 +109,7 @@
   <script src="../scripts/jquery.min.js"></script>
   <script src="../scripts/pooper.min.js"></script>
   <script src="../scripts/bootstrap.min.js" ></script>
+  <script src="../scripts/validations.js"></script>
   <script src="../scripts/GlobalScript.js"></script>
   <script src="./script.js"></script>
 </body>

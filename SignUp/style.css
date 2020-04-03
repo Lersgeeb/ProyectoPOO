@@ -221,5 +221,15 @@ form h1{
 
 
 
-
+/*validations*/
+.correct{
+    /*box-shadow: 0 1px 0 0.1rem  #28a745;*/
+    border-bottom: 3px solid #28a745;
+  }
+  
+  .wrong{
+    
+    border-bottom: 3px solid #dc3545;
+    
+  }
 

@@ -121,6 +121,7 @@ a:hover {
   background-image: url(../img/SubBusiness/business.jpg);
   background-size: cover;
   background-position: center center;
+  border-radius: 0;
 }
 
 .jumbotronOverlay{
@@ -201,6 +202,7 @@ a:hover {
   background-color: var(--secondary);
   border: 1px solid rgba(0,0,0,.2);
 }*/
+
 
 .correct{
   /*box-shadow: 0 1px 0 0.1rem  #28a745;*/

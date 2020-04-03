@@ -111,6 +111,7 @@ function createBusinessUser(newBusiness){
     hasBusiness = businesses.find(businesses => businesses.email==newBusiness.email);
     if(!hasBusiness){
         businesses.push(newBusiness);
+        return newBusiness
     }
     else{
         console.log("Usuario existente")
@@ -122,79 +123,6 @@ function logOut(){
     localstorage.setItem('businessOnline', JSON.stringify(businessOnline));
 }
 
-
-
-
-/*------------------------------Validaciones-------------------------*/    
-function emailValidation(input) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(input.value)){
-        input.classList.remove('wrong');
-        input.classList.add('correct');
-    } else {
-        input.classList.remove('correct');
-        input.classList.add('wrong');
-    }
-}
-
-function businessNameValidation(input) {
-    if (/^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~?!]{2,}$/.test(input.value)){
-        input.classList.remove('wrong');
-        input.classList.add('correct');
-    } else {
-        input.classList.remove('correct');
-        input.classList.add('wrong');
-    }
-}
-
-function passwordValidation(input) {
-    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(input.value)){
-        input.classList.remove('wrong');
-        input.classList.add('correct');
-    } else {
-        input.classList.remove('correct');
-        input.classList.add('wrong');
-    }
-}
-
-function passwordConfirmValidation(same) {
-    if (same){
-        input.classList.remove('wrong');
-        input.classList.add('correct');
-    } else {
-        input.classList.remove('correct');
-        input.classList.add('wrong');
-    }
-}
-
-function creditNumberValidation(input) {
-    if (/^[0-9]{16}$/.test(input.value)){
-        input.classList.remove('wrong');
-        input.classList.add('correct');
-    } else {
-        input.classList.remove('correct');
-        input.classList.add('wrong');
-    }
-}
-
-function expirationValidation(input) {
-    if (/^[\d]{2}\/[\d]{4}$/.test(input.value)){
-        input.classList.remove('wrong');
-        input.classList.add('correct');
-    } else {
-        input.classList.remove('correct');
-        input.classList.add('wrong');
-    }
-}
-
-function cvvValidation(input) {
-    if (/^[0-9]{3,4}$/.test(input.value)){
-        input.classList.remove('wrong');
-        input.classList.add('correct');
-    } else {
-        input.classList.remove('correct');
-        input.classList.add('wrong');
-    }
-}
 
 /*BusinessPage */
 
@@ -263,4 +191,15 @@ function userAuthentication(emailValue,passwordValue){
 function userLogOut(){
     userOnline = null;
     localstorage.setItem('userOnline', JSON.stringify(userOnline));
+}
+
+function createUser(user){
+    hasUser = users.find(users => (users.email==user.email || users.userName==user.userName) );
+    if(!hasUser){
+        users.push(user);
+        return(user)
+    }
+    else{
+        console.log("Usuario existente")
+    }    
 }

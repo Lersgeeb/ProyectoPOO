@@ -128,12 +128,11 @@ function signUpBusiness(){
     latValue = c.latlng[0]
     lngValue = c.latlng[1]
 
-
     cardNumberInput = document.getElementById('cardNumberInput');
     expirationInput = document.getElementById('expirationInput');
     cvvInput = document.getElementById('cvvInput');
 
-    if(emailInput.value && nameInput.value && countryInput.value && passwordInput.value && cardNumberInput.value && expirationInput.value && cvvInput.value ){
+    if(emailValidation(emailInput) && businessNameValidation(nameInput) && passwordValidation(passwordInput) && creditNumberValidation(cardNumberInput) && expirationValidation(expirationInput) && cvvValidation(cvvInput) ){
         
         businessUser = {
             email: emailInput.value,
@@ -151,13 +150,31 @@ function signUpBusiness(){
         }
        
 
-        createBusinessUser(businessUser);
-        console.log(businessUser);
+        newBusiness = createBusinessUser(businessUser);
+        if(newBusiness){
+            authentication(businessUser.email, businessUser.password);
+            $('#modalSignUp').modal('hide');
+            render();
+        }  
         
     }
-
+    else{
+        console.log("Rellenar el formulario con datos validos")
+    }
 
 }
+
+function confirmPasswordVal(){
+    passwordInput = document.getElementById('passwordInput');
+    passwordConfirmInput = document.getElementById('passwordConfirmInput');
+    if(passwordInput.value && passwordConfirmInput.value){
+        
+        return  passwordConfirmValidation(passwordConfirmInput, passwordInput.value);
+    }
+    else
+        return  false
+}
+
 
 
 
