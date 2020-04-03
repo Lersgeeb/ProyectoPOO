@@ -175,7 +175,7 @@ function renderNav(user){
                                     <small class="userEmail" >${user.email}</small>
                                 </div>
                                 
-                                <a class="dropdown-item" href="../userPage/index.html">Mi perfil</a>
+                                <a class="dropdown-item" href="../UserPage/index.html">Mi perfil</a>
                                 <a class="dropdown-item" onclick="logOut()">Cerrar Sesion</a>
                                 </div>
                                 </div>`

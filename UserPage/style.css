@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+body,html{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-width: 400px;
+    max-width: 100%;
+    z-index: -1;
+
+    /*global variable*/
+    --principal: #FFC107;
+    --complement: #3E0A84;
+    --complementDark: #300667;
+    --secondary: #757575;
+    --lightsecondary: #BDBDBD;
+    --backgroundgrey: rgb(235, 235, 235);
+    --myBlack: #373435;
+    --text:#212121;
+
+    --border-size: 2px;
+    --alpha1:-4;
+    --alpha2:-2;
+    
+    
+}
+
+/*--------------NAVBAR-------------------------*/
+.divHeader{
+    background-color: var(--principal);
+    border-color: var(--principal);
+    
+  }
+  
+  .divHeader .home{
+    color: white;
+    margin: 10px 0px; 
+    font-size: 1.5em;
+  }
+  
+  .divHeader .btn-outline-primary{
+    border: solid 1px white;
+    border-color: white;
+    color: white;
+  }
+  .divHeader .home:hover, .divHeader .home:focus{
+    border: none !important;
+    box-shadow:none;
+    text-decoration: none;
+  }
+  
+  .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active  {
+    background-color:var(--principal) !important;
+    color: white !important;
+    box-shadow: none !important;
+    border-color: white !important;
+  }
+  
+  
+  .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+  }
+  
+  
+  .userEmail{
+    color: var(--secondary);
+    margin-bottom: 1em;
+    
+  }
+  .userName{
+    color: var(--myBlack);
+    margin-bottom: 0;
+  }
+  
+  .accountInfo{
+    border-bottom: 1px solid var(--lightsecondary);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+  }
+  
+  #navBarPage .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--principal);
+  }
+  
+  #navBarPage .btn-outline-warning{
+    border: none;
+    color: rgb(238, 238, 238);
+  }
+  
+  #navBarPage .btn-outline-warning:hover{
+    background-color: transparent;
+    border: none;
+    color: white;
+  }
+  
+  #navBarPage .btn-outline-warning:focus,#navbarLanding .btn-outline-warning:active{
+    box-shadow:none;
+    background-color: transparent;
+  }
+
+/*header profile*/
+
+.headerProfile{
+ background-color: var(--myBlack);
+ color: white;
+ border-radius: 0;
+}
+
+.nav {
+  justify-content: center;
+  border-bottom: 0;
+}
+
+.nav-link{
+  color: var(--myBlack) !important;
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: bold;
+  background-color: var(--backgroundgrey);
+  border-color: var(--backgroundgrey);
+}
+#profileSectionNavs {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: var(--backgroundgrey);
+  border-radius: .3rem;
+}
+
+
+.title{
+  width: 100%;
+  border-bottom: 1px solid var(--lightsecondary);
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+.title h3{
+  font-weight: bold;
+  color: var(--principal);
+  color: var(--myBlack);
+}
+
+/*Home Section*/
+.card{
+  background-color: var(--myBlack);
+  margin-top: 1em;
+}
+
+.card-img-top{
+  background-size: cover;
+  background-position: center center;
+  min-height:200px;
+} 
+
+.rateProduct{
+color: var(--principal); 
+text-align: center;
+text-shadow: 1px 1px 0px rgb(102, 102, 102);
+}
+
+.quantUser{
+color: white;
+}
+
+.saleProduct{
+padding: 10px 0px;
+display: grid;
+grid-template:1fr 1fr/1fr 2fr ;
+}
+
+.sale{
+grid-row: auto/span 2;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: var(--complement);
+border-radius: 6px;
+color: white;
+padding: 5px;
+font-weight: bolder;
+}
+
+.prices{
+text-align: right;
+grid-row: auto/span 2; 
+margin-top: auto;
+margin-bottom: auto;
+}
+.beforePrice{
+text-decoration: line-through;
+font-size: 0.8em;
+color: brown;
+}
+.nowPrice{
+font-weight: bold;
+}
+
+
+.card-text{
+font-size: 0.8em;
+}
+
+.btn-outline-secondary {
+color: var(--principal);
+color: white;
+border-color:var(--principal);
+border-color:white;
+background-color: var(--principal);
+}
+
+.companyName:hover{
+text-decoration: underline;
+cursor: pointer;
+}
+
+.productDate{
+text-align: right !important;
+color: brown;
+font-size: 0.8em;
+
+}
+
+.companyName{
+  color: white!important;
+}
+
+.like{
+  color: #dc3545;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.cart{
+  color: var(--principal);
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.eye{
+  color: var(--principal);
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.productInfo{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/*Profile Section*/
+.imgDiv{
+  display: flex;
+  justify-content: center;
+}

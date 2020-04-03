@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wachalo | Perfil</title>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="../img/logo.svg">
+
+    
+</head>
+<body>
+    <div class="divHeader d-flex flex-column flex-md-row align-items-center px-2 px-md-4 box-shadow" id="navBarPage">
+    </div>
+    
+    <section class="jumbotron text-center headerProfile">
+        <div class="container">
+          <img src="../img/profile1.jpg" class="rounded-circle" style="width: 9em; height: 9em;" alt="">
+          <h3 class="jumbotron-heading mt-3">Gabriel Escobar Banegas</h3>
+          
+          
+        </div>
+    </section>
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Inicio</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Perfil</a>
+          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Carrito</a>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        <div class="jumbotron" id="profileSectionNavs">
+            <div class="tab-content" id="nav-tabContent">
+
+                <!--------------------------------Inicio de usuario-------------------------------->
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    <div class="container px-5">
+                        <div class="title">
+                            <h3>Productos que te han Gustado</h3>
+                        </div>
+                        
+                        <div class="row">
+                            
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card mb-4 box-shadow">
+                                  <img style="height: 5em;" class="card-img-top imageProducts" src="../img/Principal/products/pcHP.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="productInfo">
+                                            <p class="text-muted companyName">Jetstereo Co.</p>
+                                            <div class="icon">
+                                                <span class="cart">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </span>
+                                                <span class="like ml-2">
+                                                    <i class="fas fa-heart"></i>  
+                                                </span>   
+                                            </div>      
+                                        </div>                                                                                           
+                                    </div>                                              
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title">
+                            <h3>Empresas a que sigues</h3>
+                        </div>
+
+                        <div class="row">
+                            
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card mb-4 box-shadow">
+                                  <img style="height: 5em;" class="card-img-top imageProducts" src="../img/businessPage/logo1.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="productInfo">
+                                            <p class="text-muted companyName">Jetstereo Co.</p>
+                                            <div class="icon">
+                                                <span class="eye">
+                                                    <i class="far fa-eye"></i>
+                                                </span>
+                                                <span class="like ml-2">
+                                                    <i class="fas fa-heart"></i>  
+                                                </span>   
+                                            </div>      
+                                        </div>                                                                                           
+                                    </div>                                              
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--------------------------------Perfil de usuario-------------------------------->
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    
+                    <div class="container px-5">
+                        <div class="row">
+                            <div class="col-1 col-md-2 col-lg-3"></div>
+                            <div class="col-10 col-md-8 col-lg-6">
+
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <label for="">Cambiar perfil</label>
+                                        <div class="imgDiv">
+                                            <img src="../img/profile1.jpg" class="rounded-circle" style="width: 8em; height: 8em;" alt="">
+                                        </div>
+                                        
+                                    </div>
+        
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="nameSignInput">Nombre</label>
+                                            <input type="name" class="form-control" id="nameSignInput" placeholder="Nombre"  autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="emailSignInput">Apellidos</label>
+                                            <input type="email" class="form-control" id="emailSignInput" aria-describedby="emailHelp" placeholder="Email"   autocomplete="on">
+                                        </div>
+                                         
+                                    </div>
+        
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="emailSignInput">Email</label>
+                                            <input type="email" class="form-control" id="emailSignInput" aria-describedby="emailHelp" placeholder="Email"   autocomplete="on">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passwordConfirmSignInput">Contraseña</label>
+                                            <input type="password" class="form-control" id="passwordConfirmSignInput" placeholder="Confirmar Contraseña"  autocomplete="off" >
+                                        </div>
+                                    </div>
+        
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="emailSignInput">Nombre de Usuario</label>
+                                            <input type="email" class="form-control" id="emailSignInput" aria-describedby="emailHelp" placeholder="Email"   autocomplete="on">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passwordConfirmSignInput">Guardar</label>
+                                            <input type="password" class="form-control" id="passwordConfirmSignInput" placeholder="Confirmar Contraseña"  autocomplete="off" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-1 col-md-2 col-lg-3"></div>
+                        </div>
+                        
+                        
+                    </div>
+
+
+                </div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+            </div>
+        </div>
+      </main>
+
+
+
+  <script src="../scripts/jquery.min.js"></script>
+  <script src="../scripts/pooper.min.js"></script>
+  <script src="../scripts/bootstrap.min.js" ></script>
+  <script src="../scripts/GlobalScript.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
