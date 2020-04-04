@@ -10,7 +10,8 @@ body,html{
     --complement: #3E0A84;
     --complementDark: #300667;
     --secondary: #757575;
-    --lightsecondary: rgb(230, 230, 230);
+    --lightsecondary: #BDBDBD;
+    --backgroundgrey: rgb(235, 235, 235);
     --myBlack: #373435;
 
     background-color: var(--myBlack);
@@ -219,26 +220,10 @@ a:hover {
 }
 
 /*-------------------------------------------------------home/*-------------------------------------------------------*/
-.tab-pane h2{
-  color: var(--myBlack);
-  font-weight: 600;
-  font-size: 1.5em;
-  
-}
 
-.titleNav{
-  width: 100%;
-  margin-bottom: 2em;
-  border-bottom: 1px solid var(--principalDark);
-}
-
-.titleNav h1{  
-  font-weight: bolder;
-  color: var(--principalDark);
-}
 
 .tab-content{
-  background-color: var(--lightsecondary);
+  background-color: var(--backgroundgrey);
 }
 
 /*-------------------------------------------------------PROFILE-------------------------------------------------------*/
@@ -360,15 +345,23 @@ background-color: var(--myBlack);
 
 .formProducts{
   border-radius: 5px;
-  background-color: white;
+  
+  box-shadow:2px 2px 0.2em 0.1em var(--lightsecondary);
+  background-color: linear-gradient( var(--myBlack),#4e494e);
+  background-color: var(--myBlack);
+  
+  color: white;
   
   padding: 1em 3em;
   margin: 2em 0em ;
 }
 
 .formTitle{
+  font-size: 2em;
   text-align: center;
   font-weight: 500;
+  color: var(--principal) ;
+
 }
 
 .productsSection{
@@ -376,16 +369,16 @@ background-color: var(--myBlack);
   
 }
 
-/*Map*/
+/*------------------------------------------------branch offices------------------------------------------------*/
 
 #mapDiv{
   margin-left: auto;
-  height: 20em;
+  height: 22em;
   position: relative;
 }
 
 #map{
-  height: 20em;
+  height: 22em;
   position: absolute;
   top: 0; 
   right: 0;
@@ -397,6 +390,23 @@ background-color: var(--myBlack);
 
 .saveBO{
   margin-left: auto;
+  margin-right: auto;
+  background-color: var(--myBlack);
+  /*color: #dc3545;*/
+  color: var(--principal);
+  font-size: 1.6em;
+  border-radius: 60%;
+  border: 1px solid var(--principal);
+  
+}
+
+.saveBO:hover{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--principal);
+  color: var(--myBlack);
+  border-color: var(--myBlack);
+  
 }
 
 #LatLonRow .fa-map-marker-alt{
@@ -416,3 +426,44 @@ background-color: var(--myBlack);
   background-color: var(--myBlack);
   border-color: var(--myBlack);
 }
+
+.inputLatLon{
+  /*background-image: linear-gradient( var(--myBlack),#4e494e);*/
+  background-color: #373435;
+  color: var(--principal);
+  padding: 1.2em 1em;
+  border-radius: 6px;
+}
+
+
+
+/*-------------titles------------------*/
+
+
+
+
+.titleNav{
+  width: 100%;
+  margin-bottom: 2em;
+  border-bottom: 1px solid var(--lightsecondary);
+}
+
+.titleNav h2{  
+  font-weight: bolder;
+  color: var(--principal);
+}
+
+
+.title{
+  width: 100%;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  padding-left: 1em;
+}
+.title h3{
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #FFA000;
+  color: var(--secondary);
+}
+

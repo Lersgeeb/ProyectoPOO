@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <div class="col-12 horizontalNavs" style="height: 100px;">
+        <div class="col-12 horizontalNavs " style="height: 100px;">
           
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -102,24 +102,30 @@
             <!------------------INICIO ----------------<div class="banner"><img src="../img/businessPage/banner1.jpg"  alt=""></div>-->
             <div class="tab-pane fade show active" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
               
-              <div class="container">
+              <div class="container px-3 ">
+                
                 <div class="titleNav">
-                  <h1 class="homeTitle">Inicio</h1>
+                  <h2>Inicio</h2>
+                </div>
+
+                <div class="title">
+                  <h3>Grafica de tus ventas</h3>
                 </div>
                 
 
 
-                <div class="container-fluid">
-                    <h2 class="chartTitle">Dashboard</h2>
+                <div class="container-fluid">                    
                     <canvas id="myChart"></canvas>
                 </div>
+
               </div>
+
             </div>
 
             <!------------------ Profile ------------------>
             <div class="tab-pane fade"  id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
               <div style = "height: 18em; overflow: hidden; background-image: url(../img/businessPage/banner1.jpg); background-position: center center; background-size: cover;"></div>
-              <div class="container" id="sectionProfilebusiness">
+              <div class="container px-5 " id="sectionProfilebusiness">
 
                 <div id="headerprofiles">
 
@@ -185,18 +191,24 @@
 
             <!------------------ ProductForm ---------------->
             <div class="tab-pane fade" id="v-pills-Productregistry" role="tabpanel" aria-labelledby="v-pills-Productregistry-tab">
-                <div class="container">
-                  <div class="titleNav">
-                    <h1 class="homeTitle">Registro de producto</h1>          
-                  </div>
+              <div class="container px-3 ">
+                
+                <div class="titleNav">
+                  <h2>Tus Productos</h2>
+                </div>
 
-                  <h2>Agregar Producto nuevo</h2>
+                <div class="title">
+                  <h3>Agrega un Producto</h3>
+                </div>
+
                   <div class="row">
                     <div class="col-1 col-md-2 col-lg-3"></div>
 
                     <div class="col-10 col-md-8 col-lg-6">
                       <div class="formProducts">
                         <h4 class="formTitle">Crea tu producto</h4>
+                        <h4 class="formTitle"><i class="fas fa-box"></i></h4>
+                        
     
                         <div class="form-group">
                           <label for="productNameInput">Codigo del Producto</label>
@@ -236,7 +248,9 @@
                   
                   
                   
-                  <h2>Productos registrados</h2>
+                  <div class="title">
+                    <h3>Tus productos registrados</h3>
+                  </div>
                   <div class="container productsSection" >
                     <div class="row" id="registeredProducts">
 
@@ -262,7 +276,9 @@
                   </div>
                  
                   
-                  <h2 class="">Productos en oferta</h2>
+                  <div class="title">
+                    <h3>Tus promociones </h3>
+                  </div>
                   <div class="container productsSection">
                     <div class="row"  id="onSaleProducts">
 
@@ -306,14 +322,17 @@
             </div>
 
             <!----------------branchOffice---------------->
-            <div class="tab-pane fade" id="v-pills-branchOffice" role="tabpanel" aria-labelledby="v-pills-branchOffice-tab">
-              <div class="container">
+            <div class="tab-pane fade " id="v-pills-branchOffice" role="tabpanel" aria-labelledby="v-pills-branchOffice-tab">
+              <div class="container px-3 ">
                 
                 <div class="titleNav">
-                  <h1 class="homeTitle">Registro de Sucursales</h1>          
+                  <h2>Tus Sucursales</h2>
                 </div>
 
-                <h2 class="">Agrega tus sucursales</h2>
+                <div class="title">
+                  <h3>Agrega tus sucursales</h3>
+                </div>
+
                 <div class="row">
 
                   <div class="col-6">
@@ -321,20 +340,27 @@
                     <div class="row">
                       <div class="col-1 col-md-2 col-lg-3"></div>
                       <div class="col-10 col-md-8 col-lg-6">
-                        <div class="form-group">
-                          <label for="lat">Latitud</label>
-                          <input type="text" name="" id="lat" class="form-control" placeholder="" aria-describedby="helpId">
-                        </div>
+
+                        <div class="container-fluid inputLatLon">
+                        
+
+                          <div class="form-group">
+                            <label for="lat">Latitud</label>
+                            <input type="text" name="" id="lat" class="form-control" placeholder="" aria-describedby="helpId">
+                          </div>
+        
+                          <div class="form-group">
+                            <label for="lat">Longitud</label>
+                            <input type="text" name="" id="lon" class="form-control" placeholder="" aria-describedby="helpId">
+                          </div>
       
-                        <div class="form-group">
-                          <label for="lat">Longitud</label>
-                          <input type="text" name="" id="lon" class="form-control" placeholder="" aria-describedby="helpId">
+                          <div class="btn-group mt-3" style="width: 100%;"> 
+                            <button type="button" onclick="addBranchOffice()" class=" saveBO"><i class="fas fa-map-marker-alt"></i></button>
+                          </div>
                         </div>
-    
-                        <div class="btn-group mt-3" style="width: 100%;"> 
-                          <button type="button" onclick="addBranchOffice()" class="btn btn-sm btn-primary saveBO">Guardar</button>
-                        </div>
+
                       </div>
+                       
                       <div class="col-1 col-md-2 col-lg-3"></div>
                     </div>
                     

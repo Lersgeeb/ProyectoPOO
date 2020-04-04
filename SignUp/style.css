@@ -23,6 +23,7 @@ body,html{
     
     background-image: url(../img/signUp/signUpBack.jpg);
     background-size: cover;
+    background-position: center;
     min-height: 100vh;
     
 }
@@ -54,8 +55,8 @@ body,html{
 }
 
 img{
-    height: 150px;
-    width: 150px;
+    height: 5em;
+    
 }
 
 
