@@ -128,7 +128,7 @@ body,html{
   border-radius: .3rem;
 }
 
-
+/*Titles*/
 .title{
   width: 100%;
   border-bottom: 1px solid var(--lightsecondary);

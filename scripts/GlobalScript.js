@@ -3,10 +3,6 @@
 /*
 
     Cosas Por Hacer
-    
-    
-    -BusinessSign 
-        solo permitir enviar el formulario de registro una vez que las validaciones para todos los inputs esten correctos 
 
     -GlobalScript & BusinessSign
         Enviar un mensaje de retorno por algun dato invalido(usuario,email,numero de tarjeta existente) en el formulario 
@@ -16,16 +12,10 @@
         Una vez que el usuario haya iniciado sesion quitar los planes en la landingpage de las empresas (y agregar mas caracteristicas y funcionalidades
         de la pagina)
 
-    
-        
-    
-
-
-
-
-
 */
 
+
+/*-----------------------------Business-------------------------------- */
 var localstorage = window.localStorage
 
 if(localstorage.getItem('businessOnline')){
@@ -36,11 +26,12 @@ else{
 }
 
 
+
 var businesses = [
     {
-        email:'gabriel@gmail.com',
-        password:1234,
         businessName:'Jetstereo',
+        email:'jet@gmail.com',
+        password:1234,
         plan:'Plan Empresarial',
         cardNumber:'1234567891234567',
         expiration: '12/2020',
@@ -82,6 +73,13 @@ var businesses = [
     
 ]
 
+var businessesDataDirection = {
+    countBusinesses:1,
+    directionByEmail:{
+        "jet@gmail.com":0,
+    }
+}
+
 var categories = [
     'Autos, Motos y Otros',
     'Salud y Fitness',
@@ -97,7 +95,7 @@ var categories = [
 
 function authentication(emailValue,passwordValue){
 
-    business = businesses.find(businesses => businesses.email==emailValue);
+    business = businesses[ businessesDataDirection.directionByEmail[emailValue] ];
     if(business){
         if(business.password==passwordValue){
             businessOnline = business;
@@ -108,9 +106,11 @@ function authentication(emailValue,passwordValue){
 }
 
 function createBusinessUser(newBusiness){
-    hasBusiness = businesses.find(businesses => businesses.email==newBusiness.email);
+    hasBusiness = businessesDataDirection.directionByEmail[newBusiness.email];
     if(!hasBusiness){
         businesses.push(newBusiness);
+        businessesDataDirection.directionByEmail[newBusiness.email] = businessesDataDirection.countBusinesses;
+        businessesDataDirection.countBusinesses += 1;
         return newBusiness
     }
     else{
@@ -124,7 +124,7 @@ function logOut(){
 }
 
 
-/*BusinessPage */
+/*--------------------BusinessPage ------------------*/
 
 function getProductsOfBusiness(){
     return businessOnline.products
@@ -153,18 +153,7 @@ function removeBranchOfficeBusiness(branchIndex){
     businessOnline.branchOffices.splice(branchIndex,1)
 }
 
-/* Principal */
-
-var users = [
-    {
-        firstname:'Gabriel Enrique',
-        lastName:'Escobar Banegas',
-        email:'gee@gmail.com',
-        userName:'Lersgeeb',
-        password:1234,
-        imageProfile:'../img/profile.jpg',
-    },
-]
+/* ---------------------------Normal User--------------------------- */
 
 var localstorage = window.localStorage
 
@@ -176,9 +165,41 @@ else{
 }
 
 
+var users = [
+    {
+        firstname:'Gabriel Enrique',
+        lastName:'Escobar Banegas',
+        email:'gee@gmail.com',
+        userName:'Lersgeeb',
+        password:1234,
+        imageProfile:'../img/profile.jpg',
+        followBusiness:['Jetstereo',],
+        productLiked:[
+            {
+                businessName:'Jetstereo',
+                productIndex: 0,
+            },
+        ],
+        cart:[
+            {
+                businessName:'Jetstereo',
+                productIndex: 0,  /*cambiar a codigoDeProducto*/
+            },
+        ],
+    },
+]
+
+var userDataDirection = {
+    countUser:1,
+    directionByEmail:{
+        "gee@gmail.com":0,
+    }
+}
+
+
 function userAuthentication(emailValue,passwordValue){
 
-    user = users.find(users => users.email==emailValue);
+    user  = users[userDataDirection.directionByEmail[emailValue]]
     if(user){
         if(user.password==passwordValue){
             userOnline = user;
@@ -194,12 +215,16 @@ function userLogOut(){
 }
 
 function createUser(user){
-    hasUser = users.find(users => (users.email==user.email || users.userName==user.userName) );
+    hasUser = userDataDirection.directionByEmail[user.email];
     if(!hasUser){
         users.push(user);
+        userDataDirection.directionByEmail[user.email] = userDataDirection.countUser;
+        userDataDirection.countUser += 1;
         return(user)
     }
     else{
         console.log("Usuario existente")
     }    
 }
+
+/*-----------------------------UserPage------------------------------ */

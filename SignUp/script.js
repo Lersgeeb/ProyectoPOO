@@ -32,12 +32,15 @@ function signUpUser(){
             userName:usernameSignInput.value,
             password:passwordSignInput.value,
             imageProfile:'../img/profile.jpg',
+            followBusiness:[],
+            productLiked:[],
+            cart:[],
         }
        
         newUser = createUser(user);
         if(newUser){
             userAuthentication(user.email, user.password);
-            window.location.href = "../LandingPageV2";
+            
         }  
     }
     else{
