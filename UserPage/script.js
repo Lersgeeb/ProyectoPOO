@@ -3,7 +3,7 @@ function render(){
     renderProductsLiked();
     renderFollowBusinesses();
     renderProfile();
-    renderCartt()
+    renderCart()
 
 }
 
@@ -151,12 +151,13 @@ function renderProfile(){
     
 }
 
-function renderCartt(){
+function renderCart(){
     productRow= document.getElementById('productRow');
-    productRow.innerHTML = ''
+    productRow.innerHTML = '';
 
     products = getCartProducts();
     total = 0;
+    cartProductIndex = 0;
 
     for(product of products){
 
@@ -170,7 +171,7 @@ function renderCartt(){
                                     <td>L. ${priceWithSale}</td>
                                     <td> x${product.quant}</td>
                                     <td>L. ${totalProduct}</td>
-                                    <td><i class="far fa-trash-alt"></i></td>
+                                    <td><i onclick="removeProduct(${cartProductIndex++})" class="far fa-trash-alt"></i></td>
                                 </tr>`
 
     }
@@ -186,6 +187,11 @@ function renderCartt(){
                             </tr>`
 
 
+}
+
+function removeProduct(cartProductIndex){
+    removeCartProduct(cartProductIndex);
+    renderCart();
 }
 
 render();

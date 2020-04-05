@@ -285,12 +285,13 @@
   font-size: 0.8em;
 }
 
-.btn-outline-secondary {
-  color: var(--principal);
+.btn-warning {
   color: white;
-  border-color:var(--principal);
   border-color:white;
-  background-color: var(--principal);
+}
+.btn-warning {
+  color: white;
+  border-color:white;
 }
 
 .companyName:hover{

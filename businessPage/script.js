@@ -11,6 +11,8 @@ function render(){
         renderNav(businessOnline);
         renderChart();
 
+        renderProfile();
+
         /*productForm */
         renderCategories();
         renderProduts();
@@ -201,7 +203,6 @@ function newProduct(){
 
     if(productIdInput.value ,imageUrlInput.value, productPriceInput.value, productDescInput.value){
         product = {
-            id: productIdInput.value,
             category: categoryInput.value,
             price: productPriceInput.value,
             description: productDescInput.value,
@@ -289,6 +290,62 @@ function renderMap(zoom,lat,lon,withMarker){
 
     renderBranchOfficeTableRows();
 }
+
+function renderProfile(){
+    business = businessOnline;
+    bannerProfile = document.getElementById('bannerProfile');
+    bannerProfile.innerHTML = `<div style = "height: 18em; overflow: hidden; background-image: url(${business.bannerImg}); background-position: center center; background-size: cover;"></div>`
+
+    headerprofiles = document.getElementById('headerprofiles');
+    headerprofiles.innerHTML = `<div class="businessInfo">
+                                    <div class="businessName">${business.businessName}</div>
+                                    <div class="businesDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi at ad voluptatibus, obcaecati id assumenda dolor consequatur? Earum ducimus maiores nulla, dignissimos ullam voluptatum quam, magni tempore velit, ad facere?</div>
+                                    <div class="businessSocial mt-3">                      
+                                    <ul class="pl-0">
+                                        <li class="btn btn-outline-warning"><i class="fab fa-facebook"></i></li>
+                                        <li class="btn btn-outline-warning"><i class="fab fa-instagram"></i></li>
+                                        <li class="btn btn-outline-warning"><i class="fab fa-twitter"></i></li>
+                                    </ul>
+                                    </div>
+                                </div>                
+                                <img style="height: 15em;" class="rounded-circle businessLogo" src="${business.profileImg}" alt="">`
+
+    productInSaleProfile = document.getElementById('productInSaleProfile');
+    productInSaleProfile.innerHTML = '';
+    
+    for(product of business.products){
+        if(product.inSale){
+            productInSaleProfile.innerHTML += `  <div class="col-md-6 col-lg-3">
+                                                    <div class="card mb-4 box-shadow">
+                                                    <img style="max-height: 10em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <p class="rateProduct mb-0">
+                                                        ${renderRate(product.inSale.rate)}                
+                                                        </p>
+                                                        <div class="quantUser" style="text-align: center;">
+                                                        ${product.inSale.rateQuant} <i class="fas fa-user"></i>
+                                                        </div>
+
+                                                        <div class="saleProduct"> 
+                                                        <div class="sale"><h3 class="mb-0">${parseInt( product.inSale.sale * 100 )}</h3></div>
+                                                        <div class="prices">
+                                                            <div class="price beforePrice">Antes: L. ${product.price}</div> 
+                                                            <div class="price nowPrice">Ahora: L. ${product.price * (1 - product.inSale.sale)}</div>
+                                                        </div>                      
+                                                        </div>
+                                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-warning">+ Detalles</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-warning"><i class="fas fa-cart-plus"></i> Comprar</button>
+                                                        </div>
+                                                        </div>                                              
+                                                    </div>
+                                                    </div>
+                                                </div>`;
+        }
+    }
+}
+
 
 function renderBranchOfficeTableRows(){
     LatLonRow = document.getElementById('LatLonRow')

@@ -288,3 +288,7 @@ font-size: 0.8em;
   background-color: var(--myBlack);
   border-color: var(--myBlack);
 }
+
+.fa-trash-alt{
+  cursor: pointer;
+}
