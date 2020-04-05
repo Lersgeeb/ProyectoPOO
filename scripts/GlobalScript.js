@@ -30,12 +30,15 @@ else{
 var businesses = [
     {
         businessName:'Jetstereo',
+        profileImg:"../img/businessPage/logo1.png",
+        bannerImg:"../img/businessPage/banner1.jpg",
         email:'jet@gmail.com',
         password:1234,
         plan:'Plan Empresarial',
         cardNumber:'1234567891234567',
         expiration: '12/2020',
         cvv: '190',
+
         branchOffices:[
             [14.087338,-87.183140],
         ],
@@ -50,7 +53,7 @@ var businesses = [
                 category:"Tecnología",
                 price:15000,
                 description:'HP Pavilion 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)',
-                from:"Jetstereo Co.",
+                from:"Jetstereo",
                 urlImg:"../img/Principal/products/pcHP.jpg",
                 inSale:{
                     sale:0.35,
@@ -64,7 +67,7 @@ var businesses = [
                 category:"Tecnología",
                 price:15000,
                 description:'ASUS 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)',
-                from:"Jetstereo Co.",
+                from:"Jetstereo",
                 urlImg:"../img/Principal/products/pc2.jpg",
                 inSale:null,
             },
@@ -77,6 +80,9 @@ var businessesDataDirection = {
     countBusinesses:1,
     directionByEmail:{
         "jet@gmail.com":0,
+    },
+    directionByName:{
+        "Jetstereo":0,
     }
 }
 
@@ -172,9 +178,9 @@ var users = [
         email:'gee@gmail.com',
         userName:'Lersgeeb',
         password:1234,
-        imageProfile:'../img/profile.jpg',
-        followBusiness:['Jetstereo',],
-        productLiked:[
+        imageProfile:'../img/profile1.jpg',
+        followBusinesses:['Jetstereo',],
+        productsLiked:[
             {
                 businessName:'Jetstereo',
                 productIndex: 0,
@@ -228,3 +234,45 @@ function createUser(user){
 }
 
 /*-----------------------------UserPage------------------------------ */
+
+function getProductByIndex({businessName,productIndex}){
+    business =  businesses[ businessesDataDirection.directionByName[businessName] ];
+    return business.products[productIndex];
+}
+
+function getBusiness(businessName){
+    business =  businesses[ businessesDataDirection.directionByName[businessName] ];
+    businessForUser = {
+        businessName:business.businessName,
+        profileImg:business.profileImg,
+        bannerImg:business.bannerImg,
+        branchOffices:business.branchOffices,
+        products:business.products, /*quitar productos que no testen en ofertas */
+    }
+
+    return businessForUser;
+}
+
+function getproductsLiked(){
+    products = userOnline.productsLiked;
+    productsJson = [];
+
+    for(product of products){
+        productsJson.push( getProductByIndex(product) );
+    }
+
+    return productsJson;
+
+}
+
+function getfollowBusinesses(){
+    followBusinesses = userOnline.followBusinesses;
+    businessesJson = [];
+
+    for(followBusiness of followBusinesses){
+        businessesJson.push( getBusiness(followBusiness));
+    }
+
+    return businessesJson;
+
+}

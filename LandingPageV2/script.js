@@ -49,7 +49,7 @@ function renderNav(){
         navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/index.html">Wachalo</a>
                                     <div class="dropdown ml-auto">
                                     <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                        <span>${userOnline.userName} &nbsp</span> <img src="../img/profile.jpg" class="rounded-circle" style="width: 1.8em;">
+                                        <span>${userOnline.userName} &nbsp</span> <img src="${userOnline.imageProfile}" class="rounded-circle" style="width: 1.8em;">
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
                                         <div class="px-4 accountInfo">

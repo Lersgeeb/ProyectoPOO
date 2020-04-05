@@ -32,8 +32,8 @@ function signUpUser(){
             userName:usernameSignInput.value,
             password:passwordSignInput.value,
             imageProfile:'../img/profile.jpg',
-            followBusiness:[],
-            productLiked:[],
+            followBusinesses:[],
+            productsLiked:[],
             cart:[],
         }
        
