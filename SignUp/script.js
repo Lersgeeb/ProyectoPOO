@@ -40,7 +40,7 @@ function signUpUser(){
         newUser = createUser(user);
         if(newUser){
             userAuthentication(user.email, user.password);
-            
+            window.location.href = "../LandingPageV2";
         }  
     }
     else{

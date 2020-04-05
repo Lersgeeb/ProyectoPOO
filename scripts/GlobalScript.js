@@ -190,6 +190,7 @@ var users = [
             {
                 businessName:'Jetstereo',
                 productIndex: 0,  /*cambiar a codigoDeProducto*/
+                quant:2,
             },
         ],
     },
@@ -235,9 +236,13 @@ function createUser(user){
 
 /*-----------------------------UserPage------------------------------ */
 
-function getProductByIndex({businessName,productIndex}){
+function getProductByIndex(businessName,productIndex, quantValue){
     business =  businesses[ businessesDataDirection.directionByName[businessName] ];
-    return business.products[productIndex];
+    product = business.products[productIndex];
+    if(quantValue)
+        product["quant"] = quantValue
+
+    return product;
 }
 
 function getBusiness(businessName){
@@ -258,7 +263,7 @@ function getproductsLiked(){
     productsJson = [];
 
     for(product of products){
-        productsJson.push( getProductByIndex(product) );
+        productsJson.push( getProductByIndex(product.businessName, product.productIndex) );
     }
 
     return productsJson;
@@ -275,4 +280,15 @@ function getfollowBusinesses(){
 
     return businessesJson;
 
+}
+
+function getCartProducts(){
+    products= userOnline.cart;
+    productsJson = [];
+
+    for(product of products){
+        productsJson.push( getProductByIndex(product.businessName, product.productIndex, product.quant) );
+    }
+
+    return productsJson;
 }

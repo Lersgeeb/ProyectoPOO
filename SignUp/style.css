@@ -147,10 +147,8 @@ form h1{
     font-weight: bolder;
 }
 
-.btn-primary{
+.btn-outline-warning{
     margin-top:30px;
-    background-color: var(--principal);
-    border: none;
     width: 100%;
 }
 

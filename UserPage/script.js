@@ -2,6 +2,9 @@ function render(){
     renderNav(userOnline);
     renderProductsLiked();
     renderFollowBusinesses();
+    renderProfile();
+    renderCartt()
+
 }
 
 function renderNav(user){
@@ -92,6 +95,96 @@ function renderFollowBusinesses(){
                                                 </div>
                                             </div>`;
     }
+
+}
+
+
+/*<div class="col-12 formTitle">
+    <i class="far fa-address-card"></i>
+</div> */
+function renderProfile(){
+    profileFormDiv = document.getElementById('profileFormDiv');
+    profileFormDiv.innerHTML = ''
+
+    user = userOnline;
+    profileFormDiv.innerHTML = `<div class="col-12 col-md-6">
+                                    <label for="">Foto de perfil</label>
+                                    <div class="imgDiv">
+                                        <img src="${user.imageProfile}" class="rounded-circle" style="width: 8em; height: 8em;" alt="">
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="nameInput">Nombre</label>
+                                        <input type="name"  value="${user.firstname}" class="form-control" id="nameInput" placeholder="Nombre"  autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastnameInput">Apellidos</label>
+                                        <input type="email" value="${user.lastName}" class="form-control" id="lastnameInput" aria-describedby="emailHelp"  autocomplete="on">
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="emailSignInput">Email</label>
+                                        <input type="email" value="${user.email}" class="form-control" id="emailSignInput" aria-describedby="emailHelp"   autocomplete="on">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passwordInput">Contraseña</label>
+                                        <input type="password" value="${user.password}" class="form-control" id="passwordInput" placeholder="Contraseña"  autocomplete="off" >
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="usernameInput">Nombre de Usuario</label>
+                                        <input type="email" value="${user.userName}" class="form-control" id="usernameInput" aria-describedby="emailHelp" placeholder="Email"   autocomplete="on">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="saveInput">Guardar</label>
+                                        <button  class="form-control btn btn-outline-warning" id="saveInput">Guardar</button>
+                                    </div>
+                                </div>`
+    
+}
+
+function renderCartt(){
+    productRow= document.getElementById('productRow');
+    productRow.innerHTML = ''
+
+    products = getCartProducts();
+    total = 0;
+
+    for(product of products){
+
+        priceWithSale = product.price * (1 - product.inSale.sale);
+        totalProduct = priceWithSale * product.quant;
+        total += totalProduct;
+
+        productRow.innerHTML += ` <tr class="text-center"  >
+                                    <th scope="row" style="padding:0 !important;"><img src="${product.urlImg}"   style="width: 6em; height: 5em;" alt=""></th>
+                                    <td >${product.id}</td>
+                                    <td>L. ${priceWithSale}</td>
+                                    <td> x${product.quant}</td>
+                                    <td>L. ${totalProduct}</td>
+                                    <td><i class="far fa-trash-alt"></i></td>
+                                </tr>`
+
+    }
+
+    totalRow = document.getElementById('totalRow');
+    totalRow.innerHTML =    `<tr class="text-center"  >
+                                <th scope="row">Total a pagar</th>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>L. ${total}</td>
+                                <td></td>
+                            </tr>`
+
 
 }
 

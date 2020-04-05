@@ -255,8 +255,36 @@ font-size: 0.8em;
   justify-content: center;
 }
 
+#profileFormDiv{
+  background-color: var(--myBlack);
+  border-radius: 6px;
+  color: var(--principal);
+  padding: 1em 1em;
+  margin-top: 1em;
+  box-shadow:2px 2px 0.2em 0.1em var(--lightsecondary);
+}
+
+.formTitle{
+  font-size: 2em;
+  text-align: center;
+  font-weight: 500;
+  color: var(--principal) ;
+  margin-bottom: 0.4em;
+
+}
+
 /**/
 
 .table-image td, .table-image th{
   vertical-align: middle;
+}
+
+.table {
+  color: var(--myBlack);
+}
+
+.table .thead-dark th {
+  color: #fff;
+  background-color: var(--myBlack);
+  border-color: var(--myBlack);
 }
