@@ -206,13 +206,15 @@ a:hover {
 
 .correct{
   /*box-shadow: 0 1px 0 0.1rem  #28a745;*/
-  border-bottom: 2px solid #28a745;
+  border-bottom: 3px solid #28a745;
+  color: #28a745;
+  font-weight: 600;
 }
 
 .wrong{
-  
-  border-bottom: 2px solid #dc3545;
-  
+  border-bottom: 3px solid #dc3545;
+  color: #dc3545;
+  font-weight: 600;
 }
 
 .form-control:focus {

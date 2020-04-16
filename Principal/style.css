@@ -51,11 +51,14 @@
     margin: 0;
     padding: 0;
 
+    
     --principal: #FFC107;
+    --principalDark:#D6A207;
     --complement: #3E0A84;
     --complementDark: #300667;
     --secondary: #757575;
     --lightsecondary: #BDBDBD;
+    --backgroundgrey: rgb(235, 235, 235);
     --myBlack: #373435;
 }
 /*--------------NAVBAR-------------------------*/
@@ -83,7 +86,7 @@
 }
 
 .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active  {
-  background-color:var(--principal) !important;
+  background-color:var(--principalDark) !important;
   color: white !important;
   box-shadow: none !important;
   border-color: white !important;

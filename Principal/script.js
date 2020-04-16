@@ -1,3 +1,5 @@
+
+/*Variaibles*/
 var images = [], x = -1;
 images[0] = "../img/Principal/image1.jpg";
 images[1] = "../img/Principal/image2.jpg";
@@ -15,12 +17,14 @@ categories = [
     'Mascotas',
     'Moda',
     'Tecnología'
-]
+];
 
-products = getAllProducts();
+var products = getAllProducts();
+var currentUser = userOnline;
 
+/*-------------------------------------------------------HEADER-------------------------------------------------------*/
 
-
+//Cambia la imagen del encabezado de la Pagina 
 function displayNextImage() {
     x = (x === images.length - 1) ? 0 : x + 1;
     document.getElementsByClassName("jumbotron")[0].style.backgroundImage = `url(${images[x]})`;
@@ -35,19 +39,22 @@ function startTimer() {
     setInterval(displayNextImage, 3000);
 }
 
+
+/*-------------------------------------------------------RENDERS------------------------------------------------------- */
 function render(){
-    renderNav(userOnline);
+    renderNav();
     renderCategoriesBar();
     renderProducts();
 }
 
-function renderNav(user){
+function renderNav(){
+    user = currentUser;
     navBarPage = document.getElementById('navBarPage');
     if(!user){
         navBarPage.innerHTML = `    <a href="../LandingPageV2/index.html" class="home button mr-md-auto">Wachalo</a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
-                                    <a class="btn btn-outline-primary" href="../SignUp/index.html">Iniciar Sesion</a>`
+                                    <a class="btn btn-outline-primary" href="../SignUp/index.html">Iniciar Sesion</a>`;
     }
     else{
         navBarPage.innerHTML = `<a href="../LandingPageV2/index.html" class="home button mr-md-auto">Wachalo</a>
@@ -65,16 +72,12 @@ function renderNav(user){
                                 </div>
                                 
                                 <a class="dropdown-item" href="../UserPage/index.html">Mi perfil</a>
-                                <a class="dropdown-item" onclick="logOut()">Cerrar Sesion</a>
+                                <a style="cursor:pointer;" class="dropdown-item" onclick="logOut()">Cerrar Sesion</a>
                                 </div>
-                                </div>`
+                                </div>`;
     }
 }
 
-function logOut(){
-    userLogOut();
-    renderNav();
-}
 
 /*<img class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">*/ 
 /*<div class="card-img-top imageProducts" style="background-image:url(${product.urlImg}); background-position: 30% 50%; " ></div> */
@@ -113,7 +116,7 @@ function renderProducts(value){
                                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-warning">+ Detalles</button>
-                                                    <button type="button" onClick="addToCart('${product.from}',${product.id})" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>
+                                                    ${ currentUser ? `<button type="button" onClick="addToCart('${product.from}',${product.id})" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
                                                 </div>
                                                 </div>                                              
                                             </div>
@@ -135,6 +138,15 @@ function renderCategoriesBar(){
     for(category of categories){
         dropdownCategories.innerHTML += `<button class="dropdown-item" onclick="renderProducts('${category}')">${category}</button>` 
     }
+}
+
+
+/*-------------------------------------------------------Funcionalidades-------------------------------------------------------*/
+function logOut(){
+    currentUser = null;
+    userLogOut();
+    renderNav();
+    renderProducts();
 }
 
 function addToCart(businessName, productIndex){
