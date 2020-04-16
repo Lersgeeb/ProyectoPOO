@@ -43,7 +43,7 @@ function render(){
 
 function renderNav(user){
     navBarPage = document.getElementById('navBarPage');
-    if(user==null){
+    if(!user){
         navBarPage.innerHTML = `    <a href="../LandingPageV2/index.html" class="home button mr-md-auto">Wachalo</a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
