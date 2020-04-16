@@ -78,12 +78,10 @@ function cvvValidation(input) {
 function namesValidation(input) {
     if (/^(?!\s)(?!.*\s$)(?=.*[a-zA-Z0-9])[a-zA-Z0-9 '~?!]{2,}$/.test(input.value)){
         input.classList.remove('wrong');
-        input.classList.remove('reset');
         input.classList.add('correct');
         return true
     } else {
         input.classList.remove('correct');
-        input.classList.remove('reset');
         input.classList.add('wrong');
     }
 }

@@ -238,10 +238,3 @@ form h1{
     color: #dc3545;
     font-weight: 600;
   }
-
-  .reset{
-    
-    border-bottom: none ;
-    color: var(--myBlack);
-    font-weight: 500;
-  }
