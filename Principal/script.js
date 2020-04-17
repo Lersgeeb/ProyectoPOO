@@ -51,13 +51,13 @@ function renderNav(){
     user = currentUser;
     navBarPage = document.getElementById('navBarPage');
     if(!user){
-        navBarPage.innerHTML = `    <a href="../LandingPageV2/index.html" class="home button mr-md-auto">Wachalo</a>
+        navBarPage.innerHTML = `    <a href="../LandingPageV2/" class="home button mr-md-auto">Wachalo</a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
-                                    <a class="btn btn-outline-primary" href="../SignUp/index.html">Iniciar Sesion</a>`;
+                                    <a class="btn btn-outline-primary" href="../SignUp/">Iniciar Sesion</a>`;
     }
     else{
-        navBarPage.innerHTML = `<a href="../LandingPageV2/index.html" class="home button mr-md-auto">Wachalo</a>
+        navBarPage.innerHTML = `<a href="../LandingPageV2/" class="home button mr-md-auto">Wachalo</a>
                                 <nav class="my-2 my-md-0 mr-md-3">
                             
                                 </nav>
@@ -71,7 +71,7 @@ function renderNav(){
                                     <small class="userEmail" >${user.email}</small>
                                 </div>
                                 
-                                <a class="dropdown-item" href="../UserPage/index.html"><i class="fas fa-user-circle"></i> Mi perfil</a>
+                                <a class="dropdown-item" href="../UserPage/"><i class="fas fa-user-circle"></i> Mi perfil</a>
                                 <a style="cursor:pointer;" class="dropdown-item" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                 </div>
                                 </div>`;

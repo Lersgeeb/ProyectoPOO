@@ -1,7 +1,7 @@
 /*-----------------------NAV------------------------------*/ 
 function renderNav(user){
     navBarPage = document.getElementById('navBarPage');
-    navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2/index.html"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
+    navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2/"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
                                     <div class="dropdown mr-1">

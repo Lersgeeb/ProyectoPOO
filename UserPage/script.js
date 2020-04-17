@@ -10,7 +10,7 @@ function render(){
 function renderNav(user){
     navBarPage = document.getElementById('navBarPage');
     if(userOnline){
-        navBarPage.innerHTML = `<a href="../LandingPageV2/index.html" class="home button mr-md-auto">Wachalo</a>
+        navBarPage.innerHTML = `<a href="../LandingPageV2/" class="home button mr-md-auto">Wachalo</a>
         <nav class="my-2 my-md-0 mr-md-3">
     
         </nav>
@@ -24,7 +24,7 @@ function renderNav(user){
             <small class="userEmail" >${user.email}</small>
         </div>
         
-        <a class="dropdown-item" href="../Principal/index.html"><i class="fas fa-shopping-bag"></i> Ofertas</a>
+        <a class="dropdown-item" href="../Principal/"><i class="fas fa-shopping-bag"></i> Ofertas</a>
         <a class="dropdown-item" style="cursor: pointer;" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
         </div>
         </div>`

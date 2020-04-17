@@ -26,27 +26,27 @@ function render(){
 function renderNav(){
     navbarLanding = document.getElementById('navbarLanding');
     if(!userOnline){
-        navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/index.html">Wachalo</a>
+        navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/">Wachalo</a>
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                     </button>
                                     <div class="collapse navbar-collapse  " id="navbarNav">
                                     <ul class="navbar-nav ml-auto ">
                                         <li class="nav-item">
-                                        <a class="nav-link" href="../Principal/index.html">Ofertas </a>
+                                        <a class="nav-link" href="../Principal/">Ofertas </a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class="nav-link" href="../SignUp/index.html">Accede</a>
+                                        <a class="nav-link" href="../SignUp/">Accede</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class="nav-link" href="../businessSign/index.html">Empresa</a>
+                                        <a class="nav-link" href="../businessSign/">Empresa</a>
                                         </li>
                                 
                                     </ul>
                                     </div>`
     }
     else{
-        navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/index.html">Wachalo</a>
+        navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/">Wachalo</a>
                                     <div class="dropdown ml-auto">
                                     <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                                         <span>${userOnline.userName} &nbsp</span> <img src="${userOnline.imageProfile}" class="rounded-circle" style="width: 1.8em;">
@@ -57,8 +57,8 @@ function renderNav(){
                                             <small class="userEmail" >${userOnline.email}</small>
                                         </div>
                                         
-                                        <a class="dropdown-item" href="../UserPage/index.html"><i class="fas fa-user-circle"></i> Mi perfil</a>
-                                        <a class="dropdown-item" href="../Principal/index.html"><i class="fas fa-shopping-bag"></i> Ofertas </a>
+                                        <a class="dropdown-item" href="../UserPage/"><i class="fas fa-user-circle"></i> Mi perfil</a>
+                                        <a class="dropdown-item" href="../Principal/"><i class="fas fa-shopping-bag"></i> Ofertas </a>
                                         <a class="dropdown-item" style="cursor: pointer;" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                     </div>
                                     </div>`

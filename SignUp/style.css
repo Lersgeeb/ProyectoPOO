@@ -156,6 +156,10 @@ form h1{
     font-weight: 600;
 }
 
+.text-muted{
+    color: var(--principalDark) !important;
+}
+
 
 @media only screen and (max-width:768px){
 
