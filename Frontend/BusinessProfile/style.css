@@ -1,0 +1,252 @@
+body,html{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    
+    --principal: #FFC107;
+    --principalDark:#D6A207;
+    --complement: #3E0A84;
+    --complementDark: #300667;
+    --secondary: #757575;
+    --lightsecondary: #BDBDBD;
+    --backgroundgrey: rgb(235, 235, 235);
+    --myBlack: #373435;
+}
+
+.divHeader{
+    background-color: var(--principal);
+    border-color: var(--principal);
+    box-shadow: 1px 1px 0.2em 0em var(--lightsecondary);/*New*/
+}
+  
+.divHeader .home{
+    color: white;
+    margin: 10px 0px; 
+    font-size: 1.5em;
+}
+
+.divHeader .btn-outline-primary{
+    border: solid 1px white;
+    border-color: white;
+    color: white;
+}
+.divHeader .home:hover, .divHeader .home:focus{
+    border: none !important;
+    box-shadow:none;
+    text-decoration: none;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active  {
+    background-color:var(--principalDark) !important;
+    color: white !important;
+    box-shadow: none !important;
+    border-color: white !important;
+}
+
+
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus, .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+}
+
+
+.userEmail{
+    color: var(--secondary);
+    margin-bottom: 1em;
+
+}
+.userName{
+    color: var(--myBlack);
+    margin-bottom: 0;
+}
+
+.accountInfo{
+    border-bottom: 1px solid var(--lightsecondary);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+}
+
+#navBarPage .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--principal);
+}
+
+#navBarPage .btn-outline-warning{
+    border: none;
+    color: rgb(238, 238, 238);
+}
+
+#navBarPage .btn-outline-warning:hover{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#navBarPage .btn-outline-warning:focus,#navbarLanding .btn-outline-warning:active{
+    box-shadow:none;
+    background-color: transparent;
+}
+  
+/*-------------------------------------------------------PROFILE-------------------------------------------------------*/
+
+#profileBusinessDiv{
+    background-color: var(--backgroundgrey);
+}
+
+
+/*Banner and header*/
+#sectionProfilebusiness{
+  
+    margin-top: 3em ;
+    padding-right: 3em ;
+    padding-left: 3em;
+    padding-top: 2em;
+    background-color: white;
+  }
+  
+  #headerprofiles{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #headerprofiles{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .businessInfo{
+    margin-top: 1.5em;
+  }
+  
+  .bannerImg{
+    height: 18em;
+    overflow: hidden;
+    background-position: center center; 
+    background-size: cover;
+  }
+  
+  .profileImg{
+    height: 15em;
+  }
+  
+  .businessName{
+    color: var(--myBlack);
+    font-size: 3em;
+    font-weight: bold;
+    border-bottom: 1px solid var(--principal);
+    margin-right: 1em;
+    margin-bottom: 16px;
+  }
+  
+  .businesDesc{
+    padding-right: 2em;
+    color: var(--secondary);
+    font-size: 0.9em;
+  }
+  
+  ul .btn-outline-warning{
+    color: var(--principal);
+    border: 1px solid var(--principal);
+  }
+  
+  ul .btn-outline-warning:hover{
+    color: white;
+    background-color: var(--principalDark);
+    border: 1px solid var(--principalDark);
+  }
+  
+  /*profile-products (cards)*/
+  
+  .card{
+    background-color: var(--myBlack);
+    margin-top: 1em;
+  }
+  .card-img-top{
+    background-size: cover;
+    background-position: center center;
+    min-height:250px;
+  } 
+  
+  .rateProduct{
+  color: var(--principal); 
+  text-align: center;
+  text-shadow: 1px 1px 0px #7575754a;
+  }
+  
+  .quantUser{
+  color: white;
+  }
+  
+  .saleProduct{
+  padding: 10px 0px;
+  display: grid;
+  grid-template:1fr 1fr/1fr 2fr ;
+  }
+  
+  .sale{
+  grid-row: auto/span 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--principal);
+  border-radius: 6px;
+  color: var(--principal);
+  padding: 5px;
+  font-weight: bolder;
+  }
+  
+  .prices{
+  text-align: right;
+  grid-row: auto/span 2; 
+  margin-top: auto;
+  margin-bottom: auto;
+  }
+  .beforePrice{
+  text-decoration: line-through;
+  font-size: 0.8em;
+  color:var(--secondary);
+  }
+  .nowPrice{
+    color: white;
+  font-weight: bold;
+  }
+  
+  
+  .btn-outline-secondary {
+  color: var(--principal);
+  border-color:var(--principal);
+  background-color: var(--myBlack);
+  }
+  
+  @media only screen and (max-width:768px){
+    .divHeader{
+        padding-bottom: 1em;
+    }
+
+    #headerprofiles{
+      flex-direction: column-reverse;
+    }
+  
+    #sectionProfilebusiness{
+      margin-top: 0;
+    }
+  
+    .businessName{
+      text-align: center;
+    }
+    .bannerImg{
+      height: 7em;
+      background-position: center;
+    }
+  
+    .profileImg{
+      align-self: center;
+      height: 8em;
+      width: 8em;
+    }
+    .businessName{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
