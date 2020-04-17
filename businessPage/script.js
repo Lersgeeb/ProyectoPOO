@@ -1,24 +1,3 @@
-
-
-function logoutBusinessPage(){
-    logOut()
-    window.location.href = "../businessSign";
-
-}
-
-function render(){
-    if(businessOnline){
-        renderNav(businessOnline);
-        renderChart();
-
-        renderProfile();
-
-        /*productForm */
-        renderCategories();
-        renderProduts();
-    }
-}
-
 /*-----------------------NAV------------------------------*/ 
 function renderNav(user){
     navBarPage = document.getElementById('navBarPage');
@@ -34,14 +13,20 @@ function renderNav(user){
                                             <small class="userEmail" >${user.email}</small>
                                         </div>
                                         
-                                        <a class="dropdown-item" href="../businessPage/index.html">Mi empresa</a>
-                                        <a class="dropdown-item" onclick="logoutBusinessPage()">Cerrar Sesion</a>
+                                        <a class="dropdown-item" href="../businessSign/"><i class="fas fa-building"></i> Principal</a>
+                                        <a class="dropdown-item" style="cursor: pointer;" onclick="logoutBusinessPage()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                         </div>
                                     </div>`
 }
 
+function logoutBusinessPage(){
+    logOut()
+    window.location.href = "../businessSign";
 
-/*------------------Chart-------------------- */
+}
+
+/*---------------------------------------HOME---------------------------------------*/
+
 sells = {
     'Octubre 2019':300,
     'Noviembre 2019':200,
@@ -110,9 +95,9 @@ function getData(sells){
 }
 
 
+/*---------------------------------ProductForm ---------------------------------------*/
 
-/*---------------------------------productForm ---------------------------------------*/
-
+//Render ProductForm
 function renderCategories(){
     options = [];
     for(category of categories){
@@ -191,6 +176,7 @@ function renderRate(rate){
     return `${'<i class="fas fa-star"></i>'.repeat(rate)}${'<i class="far fa-star"></i>'.repeat(5-rate)}`
 }
 
+//Funcionalidades ProductForm
 
 function newProduct(){
     productIdInput = document.getElementById('productIdInput');
@@ -254,9 +240,9 @@ function removeProduct(productIndex){
     renderProduts();
 }
 
-/*Branch Offices */
+/*---------------------------------------Branch Offices---------------------------------------*/
 
-/*MAP*/
+//Render BranchOffices
 function renderMap(zoom,lat,lon,withMarker){
    
     if(!(lat && lon)){
@@ -294,7 +280,7 @@ function renderMap(zoom,lat,lon,withMarker){
 function renderProfile(){
     business = businessOnline;
     bannerProfile = document.getElementById('bannerProfile');
-    bannerProfile.innerHTML = `<div style = "height: 18em; overflow: hidden; background-image: url(${business.bannerImg}); background-position: center center; background-size: cover;"></div>`
+    bannerProfile.innerHTML = `<div  class="bannerImg"  style = "background-image: url(${business.bannerImg});"></div>`
 
     headerprofiles = document.getElementById('headerprofiles');
     headerprofiles.innerHTML = `<div class="businessInfo">
@@ -308,7 +294,7 @@ function renderProfile(){
                                     </ul>
                                     </div>
                                 </div>                
-                                <img style="height: 15em;" class="rounded-circle businessLogo" src="${business.profileImg}" alt="">`
+                                <img class="rounded-circle profileImg" src="${business.profileImg}" alt="">`
 
     productInSaleProfile = document.getElementById('productInSaleProfile');
     productInSaleProfile.innerHTML = '';
@@ -367,6 +353,7 @@ function renderBranchOfficeTableRows(){
     
 }
 
+//funcionalidades BranchOffices
 function addBranchOffice(){
     lat = document.getElementById('lat');
     lon = document.getElementById('lon');
@@ -383,6 +370,24 @@ function removeBranchOffice(branchIndex){
     removeBranchOfficeBusiness(branchIndex);
     renderBranchOfficeTableRows(); 
     
+}
+
+/*----------------------------------------Render Main----------------------------------------*/
+
+function render(){
+    if(businessOnline){
+        renderNav(businessOnline);
+        
+        //Home
+        renderChart();
+
+        //Profile
+        renderProfile();
+
+        ///PoductForm 
+        renderCategories();
+        renderProduts();
+    }
 }
 
 

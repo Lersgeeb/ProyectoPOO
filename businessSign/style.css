@@ -87,6 +87,7 @@ a:hover {
 .container{
   padding: 2em 0em;
 }
+
 .divHeader .brandName{
   color: var(--principal);
   font-size: 1.5em;
@@ -138,7 +139,6 @@ a:hover {
 }
 .jumbotron .text-muted{
   color: white !important;
-  
 }
 .jumbotron .btn-primary{
   border-color: var(--principal);
@@ -160,6 +160,20 @@ a:hover {
 .btn-primary.focus, .btn-primary:focus {
   
   box-shadow: none;
+}
+
+@media only screen  and (max-width: 768px){
+  .jumbotron img{
+    max-height: 100px;
+  }
+  
+  .jumbotron h1{
+    font-size: 2.5em;
+  }
+
+  .jumbotron .text-muted{
+    font-size: 1em;
+  }
 }
 /*--------------------Plans---------------------*/
 
@@ -194,7 +208,25 @@ a:hover {
   border-color: white ;
 }
 
-/*signUp*/
+@media only screen  and (max-width: 768px){
+  .card .text-muted{
+    font-size: 0.7em;
+  } 
+
+  .display-4 {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+
+  .lead {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+
+}
+
+/*--------------------------signUp--------------------------*/
 
 
 /*.modal-content {

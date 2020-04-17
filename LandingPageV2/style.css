@@ -111,13 +111,12 @@ body,html{
     --secondary: #757575;
     --lightsecondary: #BDBDBD;
     --myBlack: #373435;
+    --myBlacktranparent: #373435b0;
     --text:#212121;
 
     --border-size: 2px;
     --alpha1:-4;
     --alpha2:-2;
-    
-    
 }
 
 /*--------------NAVBAR-------------------------*/
@@ -290,6 +289,7 @@ button:focus{
   left: 0;
   right: 0;
 }
+
 /*-------------Border-Pop------------------*/
 
 .descButton button{
@@ -329,7 +329,6 @@ button:focus{
   .container{
     padding-top: 5em;
   }
-  
 
   .headerDesc{
     padding: 0em;
@@ -343,16 +342,14 @@ button:focus{
   .descriptionTitle{
       text-align: center;
   }
-  .description{
-    font-size: 1em;
-  }
+  
 
   .logo{
     text-align: center!important;
   }
 
   #logoImg{    
-      max-height: 200px;     
+      height: 150px;     
   }
       
   .descButton button{
@@ -362,12 +359,61 @@ button:focus{
       width: 80%;
   }   
 }
-@media only screen and (max-width: 400px){
+
+@media only screen  and (max-width: 768px){
+
+  .descriptionTitle{
+    color: var(--principal);
+    font-size: 1.5em;
+    font-weight: bolder;
+  }
+  
+  .descButton button{
+    font-size: 1em;
+    font-weight: 500;
+  }
+
+  .text-muted{
+    font-size: 1.2em !important;
+  }
+
   .svgDiv{
     overflow: hidden;
     display: none;
   }
 }
+
+@media only screen  and (max-width: 992px){
+  .container{
+    padding-top: 5em;
+  }
+  
+  #logoImg{    
+    height: 200px;     
+  }
+  
+  .descriptionTitle{
+    color: var(--principal);
+    font-size: 2em;
+    font-weight: bolder;
+  }
+  
+  .descButton button{
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  .text-muted{
+    font-size: 1.4em !important;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color:var(--principal);
+    font-weight: 600;
+    text-shadow: 1px 1px 0.1em var(--myBlacktranparent);
+  }
+}
+
 /*------------------cards---------------*/
 .benefits{
   background-color: var(--principal);
@@ -453,9 +499,18 @@ button:focus{
   padding:  0em 1em;
 }
 
+@media only screen  and (max-width: 768px){
+  .overlaytxt {
+    font-size: 0.8em;
+  }
+}
+
+
 .fa-star{
   color: var(--principal);
 }
+
+
 /*<img class="featurette-image img-fluid mx-auto"  src="../img/Landing/technology.jpg" alt="Generic placeholder image">*/
 
 /*footer{

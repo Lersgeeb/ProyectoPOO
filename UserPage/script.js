@@ -24,8 +24,8 @@ function renderNav(user){
             <small class="userEmail" >${user.email}</small>
         </div>
         
-        <a class="dropdown-item" href="../Principal/index.html">Ofertas </a>
-        <a class="dropdown-item" onclick="logOut()">Cerrar Sesion</a>
+        <a class="dropdown-item" href="../Principal/index.html"><i class="fas fa-shopping-bag"></i> Ofertas</a>
+        <a class="dropdown-item" style="cursor: pointer;" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
         </div>
         </div>`
     }

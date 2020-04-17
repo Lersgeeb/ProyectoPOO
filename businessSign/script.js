@@ -65,13 +65,13 @@ function renderPlan(){
 function renderNav(businessUser){
     navBarPage = document.getElementById('navBarPage');
     if(businessUser==null){
-        navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2/index.html"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
+        navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
                                     <button class="btn btn-outline-primary" onclick="showLogin()" >Iniciar Sesion</button>`
     }
     else{
-        navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2/index.html"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
+        navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
                                     <div class="dropdown mr-1">
@@ -83,8 +83,8 @@ function renderNav(businessUser){
                                             <small class="userEmail" >${businessUser.email}</small>
                                         </div>
                                         
-                                        <a class="dropdown-item" href="../businessPage/index.html">Mi empresa</a>
-                                        <a class="dropdown-item" onclick="logoutBusinessSign()">Cerrar Sesion</a>
+                                        <a class="dropdown-item" href="../businessPage"><i class="fas fa-building"></i> Mi empresa</a>
+                                        <a class="dropdown-item" style="cursor: pointer;" onclick="logoutBusinessSign()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                         </div>
                                     </div>`
     }

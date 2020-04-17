@@ -71,8 +71,8 @@ function renderNav(){
                                     <small class="userEmail" >${user.email}</small>
                                 </div>
                                 
-                                <a class="dropdown-item" href="../UserPage/index.html">Mi perfil</a>
-                                <a style="cursor:pointer;" class="dropdown-item" onclick="logOut()">Cerrar Sesion</a>
+                                <a class="dropdown-item" href="../UserPage/index.html"><i class="fas fa-user-circle"></i> Mi perfil</a>
+                                <a style="cursor:pointer;" class="dropdown-item" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                 </div>
                                 </div>`;
     }

@@ -142,29 +142,6 @@ a:hover {
     border-color: white ;
   }
 
-  
-
-  /*collapse*/
-  /*.navbar{
-    background-color: var(--myBlack);
-  }
-
-  .navbar-light .navbar-brand {
-    color: var(--principal);
-}
-
-.navbar-light .navbar-nav .nav-link {
-  color: white;
-}
-
-.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
-  color: white;
-}
-
-.divHeader{
-    display: none !important;
-  }
-*/
 
   
   .navbar-toggler{
@@ -180,12 +157,34 @@ a:hover {
 
   @media only screen  and (max-width: 768px){
     .horizontalNavs{
-      display: inline;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 2em;
     }
 
     .verticalNavs{
       display: none;
     }
+
+    .nav-tabs .nav-link.active {
+      color: var(--myBlack);
+      background-color: var(--backgroundgrey);
+      border: none;
+    }
+
+    .horizontalNavs a {
+      color: var(--backgroundgrey);
+      background-color: transparent;
+      border: 1px solid green;
+    }
+
+    .nav-tabs .nav-link {
+      border-bottom: none !important;
+      border-top-left-radius: .25rem;
+      border-top-right-radius: .25rem;
+    }
+
 
   }
 
@@ -199,13 +198,13 @@ a:hover {
   height: 100%;
 }
 
-a {
+.verticalNavs a {
   color: white;
   text-decoration: none;
   background-color: transparent;
 }
 
-a:hover {
+.verticalNavs a:hover {
   color:var(--principalDark);
   text-decoration: none;
 }
@@ -240,10 +239,27 @@ a:hover {
 
 #headerprofiles{
   display: flex;
+  flex-direction: row;
+}
+
+#headerprofiles{
+  display: flex;
+  flex-direction: row;
 }
 
 .businessInfo{
   margin-top: 1.5em;
+}
+
+.bannerImg{
+  height: 18em;
+  overflow: hidden;
+  background-position: center center; 
+  background-size: cover;
+}
+
+.profileImg{
+  height: 15em;
 }
 
 .businessName{
@@ -335,11 +351,51 @@ border-color:var(--principal);
 background-color: var(--myBlack);
 }
 
+@media only screen and (max-width:768px){
+  #headerprofiles{
+    flex-direction: column-reverse;
+  }
+
+  #sectionProfilebusiness{
+    margin-top: 0;
+  }
+
+  .businessName{
+    text-align: center;
+  }
+  .bannerImg{
+    height: 7em;
+    background-position: center;
+  }
+
+  .profileImg{
+    align-self: center;
+    height: 8em;
+    width: 8em;
+  }
+  .businessName{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /*-----------------------------------------------------------ProductForm-----------------------------------------------------------*/
 
 .descProducts{
   color: var(--lightsecondary);
 }
+
+@media only screen and (max-width:768px){
+  .colForm{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .formProducts{
+    box-shadow:0px 0px 0.2em 0.2em var(--lightsecondary) !important;
+  }
+}
+
 
 .formProducts{
   border-radius: 5px;
@@ -370,9 +426,18 @@ background-color: var(--myBlack);
 /*------------------------------------------------branch offices------------------------------------------------*/
 
 #mapDiv{
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
   height: 22em;
   position: relative;
+}
+
+@media only screen and (max-width:768px){
+  .colMap{
+    margin-top: 2em;
+    padding-right: 0 !important;
+  }
+ 
 }
 
 #map{
@@ -467,3 +532,9 @@ background-color: var(--myBlack);
   color: var(--secondary);
 }
 
+
+@media only screen and (max-width:768px){ 
+  .titleNav{
+    margin-left: 1em;
+  }
+}
