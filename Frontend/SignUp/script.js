@@ -1,3 +1,5 @@
+/*---------------------------------------Funcionalidades Sign---------------------------------------*/
+
 function login(){
     emailInput = document.getElementById('emailInput');
     passwordInput = document.getElementById('passwordInput');
@@ -40,7 +42,7 @@ function signUpUser(){
         newUser = createUser(user);
         if(newUser){
             userAuthentication(user.email, user.password);
-            window.location.href = "../LandingPageV2";
+            window.location.href = "../LandingPageV2/";
         }  
     }
     else{

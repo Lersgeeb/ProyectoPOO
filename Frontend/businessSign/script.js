@@ -23,43 +23,11 @@ plans = [
     }
 ]
 
-/*users = {
-    'gabriel@gmail.com':{
-        password:1234,
-        userName:'Gabriel',
-        firstname:'Gabriel Enrique',
-        lastName:'Escobar Banegas'
 
-
-    }
-}*/
-
+/*-----------------------------------RENDERS------------------------------------*/
 function render(){
     renderNav(businessOnline);
     renderPlan();
-}
-
-function renderPlan(){
-    plansDiv = document.getElementById("plansDiv");
-    
-    plansDiv.innerHTML = " ";
-    var count = 0;
-    for(plan of plans){
-        plansDiv.innerHTML += `  <div class="card mb-4 box-shadow">
-                                    <div class="card-header">
-                                    <h4 class="my-0 font-weight-normal">${plan.name}</h4>
-                                    </div>
-                                    <div class="card-body">
-                                    <h1 class="card-title pricing-card-title">L.${plan.price} <small class="text-muted">/ mes</small></h1>
-                                    <p>${plan.description}</p>
-                                    <ul class="list-unstyled mt-3 mb-4">
-                                        <li>Publica hasta ${plan.productQuant} ofertas</li>
-                                    </ul>
-                                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="showForm(${count})">${plan.buttonDesc}</button>
-                                    </div>
-                                </div>`
-        count++;
-    }
 }
 
 function renderNav(businessUser){
@@ -90,6 +58,33 @@ function renderNav(businessUser){
     }
 }
 
+
+
+function renderPlan(){
+    plansDiv = document.getElementById("plansDiv");
+    
+    plansDiv.innerHTML = " ";
+    var count = 0;
+    for(plan of plans){
+        plansDiv.innerHTML += `  <div class="card mb-4 box-shadow">
+                                    <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">${plan.name}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">L.${plan.price} <small class="text-muted">/ mes</small></h1>
+                                    <p>${plan.description}</p>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>Publica hasta ${plan.productQuant} ofertas</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="showForm(${count})">${plan.buttonDesc}</button>
+                                    </div>
+                                </div>`
+        count++;
+    }
+}
+
+/*-----------------------------------Show Modal-----------------------------------*/
+
 function showForm(planIndex){
     document.getElementById("planInput").value = `${plans[planIndex].name}`;
 
@@ -108,14 +103,12 @@ function showForm(planIndex){
     $('#modalSignUp').modal('show');
     
 }
+
 function showLogin(){
     $('#modalLogin').modal('show');
 }
 
-
-
-
-
+/*-----------------------------------Funcionalidades SignUp/In-----------------------------------*/
 
 function signUpBusiness(){   
     planInput = document.getElementById('planInput');
@@ -166,20 +159,6 @@ function signUpBusiness(){
 
 }
 
-function confirmPasswordVal(){
-    passwordInput = document.getElementById('passwordInput');
-    passwordConfirmInput = document.getElementById('passwordConfirmInput');
-    if(passwordInput.value && passwordConfirmInput.value){
-        
-        return  passwordConfirmValidation(passwordConfirmInput, passwordInput.value);
-    }
-    else
-        return  false
-}
-
-
-
-
 function login(){
     emailValue = document.getElementById('inputEmailLogin').value;
     passwordValue = document.getElementById('passwordLogin').value;
@@ -194,11 +173,21 @@ function login(){
         
 }
 
+function confirmPasswordVal(){
+    passwordInput = document.getElementById('passwordInput');
+    passwordConfirmInput = document.getElementById('passwordConfirmInput');
+    if(passwordInput.value && passwordConfirmInput.value){
+        
+        return  passwordConfirmValidation(passwordConfirmInput, passwordInput.value);
+    }
+    else
+        return  false
+}
+
 function logoutBusinessSign(){
     logOut();
     renderNav();
 }
-
 
 
 

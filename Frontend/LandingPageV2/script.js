@@ -16,6 +16,7 @@ recomendations = [
     comment:'Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.'}
 ];
 
+/*---------------------------------------RENDERS---------------------------------------*/
 
 function render(){
     renderNav();
@@ -66,11 +67,6 @@ function renderNav(){
 
 }
 
-function logOut(){
-    userLogOut();
-    renderNav();
-}
-
 function renderRecomendations(recomendations){
     recomendationDiv = document.getElementById('recomendationDiv');
     recomendationDiv.innerHTML = '';
@@ -91,6 +87,14 @@ function renderRecomendations(recomendations){
 
 function renderRate(rate){
     return `${'<i class="fas fa-star"></i>'.repeat(rate)}${'<i class="far fa-star"></i>'.repeat(5-rate)}`
+}
+
+
+/*Funcionalidades */
+
+function logOut(){
+    userLogOut();
+    renderNav();
 }
 
 render();

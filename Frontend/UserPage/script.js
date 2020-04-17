@@ -1,3 +1,5 @@
+/*---------------------------------------Render---------------------------------------*/
+
 function render(){
     renderNav(userOnline);
     renderProductsLiked();
@@ -29,11 +31,6 @@ function renderNav(user){
         </div>
         </div>`
     }
-}
-
-function logOut(){
-    userLogOut();
-    window.location.href = "../LandingPageV2";
 }
 
 function renderProductsLiked(){
@@ -98,10 +95,6 @@ function renderFollowBusinesses(){
 
 }
 
-
-/*<div class="col-12 formTitle">
-    <i class="far fa-address-card"></i>
-</div> */
 function renderProfile(){
     profileFormDiv = document.getElementById('profileFormDiv');
     profileFormDiv.innerHTML = ''
@@ -185,8 +178,13 @@ function renderCart(){
                                 <td>L. ${total}</td>
                                 <td></td>
                             </tr>`
+}
 
+/*---------------------------------------Funcionalidades UserPage---------------------------------------*/
 
+function logOut(){
+    userLogOut();
+    window.location.href = "../LandingPageV2";
 }
 
 function removeProduct(cartProductIndex){
