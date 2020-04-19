@@ -225,7 +225,7 @@ var businesses = [
 ]
 
 var businessesDataDirection = {
-    countBusinesses:1,
+    countBusinesses:2,
     directionByEmail:{
         "jet@gmail.com":0,
         "diunsa@gmail.com":1,
@@ -262,10 +262,12 @@ function authentication(emailValue,passwordValue){
 }
 
 function createBusinessUser(newBusiness){
-    hasBusiness = businessesDataDirection.directionByEmail[newBusiness.email];
-    if(!hasBusiness){
+    hasEmail = businessesDataDirection.directionByEmail[newBusiness.email];
+    hasName = businessesDataDirection.directionByName[newBusiness.businessName];
+    if(!hasEmail && !hasName){
         businesses.push(newBusiness);
         businessesDataDirection.directionByEmail[newBusiness.email] = businessesDataDirection.countBusinesses;
+        businessesDataDirection.directionByName[newBusiness.businessName] = businessesDataDirection.countBusinesses;
         businessesDataDirection.countBusinesses += 1;
         return newBusiness
     }

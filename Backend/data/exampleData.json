@@ -1,0 +1,47 @@
+{
+    "businessName":"Jetstereo",
+    "profileImg":"../img/businessPage/logo1.png",
+    "bannerImg":"../img/businessPage/banner1.jpg",
+    "email":"jet@gmail.com",
+    "password":1234,
+    "plan":"Plan Empresarial",
+    "cardNumber":"1234567891234567",
+    "expiration":"12/2020",
+    "cvv":"190",
+    "branchOffices":[
+       [
+          14.087338,
+          -87.183140
+       ]
+    ],
+    "country":{
+       "name":"Honduras",
+       "lat":15,
+       "lon":-86.5
+    },
+    "products":[
+       {
+          "id":0,
+          "category":"Tecnología",
+          "price":15000,
+          "description":"HP Pavilion 27\" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)",
+          "from":"Jetstereo",
+          "urlImg":"../img/Principal/products/pcHP.jpg",
+          "inSale":{
+             "sale":0.35,
+             "rate":5,
+             "rateQuant":200,
+             "duration":"10 Días"
+          }
+       },
+       {
+          "id":1,
+          "category":"Tecnología",
+          "price":15000,
+          "description":"ASUS 27\" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10 (27-xa0050, Black) (4NM62AA#ABA)",
+          "from":"Jetstereo",
+          "urlImg":"../img/Principal/products/pc2.jpg",
+          "inSale":null
+       }
+    ]
+}
