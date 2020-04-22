@@ -6,31 +6,21 @@
     
     class Businesses {
 
-        private $filename;
+        private $database;
         private $businesses = [];
         private $businessesDataDirection;
 
 
-        public function __construct($filename){
-            $this->filename = $filename;
-            $businessesArray = json_decode(file_get_contents($filename), true);
+        public function __construct($database){
+            $this->database = $database;
+            $businessesArray =  $this->$database->getReference('businesses')
+                                                ->getSnapshot()
+                                                ->getValue();
+
             $this->businessesDataDirection = new BusinessesDataDirection();
 
-            foreach($businessesArray as $business) {     
-                $this->businesses[] = new Business(
-                    $business["businessName"],
-                    $business["profileImg"],
-                    $business["bannerImg"],
-                    $business["email"],
-                    $business["password"],
-                    $business["plan"],
-                    $business["cardNumber"],
-                    $business["expiration"],
-                    $business["cvv"],
-                    $business["branchOffices"],
-                    $business["country"],
-                    $business["products"]
-                );
+            foreach($businessesArray as $key=>$business) {     
+                $this->businesses[] = new Business($business);
                 $this->businessesDataDirection->saveDataDirection($business);
             }            
         }
@@ -55,6 +45,10 @@
                 return "Usuario no encontrado";
             }
 
+
+        }
+
+        public function saveBusiness($business){
 
         }
      

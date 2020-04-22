@@ -1,0 +1,13 @@
+{
+    "name": "gabriel/proyectopoo",
+    "description": "Proyecto de POO",
+    "authors": [
+        {
+            "name": "Lersgeeb",
+            "email": "bangeas.gabriel13@gmail.com"
+        }
+    ],
+    "require": {
+        "kreait/firebase-php": "^5.1"
+    }
+}

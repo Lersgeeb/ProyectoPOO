@@ -2,45 +2,38 @@
     class Business{
 
         private $businessName;
-        private $profileImg;
-        private $bannerImg;
         private $email;
         private $password;
         private $plan;
+        private $country;
         private $cardNumber;
         private $expiration;
         private $cvv;
-        private $branchOffices;
-        private $country;
-        private $products;
+        private $branchOffices = array();
+        private $profileImg = "defaultProfile.jpg";
+        private $bannerImg = "defaultBanner.jpg";
+        private $products = array();
     
-        public function __construct(
-            $businessName,
-            $profileImg,
-            $bannerImg,
-            $email,
-            $password,
-            $plan,
-            $cardNumber,
-            $expiration,
-            $cvv,
-            $branchOffices, 
-            $country,
-            $products
-        ){
+        public function __construct($business){
             
-            $this->businessName = $businessName;
-            $this->profileImg = $profileImg;
-            $this->bannerImg = $bannerImg;
-            $this->email = $email;
-            $this->password = $password;
-            $this->plan = $plan;
-            $this->cardNumber = $cardNumber;
-            $this->expiration = $expiration;
-            $this->cvv = $cvv;
-            $this->branchOffices = $branchOffices;
-            $this->country = $country;
-            $this->products = $products;
+            $this->businessName = $business["businessName"];
+            $this->email = $business["email"];
+            $this->password = $business["password"];
+            $this->plan = $business["plan"];
+            $this->cardNumber = $business["cardNumber"];
+            $this->expiration = $business["expiration"];
+            $this->cvv = $business["cvv"];
+            $this->country = $business["country"];
+            
+            if($business["branchOffices"])
+                $this->branchOffices = $business["branchOffices"];
+            if($business["profileImg"])
+                $this->profileImg = $business["profileImg"];
+            if($business["bannerImg"])
+                $this->bannerImg = $business["bannerImg"];
+            if($business["products"])
+                $this->products = $business["products"];
+            
         }
 
 
@@ -303,7 +296,13 @@
 
             return $business;
 
-            }
+        }
+
+        public function saveBusiness($database){
+            $result = $database ->getReference('businesses')
+                                ->push($this->getData());
+            return $result->getKey();
+        }
     }
 
 ?>
