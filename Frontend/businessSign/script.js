@@ -26,13 +26,15 @@ plans = [
 
 /*-----------------------------------RENDERS------------------------------------*/
 function render(){
-    renderNav(businessOnline);
     renderPlan();
+    getBusinessOnline().then(businessOnline => {
+        renderNav(businessOnline);
+    })
 }
 
 function renderNav(businessUser){
     navBarPage = document.getElementById('navBarPage');
-    if(businessUser==null){
+    if(!businessUser){
         navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
@@ -43,6 +45,9 @@ function renderNav(businessUser){
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
                                     <div class="dropdown mr-1">
+                                        <span class="fa-1x loading" id="loadingNavBar"">
+                                            <i class="fas fa-circle-notch fa-spin"></i>
+                                        </span> 
                                         <button type="button" class="btn  btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                                         <span>${businessUser.businessName} &nbsp</span> <img src="${businessUser.profileImg}" class="rounded-circle" style="width: 1.8em;">
                                         </button>
@@ -50,7 +55,6 @@ function renderNav(businessUser){
                                         <div class="px-4 accountInfo">
                                             <small class="userEmail" >${businessUser.email}</small>
                                         </div>
-                                        
                                         <a class="dropdown-item" href="../businessPage"><i class="fas fa-building"></i> Mi empresa</a>
                                         <a class="dropdown-item" style="cursor: pointer;" onclick="logoutBusinessSign()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                         </div>
@@ -163,16 +167,21 @@ function login(){
     emailValue = document.getElementById('inputEmailLogin').value;
     passwordValue = document.getElementById('passwordLogin').value;
 
-    user =  authentication(emailValue,passwordValue); //make async
-    console.log(user);
-    if(user){
-        renderNav(user);
-        $('#modalLogin').modal('hide');
-    }
-    else
-        console.log('Usuario o Contraseña incorrecta');
-        
+    visualLoadingLogin(true);
+
+    authentication(emailValue,passwordValue).then((user) => {
+        console.log(user);
+        visualLoadingLogin(false);
+        if(user){
+            renderNav(user);
+            $('#modalLogin').modal('hide');
+        }
+        else
+            console.log('Usuario o Contraseña incorrecta');
+            
+    })
 }
+
 
 function confirmPasswordVal(){
     passwordInput = document.getElementById('passwordInput');
@@ -186,10 +195,66 @@ function confirmPasswordVal(){
 }
 
 function logoutBusinessSign(){
-    logOut();
-    renderNav();
+    visualLoadingNavbar(true);
+    logOut().then(logout => {
+        if(logout){
+            visualLoadingNavbar(false);
+            renderNav();
+        }
+        else
+            alert("No se ha podido finalizar la sesion, intente de nuevo")
+    })
+    
 }
 
+/*axios */
 
+/* -----------------------------------Visual Loading ---------------------------------------*/
+function visualLoadingLogin(loading){
+    loadinLogin = document.getElementById('loadingModalLogin');
+    loginButton = document.getElementById('modalLoginButton');
+    closeButton = document.getElementById('modalLoginCloseButton');
+    
+
+    if(loading){
+        
+        loadinLogin.style.display = "inline-block";
+        
+        loginButton.disabled = true;
+        loginButton.innerHTML = 'Entrando...';
+    
+        closeButton.disabled = true;
+    }
+    else{
+        
+        loadinLogin.style.display = "none";
+        
+        loginButton.disabled = false;
+        loginButton.innerHTML = 'Entrar';
+    
+        closeButton.disabled = false;
+    }
+}
+
+function visualLoadingNavbar(loading){
+    dropdownNavbar = document.getElementById('dropdownMenuOffset');
+    loadingNavBar = document.getElementById('loadingNavBar');
+    
+    
+
+    if(loading){
+        
+        loadingNavBar.style.display = "inline-block";
+        
+        dropdownNavbar.disabled = true;
+    }
+    else{
+        
+        loadingNavBar.style.display = "none";
+        
+        dropdownNavbar.disabled = false;
+      
+    }
+}
 
 render();

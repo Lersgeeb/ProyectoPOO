@@ -10,10 +10,7 @@
         $password = $_POST["password"];
         $businesses = new Businesses($database->getDatabase());
         $login = $businesses->authentication($email,$password);
-        echo true;
+        echo $login;
             
     }
-
-
-
 ?>

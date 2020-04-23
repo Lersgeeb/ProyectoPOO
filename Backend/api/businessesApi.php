@@ -11,14 +11,18 @@
         
 
         case 'GET': //Obtener
-            $tokenfromDb = Businesses::getTokenFromKey($database->getDatabase(), $_COOKIE['key']);
-            if($tokenfromDb == $_COOKIE['token']){
-
-                echo json_encode( Businesses::getBusinessFromKey($database->getDatabase(), $_COOKIE['key']) );
+            if(isset($_COOKIE['key'])){
+                $tokenfromDb = Businesses::getTokenFromKey($database->getDatabase(), $_COOKIE['key']);
+                if($tokenfromDb == $_COOKIE['token']){
+    
+                    echo json_encode( Businesses::getBusinessFromKey($database->getDatabase(), $_COOKIE['key']) );
+                }
+                else
+                    echo false;
             }
-            
             else{
-               // echo json_encode( Businesses::getDataFromDb($database->getDatabase()) );
+                echo false;
+                // echo json_encode( Businesses::getDataFromDb($database->getDatabase()) );
             }
             break;
             exit();

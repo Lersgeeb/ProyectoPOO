@@ -282,3 +282,32 @@ a:hover {
   font-size: 2em;
   
 }
+
+/*Loading*/
+
+#modalLoginButton:disabled{
+  color: var(--principalDark) !important;
+  border-color: var(--principalDark) !important;
+}
+
+#modalLoginCloseButton:disabled{
+  color: rgb(145, 0, 0) !important;
+  border-color: rgb(145, 0, 0) !important;
+}
+
+.loading{
+  color: var(--principal);
+  display: none;
+}
+
+.loadingVisible{
+  color: var(--principal);
+  display: inline-block;
+}
+
+
+#dropdownMenuOffset:disabled{
+  color: var(--principalDark);
+  border-color: var(--principalDark);
+
+}

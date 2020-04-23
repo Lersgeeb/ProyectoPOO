@@ -343,6 +343,13 @@
             return $result;
         }
 
+        public static function removeToken($database,$key){
+            $result = $database ->getReference('businesses/' . $key . '/token')
+                                ->remove();
+
+            return $result;
+        }
+
 
 
         
