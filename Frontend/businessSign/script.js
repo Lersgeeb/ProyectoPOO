@@ -163,7 +163,8 @@ function login(){
     emailValue = document.getElementById('inputEmailLogin').value;
     passwordValue = document.getElementById('passwordLogin').value;
 
-    user =  authentication(emailValue,passwordValue)
+    user =  authentication(emailValue,passwordValue); //make async
+    console.log(user);
     if(user){
         renderNav(user);
         $('#modalLogin').modal('hide');

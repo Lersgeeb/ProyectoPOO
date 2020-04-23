@@ -13,6 +13,8 @@
         private $profileImg = "defaultProfile.jpg";
         private $bannerImg = "defaultBanner.jpg";
         private $products = array();
+        private $key;
+        private $token;
     
         public function __construct($business){
             
@@ -40,7 +42,7 @@
             /**
              * Get the value of businessName
              */ 
-            public function gebBusinessName()
+            public function getBusinessName()
             {
                         return $this->businessName;
             }
@@ -277,6 +279,26 @@
                         return $this;
             }
 
+            /**
+         * Get the value of key
+         */ 
+        public function getKey()
+        {
+                return $this->key;
+        }
+
+        /**
+         * Set the value of key
+         *
+         * @return  self
+         */ 
+        public function setKey($key)
+        {
+                $this->key = $key;
+
+                return $this;
+        }
+
             public function getData(){
                 $business = [];
                 $business =  array(
@@ -301,8 +323,29 @@
         public function saveBusiness($database){
             $result = $database ->getReference('businesses')
                                 ->push($this->getData());
-            return $result->getKey();
+            
+            $this->setKey( $result->getKey() );
         }
+
+        public static function getbusinessFromKey($database,$key){
+            $result = $database ->getReference('businesses/' . $key)
+                                ->getSnapshot()
+                                ->getValue();
+
+            return $result;
+        }
+
+        public function addToken($database,$token){
+            $this->token = $token;
+            $result = $database ->getReference('businesses/' . $this->key . '/token')
+                                ->set($token);
+
+            return $result;
+        }
+
+
+
+        
     }
 
 ?>

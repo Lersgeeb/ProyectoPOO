@@ -2,6 +2,7 @@
     
     include_once('BusinessesDataDirection.php');
     include_once('Business.php');
+    include_once('Database.php');
     
     
     class Businesses {
@@ -13,14 +14,16 @@
 
         public function __construct($database){
             $this->database = $database;
-            $businessesArray =  $this->$database->getReference('businesses')
+            $businessesArray =  $this->database->getReference("businesses")
                                                 ->getSnapshot()
                                                 ->getValue();
 
             $this->businessesDataDirection = new BusinessesDataDirection();
 
             foreach($businessesArray as $key=>$business) {     
-                $this->businesses[] = new Business($business);
+                $businessObj = new Business($business);
+                $businessObj->setKey($key);
+                $this->businesses[] = $businessObj;
                 $this->businessesDataDirection->saveDataDirection($business);
             }            
         }
@@ -33,24 +36,50 @@
             return $businessesDecoded;
         }
 
+        public static function getDataFromDb($database){
+            $businesses = $database ->getReference('businesses')
+                                    ->getSnapshot()
+                                    ->getValue();
+
+            return $businesses;
+        }
+
         public function authentication($emailValue, $passwordValue){
             $index = $this->businessesDataDirection->getDirectionByEmail($emailValue);
-            if($this->businesses[$index]){
-                if($this->businesses[$index]->getPassword() == $passwordValue)
-                    return $this->businesses[$index]->getData();
+            $business = $this->businesses[$index];
+            if($business){
+                if($business->getPassword() == $passwordValue){
+                    $token = bin2hex(openssl_random_pseudo_bytes(16));
+                    $business->addToken($this->database, $token);
+                    setcookie("token", $token, time() + (86400 * 30), "/");
+                    setcookie("key", $business->getKey(), time() + (86400 * 30), "/");
+                    return true;
+                }
                 else
-                    return "Contraseña Incorrecta";
+                    return false;
             }
             else{
-                return "Usuario no encontrado";
+                return false;
             }
-
-
         }
 
-        public function saveBusiness($business){
+        public static function getTokenFromKey($database, $key){
+            $token = $database  ->getReference('businesses')
+                                ->getChild($key)
+                                ->getChild('token')
+                                ->getValue();
 
+            return $token;
         }
+
+        public static function getBusinessFromKey($database, $key){
+            $business = $database   ->getReference('businesses')
+                                    ->getChild($key)
+                                    ->getValue();
+            return $business;
+        }
+
+        
      
         public function test(){
             return $this->businessesDataDirection->getDirectionByEmail("diunsa@gmail.com");
