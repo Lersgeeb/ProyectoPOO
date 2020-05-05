@@ -18,11 +18,15 @@ class BusinessesDataDirection{
     }
 
     public function getDirectionByEmail($businessEmail){
-        return  $this->directionByEmail[$businessEmail];
+        $hasEmail = array_key_exists($businessEmail,$this->directionByEmail);
+        if($hasEmail)
+            return  $this->directionByEmail[$businessEmail];
     }
 
     public function getDirectionByName($businessName){
-        return  $this->directionByName[$businessName];
+        $hasName = array_key_exists($businessName,$this->directionByName);
+        if($hasName)
+            return  $this->directionByName[$businessName];
     }
     
 }

@@ -71,19 +71,35 @@
 
             return $token;
         }
-
         public static function getBusinessFromKey($database, $key){
+
             $business = $database   ->getReference('businesses')
                                     ->getChild($key)
                                     ->getValue();
             return $business;
         }
 
-        
-     
+        public function saveBusiness($business){
+
+            $hasName = $this->businessesDataDirection->getDirectionByName($business->getBusinessName());
+            $hasEmail = $this->businessesDataDirection->getDirectionByEmail($business->getEmail());
+
+            if($hasEmail || $hasName)
+                return false;
+            else{
+                $result = $this->database   ->getReference('businesses')
+                                            ->push($business->getData());
+                return $business->getData();
+            }
+            
+        }
+
         public function test(){
             return $this->businessesDataDirection->getDirectionByEmail("diunsa@gmail.com");
         }
+
+
+
     }
 
 ?>

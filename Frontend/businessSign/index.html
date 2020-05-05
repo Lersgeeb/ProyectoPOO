@@ -134,8 +134,11 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-primary" onclick="signUpBusiness()" >Enviar</button>
-              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+              <span class="fa-2x loading" id="loadingModalSignUp">
+                <i class="fas fa-circle-notch fa-spin"></i>
+              </span>  
+              <button type="button" class="btn btn-outline-primary" id="modalSignUpButton" onclick="signUpBusiness()" >Enviar</button>
+              <button type="button" class="btn btn-outline-danger" id="modalSignUpCloseButton" data-dismiss="modal">X</button>
             </div>
           </div>
         </div>

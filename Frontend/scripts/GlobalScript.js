@@ -1,72 +1,74 @@
 var users = {};
-var loginURL = '../../Backend/api/loginBusiness.php';
-var logoutURL = '../../Backend/api/logoutBusiness.php';
-var businessesURL = '../../Backend/api/businessesApi.php';
 
+async function getBusinessOnline(){
+    
+    businessesURL = '../../Backend/api/businessesApi.php';
 
-function getBusinessOnline(){
-    
-    return new Promise((resolve,reject) => {
-        axios({
-            method:'GET',
-            url: businessesURL, //Por lo general se usara dirreciones absolutas
-            responsetype:'json'
-        }).then( business => {
-            if(business)
-                resolve(business.data);
-            else    
-                resolve(false);
-        }).catch(error=>{
-            console.error(error);
-            reject("Error al acceder con el usuario en linea")
-        });
-    })
-    
+    const business = await axios({
+        method:'GET',
+        url: businessesURL,
+        responsetype:'json'
+    });
+
+    if(business.request.status == 200)
+        return business.data;
+
 }
 
 
-function authentication(emailValue,passwordValue){
-
+async function authentication(emailValue,passwordValue){
+    loginURL = '../../Backend/api/loginBusiness.php';
     logInData = {
         email:emailValue,
         password:passwordValue
     }
 
-    return new Promise((resolve,reject) => {
-        axios({
-            method:'POST',
-            url: loginURL, //Por lo general se usara dirreciones absolutas
-            responsetype:'json',
-            data:logInData
-        }).then( login => {
-            if(login){
-                getBusinessOnline().then((business) => {
-                    resolve(business);
-                });
-            }
-            else
-                resolve(false);
-        }).catch(error=>{
-            return false;
-            reject("error durante la autenticacion")
-        });
+    const login = await axios({
+        method:'POST',
+        url: loginURL, 
+        responsetype:'json',
+        data:logInData
     });
+
+    if(login.request.status == 200){
+        if(login.data){
+            const business = await getBusinessOnline();
+            return business;
+        }
+    }
+        
+
     
 }
 
-function logOut(){
-    return new Promise((resolve,reject) => {
-        axios({
-            method:'GET',
-            url: logoutURL, //Por lo general se usara dirreciones absolutas
-            responsetype:'json'
-        }).then( logout => {
-            resolve(logout);
-        }).catch(error=>{
-            console.error(error);
-            reject("Error al acceder con el usuario en linea")
-        });
-    })
+async function logOut(){
+    logoutURL = '../../Backend/api/logoutBusiness.php';
+
+    const logout = await axios({
+        method:'GET',
+        url: logoutURL, 
+        responsetype:'json'
+    });
+
+    if(logout.request.status == 200){
+        return logout.data;
+    }
+
 }
 
 
+async function createBusinessUser(businessUser){
+    signUpURL = '../../Backend/api/signUpBusiness.php';
+
+    const signUp = await axios({
+        method:'POST',
+        url: signUpURL, 
+        responsetype:'json',
+        data:businessUser
+    });
+
+    if(signUp.request.status == 200){
+        return signUp.data;
+    }
+
+}

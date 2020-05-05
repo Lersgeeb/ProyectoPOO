@@ -114,7 +114,7 @@ function showLogin(){
 
 /*-----------------------------------Funcionalidades SignUp/In-----------------------------------*/
 
-function signUpBusiness(){   
+async function signUpBusiness(){   
     planInput = document.getElementById('planInput');
     emailInput = document.getElementById('emailInput');
     nameInput = document.getElementById('nameInput');
@@ -133,8 +133,8 @@ function signUpBusiness(){
         
         businessUser = {
             email: emailInput.value,
-            profileImg:"../img/profile.jpg",
-            bannerImg:null,
+            profileImg:"../img/SubBusiness/defaultProfile.jpg",
+            bannerImg:"../img/SubBusiness/defaultBanner.jpg",
             password: passwordInput.value,
             businessName: nameInput.value,
             plan:planInput.value,
@@ -148,13 +148,19 @@ function signUpBusiness(){
             cvv: cvvInput.value,
         }
        
+        visualLoadingSignUp(true);
 
-        newBusiness = createBusinessUser(businessUser);
+        const newBusiness =  await createBusinessUser(businessUser);
         if(newBusiness){
-            authentication(businessUser.email, businessUser.password);
-            $('#modalSignUp').modal('hide');
-            render();
-        }  
+            visualLoadingSignUp(false);
+            const newBusiness = await authentication(businessUser.email, businessUser.password);
+            if(newBusiness){
+                renderNav(newBusiness);
+                $('#modalSignUp').modal('hide');
+            }
+        }
+        else
+            visualLoadingSignUp(false);
         
     }
     else{
@@ -231,6 +237,32 @@ function visualLoadingLogin(loading){
         
         loginButton.disabled = false;
         loginButton.innerHTML = 'Entrar';
+    
+        closeButton.disabled = false;
+    }
+}
+
+function visualLoadingSignUp(loading){
+    loadingSignUp = document.getElementById('loadingModalSignUp');
+    signUpButton = document.getElementById('modalSignUpButton');
+    closeButton = document.getElementById('modalSignUpCloseButton');
+    
+
+    if(loading){
+        
+        loadingSignUp.style.display = "inline-block";
+        
+        signUpButton.disabled = true;
+        signUpButton.innerHTML = 'Entrando...';
+    
+        closeButton.disabled = true;
+    }
+    else{
+        
+        loadingSignUp.style.display = "none";
+        
+        signUpButton.disabled = false;
+        signUpButton.innerHTML = 'Entrar';
     
         closeButton.disabled = false;
     }

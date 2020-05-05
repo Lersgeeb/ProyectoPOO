@@ -1,3 +1,17 @@
+
+var businessOnline = null;
+var categories = [
+    'Autos, Motos y Otros',
+    'Salud y Fitness',
+    'Belleza',
+    'Educación y Cursos',
+    'Hogar y Jardín',
+    'Infantiles',
+    'Joyería',
+    'Mascotas',
+    'Moda',
+    'Tecnología'
+]
 /*-----------------------NAV------------------------------*/ 
 function renderNav(user){
     navBarPage = document.getElementById('navBarPage');
@@ -277,7 +291,7 @@ function renderMap(zoom,lat,lon,withMarker){
     renderBranchOfficeTableRows();
 }
 
-function renderProfile(){
+function renderProfile(businessOnline){
     business = businessOnline;
     bannerProfile = document.getElementById('bannerProfile');
     bannerProfile.innerHTML = `<div  class="bannerImg"  style = "background-image: url(${business.bannerImg});"></div>`
@@ -374,15 +388,17 @@ function removeBranchOffice(branchIndex){
 
 /*----------------------------------------Render Main----------------------------------------*/
 
-function render(){
+async function render(){
+    
+    businessOnline = await getBusinessOnline();
     if(businessOnline){
         renderNav(businessOnline);
         
         //Home
-        renderChart();
+        renderChart(businessOnline);
 
         //Profile
-        renderProfile();
+        renderProfile(businessOnline);
 
         ///PoductForm 
         renderCategories();

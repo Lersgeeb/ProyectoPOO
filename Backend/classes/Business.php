@@ -9,9 +9,9 @@
         private $cardNumber;
         private $expiration;
         private $cvv;
-        private $branchOffices = array();
-        private $profileImg = "defaultProfile.jpg";
-        private $bannerImg = "defaultBanner.jpg";
+        private $branchOffices = [];
+        private $profileImg = "../img/SubBusiness/defaultProfile.jpg";
+        private $bannerImg = "../img/SubBusiness/defaultBanner.jpg";
         private $products = array();
         private $key;
         private $token;
@@ -27,13 +27,13 @@
             $this->cvv = $business["cvv"];
             $this->country = $business["country"];
             
-            if($business["branchOffices"])
+            if(array_key_exists("branchOffices",$business))
                 $this->branchOffices = $business["branchOffices"];
-            if($business["profileImg"])
+            if(array_key_exists("profileImg",$business))
                 $this->profileImg = $business["profileImg"];
-            if($business["bannerImg"])
+            if(array_key_exists("bannerImg",$business))
                 $this->bannerImg = $business["bannerImg"];
-            if($business["products"])
+            if(array_key_exists("products",$business))
                 $this->products = $business["products"];
             
         }
@@ -320,12 +320,6 @@
 
         }
 
-        public function saveBusiness($database){
-            $result = $database ->getReference('businesses')
-                                ->push($this->getData());
-            
-            $this->setKey( $result->getKey() );
-        }
 
         public static function getbusinessFromKey($database,$key){
             $result = $database ->getReference('businesses/' . $key)
@@ -350,6 +344,8 @@
             return $result;
         }
 
+
+        
 
 
         

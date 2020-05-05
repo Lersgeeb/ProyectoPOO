@@ -195,6 +195,9 @@ a:hover {
   color: var(--principal);
   border-color: var(--principal);
 }
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+   color: var(--principalDark) !important;
+}
 
 .btn-outline-primary:hover {
   background-color: rgba(218, 166, 8, 0.329);
