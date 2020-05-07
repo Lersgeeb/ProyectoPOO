@@ -20,7 +20,6 @@ categories = [
 ];
 
 var products = getAllProducts();
-var currentUser = userOnline;
 
 /*-------------------------------------------------------HEADER-------------------------------------------------------*/
 
@@ -41,14 +40,16 @@ function startTimer() {
 
 
 /*-------------------------------------------------------RENDERS------------------------------------------------------- */
-function render(){
-    renderNav();
+async function render(){
+
+    const userOnline = await getUserOnline();
+    renderNav(userOnline);
     renderCategoriesBar();
-    renderProducts();
+    renderProducts(userOnline);
 }
 
-function renderNav(){
-    user = currentUser;
+function renderNav(user){
+    user;
     navBarPage = document.getElementById('navBarPage');
     if(!user){
         navBarPage.innerHTML = `    <a href="../LandingPageV2/" class="home button mr-md-auto">Wachalo</a>
@@ -67,7 +68,7 @@ function renderNav(){
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
                                 <div class="px-4 accountInfo">
-                                <small class="userName">${userOnline.firstname.split(" ")[0]} ${userOnline.lastName.split(" ")[0]}</small>
+                                <small class="userName">${user.firstname.split(" ")[0]} ${user.lastName.split(" ")[0]}</small>
                                     <small class="userEmail" >${user.email}</small>
                                 </div>
                                 
@@ -81,7 +82,7 @@ function renderNav(){
 
 /*<img class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">*/ 
 /*<div class="card-img-top imageProducts" style="background-image:url(${product.urlImg}); background-position: 30% 50%; " ></div> */
-function renderProducts(value){
+function renderProducts(value, userOnline){
     productRows = document.getElementById('productRows');
     productRows.innerHTML = '';
     
@@ -116,7 +117,7 @@ function renderProducts(value){
                                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-warning">+ Detalles</button>
-                                                    ${ currentUser ? `<button type="button" onClick="addToCart('${product.from}',${product.id})" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
+                                                    ${ userOnline ? `<button type="button" onClick="addToCart('${product.from}',${product.id})" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
                                                 </div>
                                                 </div>                                              
                                             </div>
@@ -142,11 +143,12 @@ function renderCategoriesBar(){
 
 
 /*-------------------------------------------------------Funcionalidades-------------------------------------------------------*/
-function logOut(){
-    currentUser = null;
-    userLogOut();
-    renderNav();
-    renderProducts();
+async function logOut(){
+    logoutSession = await userLogOut();
+    if(logoutSession){
+        renderNav();
+        renderProducts();
+    }
 }
 
 function addToCart(businessName, productIndex){

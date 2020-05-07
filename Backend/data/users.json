@@ -1,0 +1,26 @@
+[
+    {
+       "firstname":"Gabriel Enrique",
+       "lastName":"Escobar Banegas",
+       "email":"gee@gmail.com",
+       "userName":"Lersgeeb",
+       "password":1234,
+       "imageProfile":"../img/profile1.jpg",
+       "followBusinesses":[
+          "Jetstereo"
+       ],
+       "productsLiked":[
+          {
+             "businessName":"Jetstereo",
+             "productIndex":0
+          }
+       ],
+       "cart":[
+          {
+             "businessName":"Jetstereo",
+             "productIndex":0,
+             "quant":2
+          }
+       ]
+    }
+ ]

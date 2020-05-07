@@ -342,7 +342,7 @@ var users = [
         cart:[
             {
                 businessName:'Jetstereo',
-                productIndex: 0,  /*cambiar a codigoDeProducto*/
+                productIndex: 0,  
                 quant:2,
             },
         ],

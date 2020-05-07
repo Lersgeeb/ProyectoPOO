@@ -72,3 +72,75 @@ async function createBusinessUser(businessUser){
     }
 
 }
+
+/*Users */
+
+async function getUserOnline(){
+    
+    usersURL = '../../Backend/api/usersApi.php';
+
+    const user = await axios({
+        method:'GET',
+        url: usersURL,
+        responsetype:'json'
+    });
+
+    if(user.request.status == 200)
+        return user.data;
+
+}
+
+async function userAuthentication(emailValue,passwordValue){
+
+    loginURL = '../../Backend/api/loginUser.php';
+    logInData = {
+        email:emailValue,
+        password:passwordValue
+    }
+
+    const login = await axios({
+        method:'POST',
+        url: loginURL, 
+        responsetype:'json',
+        data:logInData
+    });
+    
+    if(login.request.status == 200){
+        if(login.data){
+            const user = await getUserOnline();
+            return user;
+        }
+    }
+}
+
+
+
+async function userLogOut(){
+    logoutURL = '../../Backend/api/logoutUser.php';
+
+    const logout = await axios({
+        method:'GET',
+        url: logoutURL, 
+        responsetype:'json'
+    });
+
+    if(logout.request.status == 200){
+        return logout.data;
+    }
+}
+
+async function createUser(user){
+    signUpURL = '../../Backend/api/signUpUser.php';
+
+    const signUp = await axios({
+        method:'POST',
+        url: signUpURL, 
+        responsetype:'json',
+        data:user
+    });
+
+    if(signUp.request.status == 200){
+        return signUp.data;
+    }
+
+}

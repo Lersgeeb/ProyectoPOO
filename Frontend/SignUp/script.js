@@ -1,11 +1,11 @@
 /*---------------------------------------Funcionalidades Sign---------------------------------------*/
 
-function login(){
+async function login(){
     emailInput = document.getElementById('emailInput');
     passwordInput = document.getElementById('passwordInput');
 
     if(emailInput.value && passwordInput.value){
-        user = userAuthentication(emailInput.value, passwordInput.value);
+        const user = await userAuthentication(emailInput.value, passwordInput.value);
         if(user){
             window.location.href = "../LandingPageV2";
         }
@@ -15,7 +15,7 @@ function login(){
     }
 }
 
-function signUpUser(){   
+async function signUpUser(){   
     
     nameSignInput = document.getElementById('nameSignInput');
     lastnameSignInput = document.getElementById('lastnameSignInput');
@@ -39,10 +39,11 @@ function signUpUser(){
             cart:[],
         }
        
-        newUser = createUser(user);
+        const newUser = await createUser(user);
         if(newUser){
-            userAuthentication(user.email, user.password);
-            window.location.href = "../LandingPageV2/";
+            const userSession = await  userAuthentication(user.email, user.password);
+            if(userSession)
+                window.location.href = "../LandingPageV2/";
         }  
     }
     else{

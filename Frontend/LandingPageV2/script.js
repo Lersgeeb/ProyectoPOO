@@ -18,13 +18,15 @@ recomendations = [
 
 /*---------------------------------------RENDERS---------------------------------------*/
 
-function render(){
-    renderNav();
+async function render(){
+
+    const userOnline = await getUserOnline();
+    renderNav(userOnline);
     /*userLogOut()*/
     renderRecomendations(recomendations);
 }
 
-function renderNav(){
+function renderNav(userOnline){
     navbarLanding = document.getElementById('navbarLanding');
     if(!userOnline){
         navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/">Wachalo</a>
@@ -92,9 +94,10 @@ function renderRate(rate){
 
 /*Funcionalidades */
 
-function logOut(){
-    userLogOut();
-    renderNav();
+async function logOut(){
+    logoutSession = await userLogOut();
+    if(logoutSession)
+        renderNav();
 }
 
 render();

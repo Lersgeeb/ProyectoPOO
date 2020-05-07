@@ -1,17 +1,21 @@
 /*---------------------------------------Render---------------------------------------*/
 
-function render(){
-    renderNav(userOnline);
-    renderProductsLiked();
-    renderFollowBusinesses();
-    renderProfile();
-    renderCart()
+async function render(){
+    const userOnline = await getUserOnline();
+    if(userOnline){
+        renderNav(userOnline);
+        renderProductsLiked();
+        renderFollowBusinesses();
+        renderProfile(userOnline);
+        renderCart()
+    }
+    
 
 }
 
 function renderNav(user){
     navBarPage = document.getElementById('navBarPage');
-    if(userOnline){
+    if(user){
         navBarPage.innerHTML = `<a href="../LandingPageV2/" class="home button mr-md-auto">Wachalo</a>
         <nav class="my-2 my-md-0 mr-md-3">
     
@@ -22,7 +26,7 @@ function renderNav(user){
         </button>
         <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
         <div class="px-4 accountInfo">
-        <small class="userName">${userOnline.firstname.split(" ")[0]} ${userOnline.lastName.split(" ")[0]}</small>
+        <small class="userName">${user.firstname.split(" ")[0]} ${user.lastName.split(" ")[0]}</small>
             <small class="userEmail" >${user.email}</small>
         </div>
         
@@ -30,6 +34,9 @@ function renderNav(user){
         <a class="dropdown-item" style="cursor: pointer;" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
         </div>
         </div>`
+    }
+    else{
+        window.location.href = "../LandingPageV2";
     }
 }
 
@@ -95,11 +102,10 @@ function renderFollowBusinesses(){
 
 }
 
-function renderProfile(){
+function renderProfile(user){
     profileFormDiv = document.getElementById('profileFormDiv');
     profileFormDiv.innerHTML = ''
 
-    user = userOnline;
     profileFormDiv.innerHTML = `<div class="col-12 col-md-6">
                                     <label for="">Foto de perfil</label>
                                     <div class="imgDiv">
