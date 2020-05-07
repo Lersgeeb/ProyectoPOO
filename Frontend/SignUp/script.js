@@ -5,7 +5,10 @@ async function login(){
     passwordInput = document.getElementById('passwordInput');
 
     if(emailInput.value && passwordInput.value){
+        visualLoadingLogin(true);
         const user = await userAuthentication(emailInput.value, passwordInput.value);
+        visualLoadingLogin(false);
+
         if(user){
             window.location.href = "../LandingPageV2";
         }
@@ -38,10 +41,13 @@ async function signUpUser(){
             productsLiked:[],
             cart:[],
         }
-       
+        visualLoadingSignUp(true);
         const newUser = await createUser(user);
+        
+
         if(newUser){
             const userSession = await  userAuthentication(user.email, user.password);
+            visualLoadingSignUp(false);
             if(userSession)
                 window.location.href = "../LandingPageV2/";
         }  
@@ -62,4 +68,38 @@ function confirmPasswordVal(){
     }
     else
         return  false
+}
+
+function visualLoadingLogin(loading){
+    loginButton = document.getElementById('loginButtonUser');
+
+    if(loading){
+        loginButton.disabled = true;
+        loginButton.innerHTML = `   <span class="fa-1x loadingVisible">
+                                    <i class="fas fa-circle-notch fa-spin"></i>
+                                    </span> 
+                                    Entrando...`;
+    }
+    else{
+        loginButton.disabled = false;
+        loginButton.innerHTML = 'Entrar';
+    }
+}
+
+function visualLoadingSignUp(loading){
+    signUpButton = document.getElementById('signUpButtonUser');
+
+    if(loading){
+        signUpButton.disabled = true;
+        signUpButton.innerHTML = `  <span class="fa-1x loadingVisible">
+                                    <i class="fas fa-circle-notch fa-spin"></i>
+                                    </span> 
+                                    Creando Usuario...`;
+
+    }
+    else{
+
+        signUpButton.disabled = false;
+        signUpButton.innerHTML = 'Únete';
+    }
 }

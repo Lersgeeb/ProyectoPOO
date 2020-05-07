@@ -327,3 +327,14 @@
   font-size: 0.8em;
   
 }
+
+/*loading*/
+.loading{
+  color: white;;
+  display: none;
+}
+
+.loadingVisible{
+  color: white;
+  display: inline-block;
+}

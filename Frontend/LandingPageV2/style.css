@@ -517,3 +517,19 @@ button:focus{
 /*footer{
   background-color: var(--myBlack);
 }*/
+
+/*Loading*/
+
+
+
+.loading{
+  color: white;
+  display: none;
+}
+
+.loadingVisible{
+  color: white;
+  display: inline-block;
+}
+
+

@@ -21,6 +21,9 @@ function renderNav(user){
     
         </nav>
         <div class="dropdown mr-1">
+        <span class="fa-1x loading" id="loadingNavBar"">
+          <i class="fas fa-circle-notch fa-spin"></i>
+        </span> 
         <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
         <span>${user.userName} &nbsp</span> <img src="${user.imageProfile}" class="rounded-circle" style="width: 1.8em;">
         </button>
@@ -188,8 +191,10 @@ function renderCart(){
 
 /*---------------------------------------Funcionalidades UserPage---------------------------------------*/
 
-function logOut(){
-    userLogOut();
+async function logOut(){
+    visualLoadingNavbar(true);
+    logoutSession = await userLogOut();
+    visualLoadingNavbar(false);
     window.location.href = "../LandingPageV2";
 }
 
@@ -198,4 +203,20 @@ function removeProduct(cartProductIndex){
     renderCart();
 }
 
+
+/*loading */
+
+function visualLoadingNavbar(loading){
+    dropdownNavbar = document.getElementById('dropdownMenuOffset');
+    loadingNavBar = document.getElementById('loadingNavBar');
+
+    if(loading){
+        loadingNavBar.style.display = "inline-block";
+        dropdownNavbar.disabled = true;
+    }
+    else{
+        loadingNavBar.style.display = "none";
+        dropdownNavbar.disabled = false;
+    }
+}
 render();

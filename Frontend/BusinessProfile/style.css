@@ -252,3 +252,15 @@ body,html{
       margin-right: auto;
     }
   }
+
+  /*loading*/
+
+.loading{
+  color: white;
+  display: none;
+}
+
+.loadingVisible{
+  color: white;
+  display: inline-block;
+}

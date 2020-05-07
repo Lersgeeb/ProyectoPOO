@@ -19,7 +19,7 @@ categories = [
     'Tecnología'
 ];
 
-var products = getAllProducts();
+//var products = getAllProducts();
 
 /*-------------------------------------------------------HEADER-------------------------------------------------------*/
 
@@ -45,7 +45,7 @@ async function render(){
     const userOnline = await getUserOnline();
     renderNav(userOnline);
     renderCategoriesBar();
-    renderProducts(userOnline);
+    renderProducts(null,userOnline);
 }
 
 function renderNav(user){
@@ -63,6 +63,9 @@ function renderNav(user){
                             
                                 </nav>
                                 <div class="dropdown mr-1">
+                                <span class="fa-1x loading" id="loadingNavBar"">
+                                            <i class="fas fa-circle-notch fa-spin"></i>
+                                </span> 
                                 <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                                 <span>${user.userName} &nbsp</span> <img src="${user.imageProfile}" class="rounded-circle" style="width: 1.8em;">
                                 </button>
@@ -144,7 +147,9 @@ function renderCategoriesBar(){
 
 /*-------------------------------------------------------Funcionalidades-------------------------------------------------------*/
 async function logOut(){
+    visualLoadingNavbar(true);
     logoutSession = await userLogOut();
+    visualLoadingNavbar(false);
     if(logoutSession){
         renderNav();
         renderProducts();
@@ -156,4 +161,19 @@ function addToCart(businessName, productIndex){
     console.log('Producto Añadido');
 }
 
+
+/*loading*/
+
+function visualLoadingNavbar(loading){
+    dropdownNavbar = document.getElementById('dropdownMenuOffset');
+    loadingNavBar = document.getElementById('loadingNavBar');
+    if(loading){
+        loadingNavBar.style.display = "inline-block";
+        dropdownNavbar.disabled = true;
+    }
+    else{
+        loadingNavBar.style.display = "none";
+        dropdownNavbar.disabled = false;
+    }
+}
 render();

@@ -19,6 +19,9 @@ function renderNav(user){
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
                                     <div class="dropdown mr-1">
+                                        <span class="fa-1x loading" id="loadingNavBar"">
+                                            <i class="fas fa-circle-notch fa-spin"></i>
+                                        </span> 
                                         <button type="button" class="btn  btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                                         <span>${user.businessName} &nbsp</span> <img src="${user.profileImg}" class="rounded-circle" style="width: 1.8em;">
                                         </button>
@@ -33,8 +36,10 @@ function renderNav(user){
                                     </div>`
 }
 
-function logoutBusinessPage(){
-    logOut()
+async function logoutBusinessPage(){
+    visualLoadingNavbar(true)
+    logoutSession = await logOut();
+    visualLoadingNavbar(false);
     window.location.href = "../businessSign";
 
 }
@@ -384,6 +389,24 @@ function removeBranchOffice(branchIndex){
     removeBranchOfficeBusiness(branchIndex);
     renderBranchOfficeTableRows(); 
     
+}
+
+/*loading*/
+function visualLoadingNavbar(loading){
+    dropdownNavbar = document.getElementById('dropdownMenuOffset');
+    loadingNavBar = document.getElementById('loadingNavBar');
+    
+    
+
+    if(loading){  
+        loadingNavBar.style.display = "inline-block";
+        dropdownNavbar.disabled = true;
+    }
+    else{
+        loadingNavBar.style.display = "none";
+        dropdownNavbar.disabled = false;
+      
+    }
 }
 
 /*----------------------------------------Render Main----------------------------------------*/

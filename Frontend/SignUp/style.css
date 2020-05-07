@@ -242,3 +242,17 @@ form h1{
     color: #dc3545;
     font-weight: 600;
   }
+
+/*Loading*/
+
+
+  .loading{
+    color: var(--principal);
+    display: none;
+  }
+  
+  .loadingVisible{
+    color: var(--principal);
+    display: inline-block;
+  }
+  

@@ -51,19 +51,22 @@ function renderNav(userOnline){
     else{
         navbarLanding.innerHTML = ` <a class="navbar-brand" href="../LandingPageV2/">Wachalo</a>
                                     <div class="dropdown ml-auto">
-                                    <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                        <span>${userOnline.userName} &nbsp</span> <img src="${userOnline.imageProfile}" class="rounded-circle" style="width: 1.8em;">
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
-                                        <div class="px-4 accountInfo">
-                                            <small class="userName">${userOnline.firstname.split(" ")[0]} ${userOnline.lastName.split(" ")[0]}</small>
-                                            <small class="userEmail" >${userOnline.email}</small>
+                                        <span class="fa-1x loading" id="loadingNavBar"">
+                                            <i class="fas fa-circle-notch fa-spin"></i>
+                                        </span> 
+                                        <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                            <span>${userOnline.userName} &nbsp</span> <img src="${userOnline.imageProfile}" class="rounded-circle" style="width: 1.8em;">
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
+                                            <div class="px-4 accountInfo">
+                                                <small class="userName">${userOnline.firstname.split(" ")[0]} ${userOnline.lastName.split(" ")[0]}</small>
+                                                <small class="userEmail" >${userOnline.email}</small>
+                                            </div>
+                                            
+                                            <a class="dropdown-item" href="../UserPage/"><i class="fas fa-user-circle"></i> Mi perfil</a>
+                                            <a class="dropdown-item" href="../Principal/"><i class="fas fa-shopping-bag"></i> Ofertas </a>
+                                            <a class="dropdown-item" style="cursor: pointer;" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                         </div>
-                                        
-                                        <a class="dropdown-item" href="../UserPage/"><i class="fas fa-user-circle"></i> Mi perfil</a>
-                                        <a class="dropdown-item" href="../Principal/"><i class="fas fa-shopping-bag"></i> Ofertas </a>
-                                        <a class="dropdown-item" style="cursor: pointer;" onclick="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
-                                    </div>
                                     </div>`
     }
 
@@ -95,9 +98,41 @@ function renderRate(rate){
 /*Funcionalidades */
 
 async function logOut(){
+    visualLoadingNavbar(true);
     logoutSession = await userLogOut();
-    if(logoutSession)
+
+    if(logoutSession){
+        visualLoadingNavbar(false);
         renderNav();
+    }
+    else{
+        visualLoadingNavbar(false);
+    }
+}
+
+
+/*Visual Loading*/
+function visualLoadingNavbar(loading){
+    dropdownNavbar = document.getElementById('dropdownMenuOffset');
+    loadingNavBar = document.getElementById('loadingNavBar');
+    
+    
+
+    if(loading){
+        console.log("mostrar cargar")
+        
+        loadingNavBar.style.display = "inline-block";
+        
+        dropdownNavbar.disabled = true;
+    }
+    else{
+        console.log("no mostrar cargar")
+        
+        loadingNavBar.style.display = "none";
+        
+        dropdownNavbar.disabled = false;
+      
+    }
 }
 
 render();

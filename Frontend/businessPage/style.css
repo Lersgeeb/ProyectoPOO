@@ -539,3 +539,15 @@ background-color: var(--myBlack);
     margin-left: 1em;
   }
 }
+
+/*loading*/
+
+.loading{
+  color: var(--principal);
+  display: none;
+}
+
+.loadingVisible{
+  color: var(--principal);
+  display: inline-block;
+}
