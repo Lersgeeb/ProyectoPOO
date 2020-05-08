@@ -10,7 +10,7 @@ function renderNav(user){
         navBarPage.innerHTML = `    <a href="../LandingPageV2/" class="home button mr-md-auto">Wachalo</a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
-                                    <a class="btn btn-outline-primary" href="../SignUp/">Iniciar Sesion</a>`;
+                                    <a class="btn btn-outline-primary" href="../SignUp/">Iniciar Sesión</a>`;
     }
     else{
         navBarPage.innerHTML = `<a href="../LandingPageV2/" class="home button mr-md-auto">Wachalo</a>

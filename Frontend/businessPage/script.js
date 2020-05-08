@@ -71,7 +71,7 @@ function renderChart(){
         options:{
             title:{
                 display:true,
-                text:"Numero de Ventas de tu empresa en los ultimos Meses"
+                text:"Número de Ventas de tu empresa en los últimos Meses"
             },
             spanGaps: false,
             elements: {
@@ -88,7 +88,7 @@ function renderChart(){
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: 'Numero de ventas'
+                        labelString: 'Número de ventas'
                     }
                 }], 
             }
@@ -123,7 +123,7 @@ function renderCategories(){
         options.push( `<option value="${category}">${category}</option>`);
     }
     categoryInputDiv = document.getElementById('categoryInputDiv')
-    categoryInputDiv.innerHTML = `  <label for="categoryInput">Categoria del producto</label>
+    categoryInputDiv.innerHTML = `  <label for="categoryInput">Categoría del producto</label>
                                     <select class="form-control" name="categoryInput" id="categoryInput" >
                                         ${options.join("")}
                                     </select>
@@ -203,8 +203,6 @@ function newProduct(){
     imageUrlInput = document.getElementById('imageUrlInput');
     productPriceInput = document.getElementById('productPriceInput');
     productDescInput = document.getElementById('productDescInput');
-
-    console.log("dentro")
 
     if(productIdInput.value ,imageUrlInput.value, productPriceInput.value, productDescInput.value){
         product = {

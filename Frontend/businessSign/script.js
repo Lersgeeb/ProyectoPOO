@@ -2,14 +2,14 @@ plans = [
     {
         name:"Plan Gratis",
         price:"0",
-        description:"El Plan Gratis te otorga una posibilidad de probar nuestro servicio en una manera rapida y sin costes",
+        description:"El Plan Gratis te otorga una posibilidad de probar nuestro servicio en una manera rápida y sin costes.",
         productQuant:"3",
         buttonDesc:"Únete Sin coste"
     },
     {
         name:"Plan Profesional",
         price:"300",
-        description:"El Plan profesional te brinda una forma barata de disfrutar nuestros servicios y con mas beneficios que el gratis",
+        description:"El Plan profesional te brinda una forma barata de disfrutar nuestros servicios y con más beneficios que el gratis.",
         productQuant:"20",
         buttonDesc:"Únete"
         
@@ -17,7 +17,7 @@ plans = [
     {
         name:"Plan Empresarial",
         price:"1000",
-        description:"El Plan Empresarial te otorga la posibilidad de agregar una cantidad ilimitadas de tus productos en ofertas",
+        description:"El Plan Empresarial te otorga la posibilidad de agregar una cantidad ilimitadas de tus productos en ofertas.",
         productQuant:"Ilimitadas",
         buttonDesc:"Únete Como Empresa"
     }
@@ -38,7 +38,7 @@ function renderNav(businessUser){
         navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
                                     <nav class="my-2 my-md-0 mr-md-3">
                                     </nav>
-                                    <button class="btn btn-outline-primary" onclick="showLogin()" >Iniciar Sesion</button>`
+                                    <button class="btn btn-outline-primary" onclick="showLogin()" >Iniciar Sesión</button>`
     }
     else{
         navBarPage.innerHTML = `    <a class="my-0 mr-md-auto" href="../LandingPageV2"><h5 class="my-0 mr-md-auto font-weight-normal brandName">Wachalo</h5></a>
@@ -152,15 +152,15 @@ async function signUpBusiness(){
 
         const newBusiness =  await createBusinessUser(businessUser);
         if(newBusiness){
-            visualLoadingSignUp(false);
+            
             const newBusiness = await authentication(businessUser.email, businessUser.password);
             if(newBusiness){
                 renderNav(newBusiness);
                 $('#modalSignUp').modal('hide');
             }
         }
-        else
-            visualLoadingSignUp(false);
+        
+        visualLoadingSignUp(false);
         
     }
     else{

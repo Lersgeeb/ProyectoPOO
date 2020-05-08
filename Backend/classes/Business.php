@@ -314,8 +314,10 @@
                     "cvv"=> $this->cvv,
                     "branchOffices"=> $this->branchOffices,
                     "country"=> $this->country,
-                    "products"=> $this->products->getData() 
             );
+            if($this->products){
+                $business["products"] = $this->products->getData();
+            }
 
             return $business;
 
