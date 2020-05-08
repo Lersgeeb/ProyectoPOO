@@ -1,4 +1,5 @@
 <?php
+    include_once('Products.php');
     class Business{
 
         private $businessName;
@@ -12,7 +13,7 @@
         private $branchOffices = [];
         private $profileImg = "../img/SubBusiness/defaultProfile.jpg";
         private $bannerImg = "../img/SubBusiness/defaultBanner.jpg";
-        private $products = array();
+        private $products;
         private $key;
         private $token;
     
@@ -34,8 +35,8 @@
             if(array_key_exists("bannerImg",$business))
                 $this->bannerImg = $business["bannerImg"];
             if(array_key_exists("products",$business))
-                $this->products = $business["products"];
-            
+                $this->products = new Products($business["products"]); 
+              
         }
 
 
@@ -313,7 +314,7 @@
                     "cvv"=> $this->cvv,
                     "branchOffices"=> $this->branchOffices,
                     "country"=> $this->country,
-                    "products"=> $this->products 
+                    "products"=> $this->products->getData() 
             );
 
             return $business;
@@ -345,7 +346,10 @@
         }
 
 
-        
+        public function getBusinessProductsInSale(){
+            if($this->products)
+                return $this->products->getProductsInSale();
+        }
 
 
         

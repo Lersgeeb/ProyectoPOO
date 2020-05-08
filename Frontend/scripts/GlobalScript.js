@@ -144,3 +144,19 @@ async function createUser(user){
     }
 
 }
+
+
+/*Principal*/
+async function getAllProducts(){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    const products = await axios({
+        method:'GET',
+        url: productUrl, 
+        responsetype:'json',
+    });
+
+    if(products.request.status == 200){
+        return products.data;
+    }
+}

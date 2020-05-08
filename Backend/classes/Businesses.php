@@ -98,6 +98,19 @@
             return $this->businessesDataDirection->getDirectionByEmail("diunsa@gmail.com");
         }
 
+        public function getAllProductsInSale(){
+            $allProductsInSale = [];
+            foreach($this->businesses as $business) {
+                $productsInSaleOfBusiness = $business->getBusinessProductsInSale();
+                if( !empty($productsInSaleOfBusiness) ){
+                    foreach($productsInSaleOfBusiness as $productInSale){
+                        $allProductsInSale[] = $productInSale;
+                    }
+                }
+            }     
+
+            return $allProductsInSale;
+        }
 
 
     }

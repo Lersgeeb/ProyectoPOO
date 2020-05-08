@@ -19,7 +19,7 @@ categories = [
     'Tecnología'
 ];
 
-//var products = getAllProducts();
+var products = null;
 
 /*-------------------------------------------------------HEADER-------------------------------------------------------*/
 
@@ -45,6 +45,7 @@ async function render(){
     const userOnline = await getUserOnline();
     renderNav(userOnline);
     renderCategoriesBar();
+    products = await getAllProducts();
     renderProducts(null,userOnline);
 }
 
