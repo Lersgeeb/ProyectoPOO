@@ -139,55 +139,57 @@ async function renderProduts(){
     onSaleProducts.innerHTML = '';
 
     productCount = 0;
-    for(product of products){
-        registeredProducts.innerHTML += `    <div class="col-md-6 col-lg-3">
-                                                <div class="card mb-4 box-shadow">
-                                                <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
-                                                <div class="card-body">
-                                                    <div class="price nowPrice">Precio: L.${product.price}</div>
-                                                    <small class="text-muted">${product.category}</small>
-                                                    <p class="card-text descProducts mb-0">${product.description}</p>                        
-                                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>                          
-                                                        ${product.inSale? '':`<button type="button" onClick="showSaleForm(${productCount})" class="btn btn-sm btn-outline-warning"><i class="fas fa-tag"></i></button>`}
-                                                        <button type="button" onClick="removeProduct(${productCount})" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>                          
+    if(products){
+        for(product of products){
+            registeredProducts.innerHTML += `    <div class="col-md-6 col-lg-3">
+                                                    <div class="card mb-4 box-shadow">
+                                                    <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <div class="price nowPrice">Precio: L.${product.price}</div>
+                                                        <small class="text-muted">${product.category}</small>
+                                                        <p class="card-text descProducts mb-0">${product.description}</p>                        
+                                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>                          
+                                                            ${product.inSale? '':`<button type="button" onClick="showSaleForm(${productCount})" class="btn btn-sm btn-outline-warning"><i class="fas fa-tag"></i></button>`}
+                                                            <button type="button" onClick="removeProduct(${productCount})" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>                          
+                                                        </div>
+                                                        </div>                                              
                                                     </div>
-                                                    </div>                                              
-                                                </div>
-                                                </div>
-                                            </div>`;
+                                                    </div>
+                                                </div>`;
+            
+            if(product.inSale){
+                onSaleProducts.innerHTML += `   <div class="col-md-6 col-lg-3">
+                                                    <div class="card mb-4 box-shadow">
+                                                    <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <p class="rateProduct mb-0">
+                                                            ${renderRate(product.inSale.rate)}                  
+                                                        </p>
+                                                        <div class="quantUser" style="text-align: center;">
+                                                        ${product.inSale.rateQuant}  <i class="fas fa-user"></i>
+                                                        </div>
         
-        if(product.inSale){
-            onSaleProducts.innerHTML += `   <div class="col-md-6 col-lg-3">
-                                                <div class="card mb-4 box-shadow">
-                                                <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
-                                                <div class="card-body">
-                                                    <p class="rateProduct mb-0">
-                                                        ${renderRate(product.inSale.rate)}                  
-                                                    </p>
-                                                    <div class="quantUser" style="text-align: center;">
-                                                    ${product.inSale.rateQuant}  <i class="fas fa-user"></i>
+                                                        <div class="saleProduct"> 
+                                                        <div class="sale"><h3 class="mb-0">${parseInt(product.inSale.sale * 100) }%</h3></div>
+                                                        <div class="prices">
+                                                            <div class="price beforePrice">Antes: L.${product.price}</div> 
+                                                            <div class="price nowPrice">Ahora: L.${product.price * (1 - product.inSale.sale)}</div>
+                                                        </div>                      
+                                                        </div>
+                                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                                            <button type="button" onClick="removeSale(${productCount})" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>
+                                                        </div>
+                                                        </div>                                              
                                                     </div>
-    
-                                                    <div class="saleProduct"> 
-                                                    <div class="sale"><h3 class="mb-0">${parseInt(product.inSale.sale * 100) }%</h3></div>
-                                                    <div class="prices">
-                                                        <div class="price beforePrice">Antes: L.${product.price}</div> 
-                                                        <div class="price nowPrice">Ahora: L.${product.price * (1 - product.inSale.sale)}</div>
-                                                    </div>                      
                                                     </div>
-                                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
-                                                        <button type="button" onClick="removeSale(${productCount})" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>
-                                                    </div>
-                                                    </div>                                              
-                                                </div>
-                                                </div>
-                                            </div>`;
+                                                </div>`;
+            }
+            productCount++;
         }
-        productCount++;
     }
 }
 
@@ -316,35 +318,37 @@ function renderProfile(businessOnline){
     productInSaleProfile = document.getElementById('productInSaleProfile');
     productInSaleProfile.innerHTML = '';
     
-    for(product of business.products){
-        if(product.inSale){
-            productInSaleProfile.innerHTML += `  <div class="col-md-6 col-lg-3">
-                                                    <div class="card mb-4 box-shadow">
-                                                    <img style="max-height: 10em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
-                                                    <div class="card-body">
-                                                        <p class="rateProduct mb-0">
-                                                        ${renderRate(product.inSale.rate)}                
-                                                        </p>
-                                                        <div class="quantUser" style="text-align: center;">
-                                                        ${product.inSale.rateQuant} <i class="fas fa-user"></i>
+    if(business.products){
+        for(product of business.products){
+            if(product.inSale){
+                productInSaleProfile.innerHTML += `  <div class="col-md-6 col-lg-3">
+                                                        <div class="card mb-4 box-shadow">
+                                                        <img style="max-height: 10em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                        <div class="card-body">
+                                                            <p class="rateProduct mb-0">
+                                                            ${renderRate(product.inSale.rate)}                
+                                                            </p>
+                                                            <div class="quantUser" style="text-align: center;">
+                                                            ${product.inSale.rateQuant} <i class="fas fa-user"></i>
+                                                            </div>
+    
+                                                            <div class="saleProduct"> 
+                                                            <div class="sale"><h3 class="mb-0">${parseInt( product.inSale.sale * 100 )}</h3></div>
+                                                            <div class="prices">
+                                                                <div class="price beforePrice">Antes: L. ${product.price}</div> 
+                                                                <div class="price nowPrice">Ahora: L. ${product.price * (1 - product.inSale.sale)}</div>
+                                                            </div>                      
+                                                            </div>
+                                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-sm btn-outline-warning">+ Detalles</button>
+                                                                <button type="button" class="btn btn-sm btn-outline-warning"><i class="fas fa-cart-plus"></i> Comprar</button>
+                                                            </div>
+                                                            </div>                                              
                                                         </div>
-
-                                                        <div class="saleProduct"> 
-                                                        <div class="sale"><h3 class="mb-0">${parseInt( product.inSale.sale * 100 )}</h3></div>
-                                                        <div class="prices">
-                                                            <div class="price beforePrice">Antes: L. ${product.price}</div> 
-                                                            <div class="price nowPrice">Ahora: L. ${product.price * (1 - product.inSale.sale)}</div>
-                                                        </div>                      
                                                         </div>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-warning">+ Detalles</button>
-                                                            <button type="button" class="btn btn-sm btn-outline-warning"><i class="fas fa-cart-plus"></i> Comprar</button>
-                                                        </div>
-                                                        </div>                                              
-                                                    </div>
-                                                    </div>
-                                                </div>`;
+                                                    </div>`;
+            }
         }
     }
 }
@@ -356,16 +360,18 @@ function renderBranchOfficeTableRows(){
     branchOffices = businessOnline.branchOffices;
     
     count=1;
-    for (branchOffice of branchOffices){
-        LatLonRow.innerHTML +=  ` <tr class="text-center"  >
-                        <th scope="row">${count}</th>
-                        <td>${branchOffice[0]}</td>
-                        <td>${branchOffice[1]}</td>
-                        <td><i onclick="renderMap(15,${branchOffice[0]},${branchOffice[1]},1)" class="fas fa-map-marker-alt"></i></td>
-                        <td><i onclick="removeBranchOffice(${(count - 1)})" class="far fa-trash-alt"></i></td>
-                        </tr>`
-
-    count++;                   
+    if(branchOffices){
+        for (branchOffice of branchOffices){
+            LatLonRow.innerHTML +=  ` <tr class="text-center"  >
+                            <th scope="row">${count}</th>
+                            <td>${branchOffice[0]}</td>
+                            <td>${branchOffice[1]}</td>
+                            <td><i onclick="renderMap(15,${branchOffice[0]},${branchOffice[1]},1)" class="fas fa-map-marker-alt"></i></td>
+                            <td><i onclick="removeBranchOffice(${(count - 1)})" class="far fa-trash-alt"></i></td>
+                            </tr>`
+    
+            count++;                   
+        }
     }
     
 }
