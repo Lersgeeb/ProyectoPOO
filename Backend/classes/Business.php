@@ -263,10 +263,6 @@
             /**
              * Get the value of products
              */ 
-            public function getProducts()
-            {
-                        return $this->products;
-            }
 
             /**
              * Set the value of products
@@ -353,6 +349,19 @@
                 return $this->products->getProductsInSale();
         }
 
+        public function getProducts(){
+            if($this->products)
+             return $this->products->getData();
+        }
+
+        public function getProductOfBusinessByIndex($index){
+            if($this->products)
+             return $this->products->getProductByIndex($index);
+        }
+
+
+
+      
 
         
     }

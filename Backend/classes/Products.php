@@ -30,4 +30,8 @@
             return $productsInSale;
 
         }
+
+        public function getProductByIndex($index){
+            return $this->products[$index]->getData();
+        }
     }

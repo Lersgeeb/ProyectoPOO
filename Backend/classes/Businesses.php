@@ -64,12 +64,15 @@
         }
 
         public static function getTokenFromKey($database, $key){
+            
             $token = $database  ->getReference('businesses')
                                 ->getChild($key)
                                 ->getChild('token')
                                 ->getValue();
 
             return $token;
+           
+           
         }
         public static function getBusinessFromKey($database, $key){
 
@@ -94,9 +97,10 @@
             
         }
 
-        public function test(){
-            return $this->businessesDataDirection->getDirectionByEmail("diunsa@gmail.com");
-        }
+        public function getBusinessByName($businessName){
+            $indexBusiness = $this->businessesDataDirection->getDirectionByName($businessName);
+            return $this->businesses[$indexBusiness];
+        } 
 
         public function getAllProductsInSale(){
             $allProductsInSale = [];
@@ -111,6 +115,7 @@
 
             return $allProductsInSale;
         }
+
 
 
     }

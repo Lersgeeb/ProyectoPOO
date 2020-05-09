@@ -4,10 +4,11 @@ async function render(){
     const userOnline = await getUserOnline();
     if(userOnline){
         renderNav(userOnline);
+        renderProfileHeader(userOnline);
         renderProductsLiked();
-        renderFollowBusinesses();
+        //renderFollowBusinesses();
         renderProfile(userOnline);
-        renderCart()
+        //renderCart()
     }
     
 
@@ -43,32 +44,47 @@ function renderNav(user){
     }
 }
 
-function renderProductsLiked(){
+function renderProfileHeader(user){
+    profileHeaderInfo = document.getElementById('profileHeaderInfo');
+    profileHeaderInfo.innerHTML = ` <img src="${user.imageProfile}" class="rounded-circle" style="width: 9em; height: 9em;" alt="">
+                                    <h3 class="jumbotron-heading mt-3">${user.firstname.split(" ")[0]} ${user.lastName}</h3>`;
+}
+
+async function renderProductsLiked(){
     productsLikedDiv = document.getElementById('productsLikedDiv');
     productsLikedDiv.innerHTML = '';
 
-    products = getproductsLiked()
-
-    for(product of products){
-        productsLikedDiv.innerHTML += `  <div class="col-md-6 col-lg-3">
-                                            <div class="card mb-4 box-shadow">
-                                            <img style="height: 5em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
-                                                <div class="card-body">
-                                                    <div class="productInfo">
-                                                        <p class="text-muted companyName">${product.from}</p>
-                                                        <div class="icon">
-                                                            <span class="cart">
-                                                                <i class="fas fa-cart-plus"></i>
-                                                            </span>
-                                                            <span class="like ml-2">
-                                                                <i class="fas fa-heart"></i>  
-                                                            </span>   
-                                                        </div>      
-                                                    </div>                                                                                           
-                                                </div>                                              
-                                            </div>
+    products = await getproductsLiked()
+    console.log(products)
+    if(products){
+        for(product of products){
+            productsLikedDiv.innerHTML += `  <div class="col-md-6 col-lg-3">
+                                                <div class="card mb-4 box-shadow">
+                                                <img style="height: 5em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <div class="productInfo">
+                                                            <p class="text-muted companyName">${product.from}</p>
+                                                            <div class="icon">
+                                                                <span class="cart">
+                                                                    <i class="fas fa-cart-plus"></i>
+                                                                </span>
+                                                                <span class="like ml-2">
+                                                                    <i class="fas fa-heart"></i>  
+                                                                </span>   
+                                                            </div>      
+                                                        </div>                                                                                           
+                                                    </div>                                              
+                                                </div>
+                                            </div>`;
+        }
+    }
+    else{
+        productsLikedDiv.innerHTML = `  <div class="col-12 emptySection">
+                                            ¿<i class="fas fa-box-open"></i>? Esta sección está vacía.
                                         </div>`;
     }
+    
+    
 }
 
 function renderRate(rate){

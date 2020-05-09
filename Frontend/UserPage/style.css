@@ -293,6 +293,12 @@ font-size: 0.8em;
   cursor: pointer;
 }
 
+.emptySection{
+  padding-left: 2em;
+  font-size: 3.5em;
+  color: var(--lightsecondary);
+}
+
 /*loading*/
 .loading{
   color: white;
@@ -303,3 +309,4 @@ font-size: 0.8em;
   color: white;
   display: inline-block;
 }
+

@@ -1,5 +1,7 @@
 var users = {};
 
+/*----------------------------------------------Business----------------------------------------------*/
+
 async function getBusinessOnline(){
     
     businessesURL = '../../Backend/api/businessesApi.php';
@@ -73,7 +75,7 @@ async function createBusinessUser(businessUser){
 
 }
 
-/*Users */
+/*----------------------------------------------Users----------------------------------------------*/
 
 async function getUserOnline(){
     
@@ -146,7 +148,7 @@ async function createUser(user){
 }
 
 
-/*Principal*/
+/*----------------------------------------------Principal----------------------------------------------*/
 async function getAllProducts(){
     productUrl = '../../Backend/api/productsApi.php';
 
@@ -158,5 +160,54 @@ async function getAllProducts(){
 
     if(products.request.status == 200){
         return products.data;
+    }
+}
+
+/*----------------------------------------------BusinessPage----------------------------------------------*/
+async function getProductsOfBusiness(){
+    productUrl = '../../Backend/api/productsApi.php?selfProducts=true';
+
+    const products = await axios({
+        method:'GET',
+        url: productUrl, 
+        responsetype:'json',
+    });
+
+    if(products.request.status == 200){
+        return products.data;
+    }
+}
+/*----------------------------------------------UserPage----------------------------------------------*/
+
+async function getProductByIndex(businessName,productIndex, quantValue){
+    productUrl = `../../Backend/api/productsApi.php?businessName=${businessName}&id=${productIndex}`;
+
+    const product = await axios({
+        method:'GET',
+        url: productUrl, 
+        responsetype:'json',
+    });
+
+    if(product.request.status == 200){
+        if(quantValue)
+            product.data["quant"] = quantValue;
+
+        return product.data;
+    }
+}
+
+async function getproductsLiked(){
+    userOnline = await getUserOnline();
+    if(userOnline){
+        products = userOnline.productsLiked;
+        if(products){
+            productsJson = [];
+            for(product of products){
+                Productliked =  await getProductByIndex(product.businessName, product.productIndex);
+                productsJson.push(Productliked);
+            }
+            console.log('aver:', productsJson)
+            return productsJson;
+        }
     }
 }

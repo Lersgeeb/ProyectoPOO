@@ -7,7 +7,7 @@
         private $description;
         private $from;
         private $urlImg;
-        private $inSale = [];
+        private $inSale;
         /*private $sale;
         private $rate;
         private $rateQuant;

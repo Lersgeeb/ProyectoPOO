@@ -130,8 +130,8 @@ function renderCategories(){
                                 `;
 }
 
-function renderProduts(){
-    products = getProductsOfBusiness();
+async function renderProduts(){
+    products = await getProductsOfBusiness();
     registeredProducts = document.getElementById('registeredProducts');
     registeredProducts.innerHTML = '';
 
