@@ -36,4 +36,41 @@
             break;
             exit();
 
+        case 'POST':
+            $_POST = json_decode(file_get_contents('php://input'),true);
+            $businesses = new Businesses($database->getDatabase());
+            $business = $businesses->getBusinessByName($_POST['from']);
+            $result = $business->addProduct($_POST,$database->getDatabase());
+            echo $result;
+
+        case 'PUT':
+            if(isset($_COOKIE['key'])){
+                $tokenfromDb = Businesses::getTokenFromKey($database->getDatabase(), $_COOKIE['key']);
+                if($tokenfromDb == $_COOKIE['token']){
+                    $_PUT = json_decode(file_get_contents('php://input'),true);
+                    $sale = Product::addSaleOnProduct( $database->getDatabase(), $_COOKIE['key'],$_PUT['productKey'],$_PUT['inSale']);
+                    if($sale)
+                        echo "Producto puesto en Oferta";
+                }
+            }
+
+        case 'DELETE':
+            if(isset($_COOKIE['key'])){
+                $tokenfromDb = Businesses::getTokenFromKey($database->getDatabase(), $_COOKIE['key']);
+                if($tokenfromDb == $_COOKIE['token']){
+                    if(isset($_GET['inSale']) && isset($_GET['productKey'])){
+                        Product::removeSaleOnProduct( $database->getDatabase(), $_COOKIE['key'],$_GET['productKey']);
+                        echo "Oferta Eliminada";
+                    }
+                    elseif( isset($_GET['productKey']) ){
+                        Product::removeProduct( $database->getDatabase(), $_COOKIE['key'],$_GET['productKey']);
+                        echo "Producto Eliminado";
+                    }
+                }
+            }
+            
+
+                
+            
+            
     }

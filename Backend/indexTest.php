@@ -14,15 +14,7 @@ function console_log_values( $data ){
     echo '</script>';
 };
 
-$content = json_decode(file_get_contents("./data/exampleData.json"), true) ;
-$content["profileImg"] = "nulllll";
-
-
-$business = new Business($content);
-
-console_log( $business->getData() );
-
-$businesses = new Businesses("./data/businesses.json");
+echo sha1("password")
 //console_log( $businesses->getData());
 //console_log_values( $businesses->test());
 

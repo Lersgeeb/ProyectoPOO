@@ -114,6 +114,66 @@ function getData(sells){
 }
 
 
+/*--------------------------------------------PROFILE--------------------------------------------*/
+function renderProfile(businessOnline){
+    business = businessOnline;
+    bannerProfile = document.getElementById('bannerProfile');
+    bannerProfile.innerHTML = `<div  class="bannerImg"  style = "background-image: url(${business.bannerImg});"></div>`
+
+    headerprofiles = document.getElementById('headerprofiles');
+    headerprofiles.innerHTML = `<div class="businessInfo">
+                                    <div class="businessName">${business.businessName}</div>
+                                    <div class="businesDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi at ad voluptatibus, obcaecati id assumenda dolor consequatur? Earum ducimus maiores nulla, dignissimos ullam voluptatum quam, magni tempore velit, ad facere?</div>
+                                    <div class="businessSocial mt-3">                      
+                                    <ul class="pl-0">
+                                        <li class="btn btn-outline-warning"><i class="fab fa-facebook"></i></li>
+                                        <li class="btn btn-outline-warning"><i class="fab fa-instagram"></i></li>
+                                        <li class="btn btn-outline-warning"><i class="fab fa-twitter"></i></li>
+                                    </ul>
+                                    </div>
+                                </div>                
+                                <img class="rounded-circle profileImg" src="${business.profileImg}" alt="">`
+
+    productInSaleProfile = document.getElementById('productInSaleProfile');
+    productInSaleProfile.innerHTML = '';
+    
+    if(business.products){
+        for(productId in business.products){
+            product = business.products[productId];
+            if(product.inSale){
+                productInSaleProfile.innerHTML += `  <div class="col-md-6 col-lg-3">
+                                                        <div class="card mb-4 box-shadow">
+                                                        <img style="max-height: 10em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                        <div class="card-body">
+                                                            <p class="rateProduct mb-0">
+                                                            ${renderRate(product.inSale.rate)}                
+                                                            </p>
+                                                            <div class="quantUser" style="text-align: center;">
+                                                            ${product.inSale.rateQuant} <i class="fas fa-user"></i>
+                                                            </div>
+    
+                                                            <div class="saleProduct"> 
+                                                            <div class="sale"><h3 class="mb-0">${parseInt( product.inSale.sale * 100 )}%</h3></div>
+                                                            <div class="prices">
+                                                                <div class="price beforePrice">Antes: L. ${product.price}</div> 
+                                                                <div class="price nowPrice">Ahora: L. ${product.price * (1 - product.inSale.sale)}</div>
+                                                            </div>                      
+                                                            </div>
+                                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-sm btn-outline-warning">+ Detalles</button>
+                                                            </div>
+                                                            </div>                                              
+                                                        </div>
+                                                        </div>
+                                                    </div>`;
+            }
+        }
+    }
+}
+
+
+
 /*---------------------------------ProductForm ---------------------------------------*/
 
 //Render ProductForm
@@ -138,9 +198,9 @@ async function renderProduts(){
     onSaleProducts = document.getElementById('onSaleProducts');
     onSaleProducts.innerHTML = '';
 
-    productCount = 0;
     if(products){
-        for(product of products){
+        for(productId in products){
+            product = products[productId];
             registeredProducts.innerHTML += `    <div class="col-md-6 col-lg-3">
                                                     <div class="card mb-4 box-shadow">
                                                     <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
@@ -151,8 +211,8 @@ async function renderProduts(){
                                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>                          
-                                                            ${product.inSale? '':`<button type="button" onClick="showSaleForm(${productCount})" class="btn btn-sm btn-outline-warning"><i class="fas fa-tag"></i></button>`}
-                                                            <button type="button" onClick="removeProduct(${productCount})" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>                          
+                                                            ${product.inSale? '':`<button type="button" onClick="showSaleForm('${productId}')" class="btn btn-sm btn-outline-warning"><i class="fas fa-tag"></i></button>`}
+                                                            <button type="button" onClick="removeProduct('${productId}',this)" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>                          
                                                         </div>
                                                         </div>                                              
                                                     </div>
@@ -181,14 +241,13 @@ async function renderProduts(){
                                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
-                                                            <button type="button" onClick="removeSale(${productCount})" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>
+                                                            <button type="button" onClick="removeSale('${productId}',this)" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>
                                                         </div>
                                                         </div>                                              
                                                     </div>
                                                     </div>
                                                 </div>`;
             }
-            productCount++;
         }
     }
 }
@@ -199,7 +258,7 @@ function renderRate(rate){
 
 //Funcionalidades ProductForm
 
-function newProduct(){
+async function newProduct(input){
     productIdInput = document.getElementById('productIdInput');
     categoryInput = document.getElementById('categoryInput');
     imageUrlInput = document.getElementById('imageUrlInput');
@@ -216,22 +275,27 @@ function newProduct(){
             inSale:null,
         }
         
-        addProductOnBusiness(product);
-        renderProduts();
+        setLoading(true, input,'Creando...')
+        added = await addProductOnBusiness(product);
+        if(added)
+            await renderProduts();
+            setLoading(false, input,'Crear')
     }
 }
 
-function showSaleForm(productIndex){
+function showSaleForm(productId){
     $('#modalSaleOnProduct').modal('show');
     saleOnProductButtons = document.getElementById('saleOnProductButtons');
-    saleOnProductButtons.innerHTML = `  <button type="button" onclick="addSaleOnProduct(${productIndex})" class="btn  btn-outline-primary">Nueva Oferta</button>
+    saleOnProductButtons.innerHTML = `  <button type="button" onclick="addSaleOnProduct('${productId}',this)" class="btn btn-outline-warning">Nueva Oferta</button>
                                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>`
     
 }
 
-function addSaleOnProduct(productIndex){
+async function addSaleOnProduct(productId,input){
     saleOnProductInput = document.getElementById('saleOnProductInput');
     saleDurationInput = document.getElementById('saleDurationInput');
+
+    console.log(productId)
 
     if( saleOnProductInput.value && saleDurationInput.value){
         inSale = {
@@ -241,22 +305,38 @@ function addSaleOnProduct(productIndex){
             duration:saleDurationInput.value,
         }
 
-        addSaleOnlinebusiness(inSale, productIndex);
-        renderProduts();
+        setLoading(true,input,'Creando Oferta');
+        inSale = await addSaleOnlinebusiness(inSale, productId);
+        if(inSale){
+            await renderProduts();
+            setLoading(false,input,'Crear Oferta');
+        }
         
     }
     $('#modalSaleOnProduct').modal('hide');
 
 }
 
-function removeSale(productIndex){
-    removeSaleOnlinebusiness(productIndex);
-    renderProduts();
+async function removeSale(productId,input){
+    trashIcon = `<i class="far fa-trash-alt"></i>`;
+    setLoading(true, input, "");
+
+    deleted = await removeSaleOnlinebusiness(productId);
+    if(deleted){
+        await renderProduts();
+        setLoading(false, input, trashIcon);
+    }
 }
 
-function removeProduct(productIndex){
-    removeProductOfBusiness(productIndex);
-    renderProduts();
+async function removeProduct(productId,input){
+    trashIcon = `<i class="far fa-trash-alt"></i>`;
+    setLoading(true, input, "");
+
+    deleted = await removeProductOfBusiness(productId);
+    if(deleted){
+        await renderProduts();
+        setLoading(false, input, trashIcon);
+    }
 }
 
 /*---------------------------------------Branch Offices---------------------------------------*/
@@ -295,64 +375,6 @@ function renderMap(zoom,lat,lon,withMarker){
 
     renderBranchOfficeTableRows();
 }
-
-function renderProfile(businessOnline){
-    business = businessOnline;
-    bannerProfile = document.getElementById('bannerProfile');
-    bannerProfile.innerHTML = `<div  class="bannerImg"  style = "background-image: url(${business.bannerImg});"></div>`
-
-    headerprofiles = document.getElementById('headerprofiles');
-    headerprofiles.innerHTML = `<div class="businessInfo">
-                                    <div class="businessName">${business.businessName}</div>
-                                    <div class="businesDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi at ad voluptatibus, obcaecati id assumenda dolor consequatur? Earum ducimus maiores nulla, dignissimos ullam voluptatum quam, magni tempore velit, ad facere?</div>
-                                    <div class="businessSocial mt-3">                      
-                                    <ul class="pl-0">
-                                        <li class="btn btn-outline-warning"><i class="fab fa-facebook"></i></li>
-                                        <li class="btn btn-outline-warning"><i class="fab fa-instagram"></i></li>
-                                        <li class="btn btn-outline-warning"><i class="fab fa-twitter"></i></li>
-                                    </ul>
-                                    </div>
-                                </div>                
-                                <img class="rounded-circle profileImg" src="${business.profileImg}" alt="">`
-
-    productInSaleProfile = document.getElementById('productInSaleProfile');
-    productInSaleProfile.innerHTML = '';
-    
-    if(business.products){
-        for(product of business.products){
-            if(product.inSale){
-                productInSaleProfile.innerHTML += `  <div class="col-md-6 col-lg-3">
-                                                        <div class="card mb-4 box-shadow">
-                                                        <img style="max-height: 10em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
-                                                        <div class="card-body">
-                                                            <p class="rateProduct mb-0">
-                                                            ${renderRate(product.inSale.rate)}                
-                                                            </p>
-                                                            <div class="quantUser" style="text-align: center;">
-                                                            ${product.inSale.rateQuant} <i class="fas fa-user"></i>
-                                                            </div>
-    
-                                                            <div class="saleProduct"> 
-                                                            <div class="sale"><h3 class="mb-0">${parseInt( product.inSale.sale * 100 )}</h3></div>
-                                                            <div class="prices">
-                                                                <div class="price beforePrice">Antes: L. ${product.price}</div> 
-                                                                <div class="price nowPrice">Ahora: L. ${product.price * (1 - product.inSale.sale)}</div>
-                                                            </div>                      
-                                                            </div>
-                                                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-sm btn-outline-warning">+ Detalles</button>
-                                                                <button type="button" class="btn btn-sm btn-outline-warning"><i class="fas fa-cart-plus"></i> Comprar</button>
-                                                            </div>
-                                                            </div>                                              
-                                                        </div>
-                                                        </div>
-                                                    </div>`;
-            }
-        }
-    }
-}
-
 
 function renderBranchOfficeTableRows(){
     LatLonRow = document.getElementById('LatLonRow')
@@ -409,6 +431,21 @@ function visualLoadingNavbar(loading){
     else{
         loadingNavBar.style.display = "none";
         dropdownNavbar.disabled = false;
+      
+    }
+}
+
+function setLoading(status, input, changeText){
+    if(status){  
+        input.innerHTML = ` <span class="fa-1x loadingVisible">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                            </span>
+                            ${changeText}`;
+        input.disabled = true;
+    }
+    else{
+        input.innerHTML = `${changeText}`;
+        input.disabled = false;
       
     }
 }

@@ -243,7 +243,9 @@
                         </div>
 
                         <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-warning" onclick="newProduct()">Crear</button>
+                          <button type="button" class="btn btn-sm btn-outline-warning" onclick="newProduct(this)">
+                            Crear
+                          </button>
                           
                         </div>
                       </div>
@@ -454,7 +456,7 @@
 
             </div>
             <div class="modal-footer" id="saleOnProductButtons">
-              <button type="button" onclick="addSaleOnProduct()" class="btn  btn-outline-primary">Nueva Oferta</button>
+              <button type="button" onclick="addSaleOnProduct()" class="btn btn-outline-warning">Nueva Oferta</button>
               <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
             </div>
           </div>

@@ -6,9 +6,9 @@ async function render(){
         renderNav(userOnline);
         renderProfileHeader(userOnline);
         renderProductsLiked();
-        //renderFollowBusinesses();
+        renderFollowBusinesses();
         renderProfile(userOnline);
-        //renderCart()
+        renderCart()
     }
     
 
@@ -52,10 +52,9 @@ function renderProfileHeader(user){
 
 async function renderProductsLiked(){
     productsLikedDiv = document.getElementById('productsLikedDiv');
-    productsLikedDiv.innerHTML = '';
-
+    
     products = await getproductsLiked()
-    console.log(products)
+    productsLikedDiv.innerHTML = '';
     if(products){
         for(product of products){
             productsLikedDiv.innerHTML += `  <div class="col-md-6 col-lg-3">
@@ -80,7 +79,7 @@ async function renderProductsLiked(){
     }
     else{
         productsLikedDiv.innerHTML = `  <div class="col-12 emptySection">
-                                            ¿<i class="fas fa-box-open"></i>? Esta sección está vacía.
+                                            <i class="fas fa-box-open"></i> Ningun productos en la lista.
                                         </div>`;
     }
     
@@ -92,30 +91,36 @@ function renderRate(rate){
 }
 
 
-function renderFollowBusinesses(){
+async function renderFollowBusinesses(){
     followBusinessesDiv = document.getElementById('followBusinessesDiv');
+    followBusinesses =  await getfollowBusinesses();
     followBusinessesDiv.innerHTML = '';
     
-    followBusinesses =  getfollowBusinesses();
-    
-    for(followBusiness of followBusinesses){
-        followBusinessesDiv.innerHTML += `   <div class="col-md-6 col-lg-3">
-                                                <div class="card mb-4 box-shadow">
-                                                <img style="height: 5em;" class="card-img-top imageProducts" src="${followBusiness.profileImg}" alt="Card image cap">
-                                                    <div class="card-body">
-                                                        <div class="productInfo">
-                                                            <p class="text-muted companyName">${followBusiness.businessName}</p>
-                                                            <div class="icon">
-                                                                <span class="eye">
-                                                                    <i class="far fa-eye"></i>
-                                                                </span>
-                                                                <span class="like ml-2">
-                                                                    <i class="fas fa-heart"></i>  
-                                                                </span>   
-                                                            </div>      
-                                                        </div>                                                                                           
-                                                    </div>                                              
-                                                </div>
+    if(followBusinesses){
+        for(followBusiness of followBusinesses){
+            followBusinessesDiv.innerHTML += `   <div class="col-md-6 col-lg-3">
+                                                    <div class="card mb-4 box-shadow">
+                                                    <img style="height: 5em;" class="card-img-top imageProducts" src="${followBusiness.profileImg}" alt="Card image cap">
+                                                        <div class="card-body">
+                                                            <div class="productInfo">
+                                                                <p class="text-muted companyName">${followBusiness.businessName}</p>
+                                                                <div class="icon">
+                                                                    <span class="eye">
+                                                                        <i class="far fa-eye"></i>
+                                                                    </span>
+                                                                    <span class="like ml-2">
+                                                                        <i class="fas fa-heart"></i>  
+                                                                    </span>   
+                                                                </div>      
+                                                            </div>                                                                                           
+                                                        </div>                                              
+                                                    </div>
+                                                </div>`;
+        }
+    }
+    else{
+        followBusinessesDiv.innerHTML = `   <div class="col-12 emptySection">
+                                                <i class="fas fa-building"></i> No sigues ninguna Empresa.
                                             </div>`;
     }
 
@@ -169,29 +174,31 @@ function renderProfile(user){
     
 }
 
-function renderCart(){
+async function renderCart(){
     productRow= document.getElementById('productRow');
     productRow.innerHTML = '';
 
-    products = getCartProducts();
+    products = await getCartProducts();
     total = 0;
-    cartProductIndex = 0;
-
-    for(product of products){
-
-        priceWithSale = product.price * (1 - product.inSale.sale);
-        totalProduct = priceWithSale * product.quant;
-        total += totalProduct;
-
-        productRow.innerHTML += ` <tr class="text-center"  >
-                                    <th scope="row" style="padding:0 !important;"><img src="${product.urlImg}"   style="width: 6em; height: 5em;" alt=""></th>
-                                    <td >${product.id}</td>
-                                    <td>L. ${priceWithSale}</td>
-                                    <td> x${product.quant}</td>
-                                    <td>L. ${totalProduct}</td>
-                                    <td><i onclick="removeProduct(${cartProductIndex++})" class="far fa-trash-alt"></i></td>
-                                </tr>`
-
+    if(products){
+        cartProductIndex = 0;
+    
+        for(product of products){
+    
+            priceWithSale = product.price * (1 - product.inSale.sale);
+            totalProduct = priceWithSale * product.quant;
+            total += totalProduct;
+    
+            productRow.innerHTML += ` <tr class="text-center"  >
+                                        <th scope="row" style="padding:0 !important;"><img src="${product.urlImg}"   style="width: 6em; height: 5em;" alt=""></th>
+                                        <td >${product.id}</td>
+                                        <td>L. ${priceWithSale}</td>
+                                        <td> x${product.quant}</td>
+                                        <td>L. ${totalProduct}</td>
+                                        <td><i onclick="removeProduct(${cartProductIndex++})" class="far fa-trash-alt"></i></td>
+                                    </tr>`
+    
+        }
     }
 
     totalRow = document.getElementById('totalRow');

@@ -8,6 +8,7 @@
         private $from;
         private $urlImg;
         private $inSale;
+        private $key;
         /*private $sale;
         private $rate;
         private $rateQuant;
@@ -148,6 +149,26 @@
                 return $this;
         }
 
+          /**
+         * Get the value of key
+         */ 
+        public function getKey()
+        {
+                return $this->key;
+        }
+
+        /**
+         * Set the value of key
+         *
+         * @return  self
+         */ 
+        public function setKey($key)
+        {
+                $this->key = $key;
+
+                return $this;
+        }
+
         public function getData(){
             $product = array(
                 "category" => $this->category,
@@ -161,10 +182,44 @@
             return $product;
         }
 
+        public static function getProductByKey($database, $key){
+                $result = $database ->getReference($key)
+                                    ->getSnapshot()
+                                    ->getValue();
+    
+                return $result;
+        }
+
+        public static function addSaleOnProduct($database, $businessKey, $productkey, $sale){
+
+                $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productkey . '/inSale')
+                                        ->set($sale);
+                                    
+                //echo json_encode($sale);
+                //echo json_encode($key);
+
+                return $result;
+        }
+
+        public static function removeSaleOnProduct($database, $businessKey, $productkey){
+                $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productkey . '/inSale')
+                                        ->set(null);
+                return $result;
+        }
+
+        public static function removeProduct($database, $businessKey, $productkey){
+                $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productkey)
+                                        ->set(null);
+                return $result;
+        }
+            
+
         public function isInSale(){
             return !empty($this->inSale);
         }
 
 
 
+
+      
     }

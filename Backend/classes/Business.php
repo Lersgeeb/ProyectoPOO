@@ -319,6 +319,24 @@
 
         }
 
+            public function getPublicData(){
+                $business = [];
+                $business =  array(
+                    "businessName"=> $this->businessName,
+                    "profileImg"=> $this->profileImg,
+                    "bannerImg"=> $this->bannerImg,
+                    "email"=> $this->email, 
+                    "branchOffices"=> $this->branchOffices,
+                    "country"=> $this->country,
+            );
+            if($this->products){
+                $business["products"] = $this->products->getProductsInSale();
+            }
+
+            return $business;
+
+        }
+
 
         public static function getbusinessFromKey($database,$key){
             $result = $database ->getReference('businesses/' . $key)
@@ -360,10 +378,10 @@
         }
 
 
-
-      
-
-        
+        public function addProduct($product,$database){
+            if($product)
+                return $this->products->createProduct($product,$database,$this->key);
+        }
     }
 
 ?>

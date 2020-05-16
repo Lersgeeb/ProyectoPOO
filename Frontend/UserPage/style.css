@@ -310,3 +310,9 @@ font-size: 0.8em;
   display: inline-block;
 }
 
+.container .loadingVisible{
+  font-size: 2em;
+  color: var(--myBlack);
+  display: inline-block;
+}
+

@@ -11,7 +11,12 @@
         
 
         case 'GET': //Obtener
-            if(isset($_COOKIE['key'])){
+            if(isset($_GET['businessName'])){
+                $businesses = new Businesses($database->getDatabase());
+                $business = $businesses->getBusinessByName($_GET["businessName"]);
+                echo json_encode( $business->getPublicData() );
+            }
+            elseif(isset($_COOKIE['key'])){
                 $tokenfromDb = Businesses::getTokenFromKey($database->getDatabase(), $_COOKIE['key']);
                 if($tokenfromDb == $_COOKIE['token']){
     

@@ -177,6 +177,77 @@ async function getProductsOfBusiness(){
         return products.data;
     }
 }
+
+async function addProductOnBusiness(newProduct){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    const products = await axios({
+        method:'POST',
+        url: productUrl, 
+        responsetype:'json',
+        data:newProduct
+    });
+
+    if(products.request.status == 200){
+        return products.data;
+    }
+}
+
+async function addSaleOnlinebusiness(newSale, productKey){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    sale = {
+        "inSale":newSale,
+        "productKey":productKey
+    }
+
+    const inSale = await axios({
+        method:'PUT',
+        url: productUrl, 
+        responsetype:'json',
+        data:sale
+    });
+
+    if(inSale.request.status == 200){
+        return inSale.data;
+    }
+}
+
+async function removeSaleOnlinebusiness(productKey){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    const deleteSale = await axios({
+        method:'DELETE',
+        url: productUrl, 
+        responsetype:'json',
+        params:{
+            "inSale":true,
+            "productKey":productKey
+        }
+    });
+
+    if(deleteSale.request.status == 200){
+        return deleteSale.data;
+    }
+}
+
+async function removeProductOfBusiness(productKey){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    const deleteProduct = await axios({
+        method:'DELETE',
+        url: productUrl, 
+        responsetype:'json',
+        params:{
+            "productKey":productKey
+        }
+    });
+
+    if(deleteProduct.request.status == 200){
+        return deleteProduct.data;
+    }
+}
+
 /*----------------------------------------------UserPage----------------------------------------------*/
 
 async function getProductByIndex(businessName,productIndex, quantValue){
@@ -196,6 +267,21 @@ async function getProductByIndex(businessName,productIndex, quantValue){
     }
 }
 
+async function getBusiness(businessName){
+    businessURL = `../../Backend/api/businessesApi.php?businessName=${businessName}`;
+
+    const businessInfo = await axios({
+        method:'GET',
+        url: businessURL, 
+        responsetype:'json',
+    });
+
+    if(businessInfo.request.status == 200){
+        return businessInfo.data;
+    }
+}
+
+
 async function getproductsLiked(){
     userOnline = await getUserOnline();
     if(userOnline){
@@ -203,10 +289,44 @@ async function getproductsLiked(){
         if(products){
             productsJson = [];
             for(product of products){
-                Productliked =  await getProductByIndex(product.businessName, product.productIndex);
-                productsJson.push(Productliked);
+                productliked =  await getProductByIndex(product.businessName, product.productIndex);
+                productsJson.push(productliked);
             }
-            console.log('aver:', productsJson)
+            return productsJson;
+        }
+    }
+}
+
+async function getfollowBusinesses(){
+    console.log("entrar")
+    userOnline = await getUserOnline();
+    if(userOnline){
+        followBusinesses = userOnline.followBusinesses;
+        if(followBusinesses){
+            businessesJson = [];
+    
+            for(followBusiness of followBusinesses){
+                businessFollowed = await getBusiness(followBusiness);
+                businessesJson.push(businessFollowed);
+            }
+        
+            return businessesJson;
+        }
+    }
+}
+
+async function getCartProducts(){
+    userOnline = await getUserOnline();
+    if(userOnline){
+        products= userOnline.cart;
+        if(products){
+            productsJson = [];
+        
+            for(product of products){
+                productCart =  await getProductByIndex(product.businessName, product.productIndex, product.quant);
+                productsJson.push(productCart);
+            }
+        
             return productsJson;
         }
     }

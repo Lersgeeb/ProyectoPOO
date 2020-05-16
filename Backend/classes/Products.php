@@ -4,15 +4,17 @@
         private $products = [];
 
         public function __construct($products){
-            foreach($products as $product){
-                $this->products[] = new Product($product);
+            foreach($products as $key=>$product){
+                $newProduct = new Product($product);
+                $newProduct->setKey($key);
+                $this->products[] = $newProduct;
             }
         }
 
         public function getData(){
             $productsDecoded = [];
             foreach($this->products as $product) {
-                $productsDecoded[] = $product->getData();
+                $productsDecoded[$product->getKey()] = $product->getData();
             }
             return $productsDecoded;
         }
@@ -22,7 +24,7 @@
             if( !empty($this->products) ){
                 foreach($this->products as $product){
                     if( $product->isInsale() ){
-                        $productsInSale[] = $product->getData();
+                        $productsInSale[$product->getKey()] = $product->getData();
                     }
                 }
             }
@@ -33,5 +35,16 @@
 
         public function getProductByIndex($index){
             return $this->products[$index]->getData();
+        }
+
+
+        public function createProduct($product,$database,$key){
+            $newProduct = new Product($product);
+            $this->products[] = $product;
+            $result = $database ->getReference('businesses/' . $key . '/products')
+                                ->push($newProduct->getData());
+                                
+            if($result->getKey())
+                return true;
         }
     }
