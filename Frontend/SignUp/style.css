@@ -21,7 +21,7 @@ body,html{
 
 .imgBack{
     
-    background-image: url(../img/signUp/signUpBack.jpg);
+    background-image: url(../img/SignUp/signUpBack.jpg);
     background-size: cover;
     background-position: center;
     min-height: 100vh;
