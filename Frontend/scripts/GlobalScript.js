@@ -260,8 +260,14 @@ async function getProductByIndex(businessName,productIndex, quantValue){
     });
 
     if(product.request.status == 200){
-        if(quantValue)
-            product.data["quant"] = quantValue;
+        if(quantValue){
+            for (keyProduct in product.data){
+
+                console.log(product.data);
+                product.data[keyProduct]["quant"] = quantValue;
+            }
+
+        }
 
         return product.data;
     }
@@ -287,18 +293,22 @@ async function getproductsLiked(){
     if(userOnline){
         products = userOnline.productsLiked;
         if(products){
-            productsJson = [];
+            productsJson = {};
             for(product of products){
                 productliked =  await getProductByIndex(product.businessName, product.productIndex);
-                productsJson.push(productliked);
+                
+                for (keyProduct in productliked){
+                    product = productliked[keyProduct];
+                    productsJson[keyProduct] = product;
+                }
             }
+            
             return productsJson;
         }
     }
 }
 
 async function getfollowBusinesses(){
-    console.log("entrar")
     userOnline = await getUserOnline();
     if(userOnline){
         followBusinesses = userOnline.followBusinesses;
@@ -320,11 +330,16 @@ async function getCartProducts(){
     if(userOnline){
         products= userOnline.cart;
         if(products){
-            productsJson = [];
+
+            productsJson = {};
         
             for(product of products){
                 productCart =  await getProductByIndex(product.businessName, product.productIndex, product.quant);
-                productsJson.push(productCart);
+                
+                for (keyProduct in productCart){
+                    product = productCart[keyProduct];
+                    productsJson[keyProduct] = product;
+                }
             }
         
             return productsJson;

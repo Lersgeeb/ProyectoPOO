@@ -95,7 +95,8 @@ function renderProducts(value, userOnline){
         titleCategories.innerHTML = value;
     }
 
-    for(product of products){
+    for(keyProduct in products){
+        product = products[keyProduct];
         if(value == 'Mejores Promociones' || value == null || value==product.category){
             productRows.innerHTML += `  <div class="col-md-6 col-lg-3">
                                             <div class="card mb-4 box-shadow">
@@ -121,7 +122,7 @@ function renderProducts(value, userOnline){
                                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-warning">+ Detalles</button>
-                                                    ${ userOnline ? `<button type="button" onClick="addToCart('${product.from}',${product.id})" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
+                                                    ${ userOnline ? `<button type="button" onClick="addToCart('${product.from}',${keyProduct})" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
                                                 </div>
                                                 </div>                                              
                                             </div>

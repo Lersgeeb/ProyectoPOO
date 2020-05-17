@@ -21,7 +21,7 @@
             elseif( isset($_GET["businessName"]) && isset($_GET["id"])){
                 $businesses = new Businesses($database->getDatabase());
                 $business = $businesses->getBusinessByName($_GET["businessName"]);
-                echo json_encode($business->getProductOfBusinessByIndex($_GET["id"]));
+                echo json_encode($business->getProductOfBusinessById($_GET["id"]));
             }
             elseif(isset($_GET["businessName"])){
                 $businesses = new Businesses($database->getDatabase());
@@ -42,6 +42,8 @@
             $business = $businesses->getBusinessByName($_POST['from']);
             $result = $business->addProduct($_POST,$database->getDatabase());
             echo $result;
+            break;
+            exit();
 
         case 'PUT':
             if(isset($_COOKIE['key'])){
@@ -53,6 +55,8 @@
                         echo "Producto puesto en Oferta";
                 }
             }
+            break;
+            exit();
 
         case 'DELETE':
             if(isset($_COOKIE['key'])){
@@ -68,6 +72,8 @@
                     }
                 }
             }
+            break;
+            exit();
             
 
                 

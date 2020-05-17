@@ -4,10 +4,12 @@
         private $products = [];
 
         public function __construct($products){
-            foreach($products as $key=>$product){
-                $newProduct = new Product($product);
-                $newProduct->setKey($key);
-                $this->products[] = $newProduct;
+            if($products){
+                foreach($products as $key=>$product){
+                    $newProduct = new Product($product);
+                    $newProduct->setKey($key);
+                    $this->products[] = $newProduct;
+                }
             }
         }
 
@@ -35,6 +37,16 @@
 
         public function getProductByIndex($index){
             return $this->products[$index]->getData();
+        }
+
+        public function getProductByKey($key){
+            foreach($this->products as $product){
+                if( $product->getKey() == $key ){
+                    return array(
+                        $key => $product->getData()
+                    );
+                }
+            }
         }
 
 

@@ -372,15 +372,22 @@
              return $this->products->getData();
         }
 
-        public function getProductOfBusinessByIndex($index){
+        public function getProductOfBusinessById($id){
             if($this->products)
-             return $this->products->getProductByIndex($index);
+                return $this->products->getProductByKey($id);
         }
+
+        
 
 
         public function addProduct($product,$database){
+
+            if(!$this->products){
+                $this->products = new Products(null);
+            }
             if($product)
                 return $this->products->createProduct($product,$database,$this->key);
+
         }
     }
 

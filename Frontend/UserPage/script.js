@@ -56,7 +56,9 @@ async function renderProductsLiked(){
     products = await getproductsLiked()
     productsLikedDiv.innerHTML = '';
     if(products){
-        for(product of products){
+        for(keyProduct in products){
+            product = products[keyProduct];
+
             productsLikedDiv.innerHTML += `  <div class="col-md-6 col-lg-3">
                                                 <div class="card mb-4 box-shadow">
                                                 <img style="height: 5em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
@@ -79,7 +81,7 @@ async function renderProductsLiked(){
     }
     else{
         productsLikedDiv.innerHTML = `  <div class="col-12 emptySection">
-                                            <i class="fas fa-box-open"></i> Ningun productos en la lista.
+                                            <i class="fas fa-box-open"></i> Ningún producto en la lista.
                                         </div>`;
     }
     
@@ -183,15 +185,19 @@ async function renderCart(){
     if(products){
         cartProductIndex = 0;
     
-        for(product of products){
-    
+        for(keyProduct in products){
+            product = products[keyProduct];
+            console.log(product);
+            console.log(keyProduct);
+            console.log(products);
+
             priceWithSale = product.price * (1 - product.inSale.sale);
             totalProduct = priceWithSale * product.quant;
             total += totalProduct;
     
             productRow.innerHTML += ` <tr class="text-center"  >
                                         <th scope="row" style="padding:0 !important;"><img src="${product.urlImg}"   style="width: 6em; height: 5em;" alt=""></th>
-                                        <td >${product.id}</td>
+                                        <td >${keyProduct}</td>
                                         <td>L. ${priceWithSale}</td>
                                         <td> x${product.quant}</td>
                                         <td>L. ${totalProduct}</td>

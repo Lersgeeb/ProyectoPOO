@@ -107,8 +107,8 @@
             foreach($this->businesses as $business) {
                 $productsInSaleOfBusiness = $business->getBusinessProductsInSale();
                 if( !empty($productsInSaleOfBusiness) ){
-                    foreach($productsInSaleOfBusiness as $productInSale){
-                        $allProductsInSale[] = $productInSale;
+                    foreach($productsInSaleOfBusiness as $key=>$productInSale){
+                        $allProductsInSale[$key] = $productInSale;
                     }
                 }
             }     

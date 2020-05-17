@@ -295,8 +295,6 @@ async function addSaleOnProduct(productId,input){
     saleOnProductInput = document.getElementById('saleOnProductInput');
     saleDurationInput = document.getElementById('saleDurationInput');
 
-    console.log(productId)
-
     if( saleOnProductInput.value && saleDurationInput.value){
         inSale = {
             sale:parseFloat(saleOnProductInput.value),
@@ -310,6 +308,9 @@ async function addSaleOnProduct(productId,input){
         if(inSale){
             await renderProduts();
             setLoading(false,input,'Crear Oferta');
+            businessOnline = await getBusinessOnline();
+            renderProfile(businessOnline);
+            
         }
         
     }
@@ -325,6 +326,8 @@ async function removeSale(productId,input){
     if(deleted){
         await renderProduts();
         setLoading(false, input, trashIcon);
+        businessOnline = await getBusinessOnline();
+        renderProfile(businessOnline);
     }
 }
 
@@ -336,6 +339,8 @@ async function removeProduct(productId,input){
     if(deleted){
         await renderProduts();
         setLoading(false, input, trashIcon);
+        businessOnline = await getBusinessOnline();
+        renderProfile(businessOnline);
     }
 }
 

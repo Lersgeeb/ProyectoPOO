@@ -170,17 +170,18 @@
         }
 
         public function getData(){
-            $product = array(
-                "category" => $this->category,
-                "price" => $this->price,
-                "description" => $this->description,
-                "from" => $this->from,
-                "urlImg" => $this->urlImg,
-                "inSale" => $this->inSale
-            );
+                $product = array(
+                        "category" => $this->category,
+                        "price" => $this->price,
+                        "description" => $this->description,
+                        "from" => $this->from,
+                        "urlImg" => $this->urlImg,
+                        "inSale" => $this->inSale
+                );
 
             return $product;
         }
+
 
         public static function getProductByKey($database, $key){
                 $result = $database ->getReference($key)
