@@ -388,13 +388,14 @@ function renderBranchOfficeTableRows(){
     
     count=1;
     if(branchOffices){
-        for (branchOffice of branchOffices){
+        for (branchOfficekey in branchOffices){
+            branchOffice = branchOffices[branchOfficekey];
             LatLonRow.innerHTML +=  ` <tr class="text-center"  >
                             <th scope="row">${count}</th>
                             <td>${branchOffice[0]}</td>
                             <td>${branchOffice[1]}</td>
                             <td><i onclick="renderMap(15,${branchOffice[0]},${branchOffice[1]},1)" class="fas fa-map-marker-alt"></i></td>
-                            <td><i onclick="removeBranchOffice(${(count - 1)})" class="far fa-trash-alt"></i></td>
+                            <td><i onclick="removeBranchOffice('${branchOfficekey}',this)" class="far fa-trash-alt"></i></td>
                             </tr>`
     
             count++;                   
@@ -404,21 +405,36 @@ function renderBranchOfficeTableRows(){
 }
 
 //funcionalidades BranchOffices
-function addBranchOffice(){
+async function addBranchOffice(input){
     lat = document.getElementById('lat');
     lon = document.getElementById('lon');
     
     if(lat.value && lon.value){
-        addBranchOfficeBusiness(lat.value,lon.value);
-        renderBranchOfficeTableRows();    
+
+        markerIcon = '<i class="fas fa-map-marker-alt"></i>'
+
+        setLoading(true,input,"")
+        branchAdded = await addBranchOfficeBusiness(lat.value,lon.value);
+        if(branchAdded){
+            businessOnline = await getBusinessOnline();
+            renderBranchOfficeTableRows();    
+            setLoading(false,input,markerIcon);
+        }
+
     }
     
 
 }
 
-function removeBranchOffice(branchIndex){
-    removeBranchOfficeBusiness(branchIndex);
-    renderBranchOfficeTableRows(); 
+async function removeBranchOffice(branchIndex,input){
+    setLoading(true,input,"");
+    branchrRemoved =  await removeBranchOfficeBusiness(branchIndex);
+    
+    if(branchrRemoved){
+        businessOnline = await getBusinessOnline();   
+        renderBranchOfficeTableRows();      
+    }
+    
     
 }
 

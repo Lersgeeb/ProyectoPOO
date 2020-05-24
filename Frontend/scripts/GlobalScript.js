@@ -248,6 +248,43 @@ async function removeProductOfBusiness(productKey){
     }
 }
 
+
+async function addBranchOfficeBusiness(lat,lon){
+    branchOfficeUrl = '../../Backend/api/branchOfficeApi.php';
+
+    const createBranchOffice = await axios({
+        method:'POST',
+        url: branchOfficeUrl, 
+        responsetype:'json',
+        data:{
+            "lat":lat,
+            "lon":lon
+        }
+    });
+
+    if(createBranchOffice.request.status == 200){
+        return createBranchOffice.data;
+    }
+}
+
+async function removeBranchOfficeBusiness(branchOfficeKey){
+    branchOfficeUrl = '../../Backend/api/branchOfficeApi.php';
+
+    const deleteBranch = await axios({
+        method:'DELETE',
+        url: branchOfficeUrl, 
+        responsetype:'json',
+        params:{
+            "branchOfficeKey":branchOfficeKey
+        }
+    });
+
+    if(deleteBranch.request.status == 200){
+        return deleteBranch.data;
+    }
+}
+
+
 /*----------------------------------------------UserPage----------------------------------------------*/
 
 async function getProductByIndex(businessName,productIndex, quantValue){
