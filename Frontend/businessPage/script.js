@@ -427,7 +427,7 @@ async function addBranchOffice(input){
 }
 
 async function removeBranchOffice(branchIndex,input){
-    setLoading(true,input,"");
+    setLoading(true,input.parentNode,"");
     branchrRemoved =  await removeBranchOfficeBusiness(branchIndex);
     
     if(branchrRemoved){

@@ -212,7 +212,7 @@ async function renderCart(){
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
-                                <td>L. ${total}</td>
+                                <td id="totalTD">L. ${total}</td>
                                 <td></td>
                             </tr>`
 }
@@ -227,8 +227,9 @@ async function logOut(){
 }
 
 async function removeProduct(cartProductIndex,input){
+    setLoading(true,input.parentNode," ")
+    document.getElementById('totalTD').innerHTML = 'L. ...'
     productRemoved = await removeCartProduct(cartProductIndex);
-    console.log(cartProductIndex)
     renderCart();
 }
 
@@ -246,6 +247,21 @@ function visualLoadingNavbar(loading){
     else{
         loadingNavBar.style.display = "none";
         dropdownNavbar.disabled = false;
+    }
+}
+
+function setLoading(status, input, changeText){
+    if(status){  
+        input.innerHTML = ` <span class="fa-1x loadingVisible">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                            </span>
+                            ${changeText}`;
+        input.disabled = true;
+    }
+    else{
+        input.innerHTML = `${changeText}`;
+        input.disabled = false;
+      
     }
 }
 render();

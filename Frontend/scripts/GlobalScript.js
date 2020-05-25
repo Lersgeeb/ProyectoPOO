@@ -300,7 +300,6 @@ async function getProductByIndex(businessName,productIndex, quantValue){
         if(quantValue){
             for (keyProduct in product.data){
 
-                console.log(product.data);
                 product.data[keyProduct]["quant"] = quantValue;
             }
 

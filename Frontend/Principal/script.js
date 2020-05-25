@@ -162,18 +162,21 @@ function showCartForm(businessName,productIndex){
     
     $('#cartModal').modal('show');
     buyOptionDiv = document.getElementById('buyOption');
-    buyOptionDiv.innerHTML = `  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary" onclick="addToCart('${businessName}','${productIndex}')">Comprar</button>`
+    buyOptionDiv.innerHTML = `  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-warning" onclick="addToCart('${businessName}','${productIndex}',this)">Comprar</button>`
     
 }
 
 
-async function addToCart(businessName, productIndex){
+async function addToCart(businessName, productIndex,input){
     
     quant = document.getElementById('quantInput').value
     if(quant && quant!='0'){
+        setLoading(true,input," ");
         productAdded = await addProductToCart(businessName,productIndex, quant);
         console.log('Producto Añadido');
+        setLoading(false,input,"Producto Añadido");
+        document.getElementById('quantInput').value = '';
         $('#cartModal').modal('hide');
     }
 }
@@ -193,4 +196,20 @@ function visualLoadingNavbar(loading){
         dropdownNavbar.disabled = false;
     }
 }
+
+function setLoading(status, input, changeText){
+    if(status){  
+        input.innerHTML = ` <span class="fa-1x loadingVisible">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                            </span>
+                            ${changeText}`;
+        input.disabled = true;
+    }
+    else{
+        input.innerHTML = `${changeText}`;
+        input.disabled = false;
+      
+    }
+}
+
 render();
