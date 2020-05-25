@@ -122,7 +122,7 @@ function renderProducts(value, userOnline){
                                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-warning">+ Detalles</button>
-                                                    ${ userOnline ? `<button type="button" onClick="addToCart('${product.from}',${keyProduct})" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
+                                                    ${ userOnline ? `<button type="button" onClick="showCartForm('${product.from}','${keyProduct}')" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
                                                 </div>
                                                 </div>                                              
                                             </div>
@@ -158,9 +158,24 @@ async function logOut(){
     }
 }
 
-function addToCart(businessName, productIndex){
-    addProductToCart(businessName,productIndex);
-    console.log('Producto Añadido');
+function showCartForm(businessName,productIndex){
+    
+    $('#cartModal').modal('show');
+    buyOptionDiv = document.getElementById('buyOption');
+    buyOptionDiv.innerHTML = `  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" onclick="addToCart('${businessName}','${productIndex}')">Comprar</button>`
+    
+}
+
+
+async function addToCart(businessName, productIndex){
+    
+    quant = document.getElementById('quantInput').value
+    if(quant && quant!='0'){
+        productAdded = await addProductToCart(businessName,productIndex, quant);
+        console.log('Producto Añadido');
+        $('#cartModal').modal('hide');
+    }
 }
 
 

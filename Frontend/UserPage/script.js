@@ -182,26 +182,25 @@ async function renderCart(){
 
     products = await getCartProducts();
     total = 0;
+
+    console.log(products)
     if(products){
         cartProductIndex = 0;
     
-        for(keyProduct in products){
-            product = products[keyProduct];
-            console.log(product);
-            console.log(keyProduct);
-            console.log(products);
-
+        for(cartKeyProduct in products){
+            product = products[cartKeyProduct];
+            
             priceWithSale = product.price * (1 - product.inSale.sale);
             totalProduct = priceWithSale * product.quant;
             total += totalProduct;
     
             productRow.innerHTML += ` <tr class="text-center"  >
                                         <th scope="row" style="padding:0 !important;"><img src="${product.urlImg}"   style="width: 6em; height: 5em;" alt=""></th>
-                                        <td >${keyProduct}</td>
+                                        <td >${product.keyProduct}</td>
                                         <td>L. ${priceWithSale}</td>
                                         <td> x${product.quant}</td>
                                         <td>L. ${totalProduct}</td>
-                                        <td><i onclick="removeProduct(${cartProductIndex++})" class="far fa-trash-alt"></i></td>
+                                        <td><i onclick="removeProduct('${cartKeyProduct}',this)" class="far fa-trash-alt"></i></td>
                                     </tr>`
     
         }
@@ -227,8 +226,9 @@ async function logOut(){
     window.location.href = "../LandingPageV2";
 }
 
-function removeProduct(cartProductIndex){
-    removeCartProduct(cartProductIndex);
+async function removeProduct(cartProductIndex,input){
+    productRemoved = await removeCartProduct(cartProductIndex);
+    console.log(cartProductIndex)
     renderCart();
 }
 

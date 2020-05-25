@@ -362,6 +362,8 @@ async function getfollowBusinesses(){
     }
 }
 
+
+
 async function getCartProducts(){
     userOnline = await getUserOnline();
     if(userOnline){
@@ -370,16 +372,58 @@ async function getCartProducts(){
 
             productsJson = {};
         
-            for(product of products){
+            for(cartproductKey in products){
+                product = products[cartproductKey];
                 productCart =  await getProductByIndex(product.businessName, product.productIndex, product.quant);
+              
                 
-                for (keyProduct in productCart){
+                for (keyProduct in productCart){//Editar
                     product = productCart[keyProduct];
-                    productsJson[keyProduct] = product;
+                    product["keyProduct"] = keyProduct;
+                    productsJson[cartproductKey] = product;
                 }
             }
         
             return productsJson;
         }
+    }
+}
+
+async function removeCartProduct(cartProductIndex){
+    cartUrl = '../../Backend/api/cartApi.php';
+
+    const productAdded = await axios({
+        method:'DELETE',
+        url: cartUrl, 
+        responsetype:'json',
+        params:{
+            "cartProcuctKey":cartProductIndex
+        }
+    });
+
+    if(productAdded.request.status == 200){
+        return productAdded.data;
+    }
+}
+
+/*Principal*/
+async function addProductToCart(businessName, productIndex, quant){
+    cartNewProduct = {
+        "businessName": businessName,
+        "productIndex": productIndex,  
+        "quant":quant,
+    }
+
+    cartUrl = '../../Backend/api/cartApi.php';
+
+    const productAdded = await axios({
+        method:'POST',
+        url: cartUrl, 
+        responsetype:'json',
+        data:cartNewProduct
+    });
+
+    if(productAdded.request.status == 200){
+        return productAdded.data;
     }
 }

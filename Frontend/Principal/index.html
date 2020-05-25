@@ -72,6 +72,32 @@
         </div>
       </footer>
 
+      <!--MODAL COMPRA-->
+      <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cartModalLabel">Comprar Producto</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label for="quantInput">Escoge la cantidad</label>
+                <input type="text" name="" id="quantInput" class="form-control" placeholder="" aria-describedby="helpId">
+              </div>
+
+            </div>
+            <div class="modal-footer" id="buyOption">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" >Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <script src="../scripts/jquery.min.js"></script>
       <script src="../scripts/pooper.min.js"></script>
       <script src="../scripts/bootstrap.min.js" ></script>
