@@ -15,19 +15,3 @@ async function uploadIMG(){
 
     
 }
-
-
-
-/*
-{
-            "image":{
-                "lastModified":file.lastModified,
-                "lastModifiedDate":file.lastModifiedDate,
-                "name":file.name,
-                "size":file.size,
-                "type":file.type,
-                "webkitRelativePath":file.webkitRelativePath,
-            },
-            "name":"uploadIMG"
-        }
-         */
