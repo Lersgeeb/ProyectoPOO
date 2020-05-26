@@ -389,6 +389,13 @@
                 return $this->products->createProduct($product,$database,$this->key);
 
         }
+
+        public static function changePathProfileImg($database, $businessKey, $pathProfileImg){
+            $result = $database     ->getReference('businesses/' . $businessKey . '/profileImg')
+                                    ->set($pathProfileImg);
+            
+            return $result;
+        }
     }
 
 ?>
