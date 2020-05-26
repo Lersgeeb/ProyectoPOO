@@ -164,6 +164,8 @@ async function getAllProducts(){
 }
 
 /*----------------------------------------------BusinessPage----------------------------------------------*/
+
+
 async function getProductsOfBusiness(){
     productUrl = '../../Backend/api/productsApi.php?selfProducts=true';
 
@@ -283,6 +285,8 @@ async function removeBranchOfficeBusiness(branchOfficeKey){
         return deleteBranch.data;
     }
 }
+
+
 
 
 /*----------------------------------------------UserPage----------------------------------------------*/

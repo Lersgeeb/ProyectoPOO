@@ -260,8 +260,39 @@ a:hover {
 }
 
 .profileImg{
-  height: 15em;
+  position: relative;
+  height: 13em;
+  width: 25em;
+  background-position: center center;
+  background-size: cover;
+  padding: 2em;
 }
+
+#changeImgDiv{
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #373435d5;
+  color: white;
+  cursor: pointer;
+}
+
+.changeImgTxt{
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  text-align: center; 
+  font-size: 3em;
+}
+
+.profileImg:hover #changeImgDiv{
+  display: inline-block;
+}
+
 
 .businessName{
   color: var(--myBlack);
@@ -545,6 +576,7 @@ background-color: var(--myBlack);
 .loading{
   color: var(--principal);
   display: none;
+
 }
 
 .loadingVisible{

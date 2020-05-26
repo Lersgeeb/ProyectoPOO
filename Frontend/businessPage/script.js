@@ -23,7 +23,7 @@ function renderNav(user){
                                             <i class="fas fa-circle-notch fa-spin"></i>
                                         </span> 
                                         <button type="button" class="btn  btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                        <span>${user.businessName} &nbsp</span> <img src="${user.profileImg}" class="rounded-circle" style="width: 1.8em;">
+                                        <span>${user.businessName} &nbsp</span> <img src="${user.profileImg}?${Math.random()}" class="rounded-circle" style="width: 1.8em;">
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
                                         <div class="px-4 accountInfo">
@@ -132,7 +132,13 @@ function renderProfile(businessOnline){
                                     </ul>
                                     </div>
                                 </div>                
-                                <img class="rounded-circle profileImg" src="${business.profileImg}" alt="">`
+                                <div class="rounded-circle profileImg" style="background-image:url('${business.profileImg}?${Math.random()}')">
+                                    <div id="changeImgDiv" class="rounded-circle" onclick="showFormImgProfile('${business.businessName}')">
+                                        <div class="changeImgTxt">
+                                            <i class="fas fa-edit"></i>
+                                        </div>
+                                    </div>
+                                </div>`
 
     productInSaleProfile = document.getElementById('productInSaleProfile');
     productInSaleProfile.innerHTML = '';
@@ -172,7 +178,33 @@ function renderProfile(businessOnline){
     }
 }
 
+function showFormImgProfile(businessName){
+    
+    $('#changeImgProfileModal').modal('show');
 
+    buyOptionDiv = document.getElementById('buyOption');
+    buyOptionDiv.innerHTML = `  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-warning" onClick="changeProfileImgBusiness('${businessName}',this)">Cambiar</button>`
+    
+}
+
+async function changeProfileImgBusiness(businessName,input){
+    profileImgUrl = '../../Backend/api/uploadProfileBusiness.php';
+    form = document.getElementById('formImageProfile');
+    let formdata = new FormData(form);
+    formdata.append('nameFile', businessName)
+
+    setLoading(true,input,'Subiendo...')
+    const pathImgProfile = await axios.post(profileImgUrl, formdata)
+
+    if(pathImgProfile.request.status == 200){
+        businessOnline = await getBusinessOnline();
+        renderNav(businessOnline);
+        renderProfile(businessOnline);
+        $('#changeImgProfileModal').modal('hide');
+    }
+
+}
 
 /*---------------------------------ProductForm ---------------------------------------*/
 

@@ -145,8 +145,16 @@
                         <li class="btn btn-outline-warning"><i class="fab fa-twitter"></i></li>
                       </ul>
                     </div>
-                  </div>                
-                  <img class="rounded-circle profileImg" src="../img/businessPage/logo1.png" alt="">                                  
+                  </div>           
+                  <div class="rounded-circle profileImg" style="background-image: url('../img/businessPage/logo1.png');">
+                    <div class="rounded-circle" id="changeImgDiv">
+                      <h3 class="changeImgTxt">
+                        <i class="fas fa-edit"></i>
+                      </h3>
+                   </div>
+                  </div>     
+                  
+                                                   
                   
                 </div>
                 
@@ -192,6 +200,34 @@
                 </div>
 
               </div>   
+            </div>
+
+            <!--MODAL COMPRA-->
+            <div class="modal fade" id="changeImgProfileModal" tabindex="-1" role="dialog" aria-labelledby="changeImgProfileModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="changeImgProfileModalLabel">Comprar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    
+                    <form method='POST' id='formImageProfile' enctype="multipart/form-data">
+                      <div class="custom-file">
+                        <label class="custom-file-label" for="quantInput">Selecciona La imagen</label>
+                        <input type="file" name="image" accept=".png, .jpg, .jpeg" class="custom-file-input">
+                      </div> 
+                    </form >
+
+                  </div>
+                  <div class="modal-footer" id="buyOption">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" >Subir</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
 
