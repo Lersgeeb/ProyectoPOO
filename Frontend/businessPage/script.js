@@ -291,28 +291,44 @@ function renderRate(rate){
 //Funcionalidades ProductForm
 
 async function newProduct(input){
-    productIdInput = document.getElementById('productIdInput');
     categoryInput = document.getElementById('categoryInput');
     imageUrlInput = document.getElementById('imageUrlInput');
     productPriceInput = document.getElementById('productPriceInput');
     productDescInput = document.getElementById('productDescInput');
 
-    if(productIdInput.value ,imageUrlInput.value, productPriceInput.value, productDescInput.value){
+    if(imageUrlInput.files, productPriceInput.value, productDescInput.value){
         product = {
             category: categoryInput.value,
             price: productPriceInput.value,
             description: productDescInput.value,
             from: businessOnline.businessName,
-            urlImg: imageUrlInput.value,
+            urlImg: '../img/businessPage/defaultProduct.png',
             inSale:null,
         }
         
         setLoading(true, input,'Creando...')
         added = await addProductOnBusiness(product);
         if(added)
+            await createProductImg(businessOnline.businessName, added)
             await renderProduts();
             setLoading(false, input,'Crear')
     }
+}
+
+async function createProductImg(businessName,productKey){
+    productImgUrl = '../../Backend/api/uploadProductImg.php';
+    form = document.getElementById('formImageProduct');
+    let formdata = new FormData(form);
+    formdata.append('filename', productKey);
+    formdata.append('productKey', productKey);
+    formdata.append('businessName', businessName);
+    
+    const pathImgProduct = await axios.post(productImgUrl, formdata)
+
+    if(pathImgProduct.request.status == 200){
+        return true;
+    }
+
 }
 
 function showSaleForm(productId){

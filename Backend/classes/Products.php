@@ -57,6 +57,6 @@
                                 ->push($newProduct->getData());
                                 
             if($result->getKey())
-                return true;
+                return $result->getKey();
         }
     }

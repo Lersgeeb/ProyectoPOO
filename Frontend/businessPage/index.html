@@ -202,7 +202,7 @@
               </div>   
             </div>
 
-            <!--MODAL COMPRA-->
+            <!--MODAL UploadPriofilePic-->
             <div class="modal fade" id="changeImgProfileModal" tabindex="-1" role="dialog" aria-labelledby="changeImgProfileModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -250,22 +250,19 @@
                       <div class="formProducts">
                         <h4 class="formTitle">Crea tu producto</h4>
                         <h4 class="formTitle"><i class="fas fa-box"></i></h4>
-                        
-    
-                        <div class="form-group">
-                          <label for="productNameInput">Código del Producto</label>
-                          <input type="text" name="" id="productIdInput" class="form-control" placeholder="" aria-describedby="helpId">
-                        </div>
-    
+
+                        <form method='POST' id='formImageProduct' enctype="multipart/form-data" class="mb-2">
+                          <div class="custom-file">
+                            <label class="custom-file-label" for="quantInput">Selecciona La imagen</label>
+                            <input id="imageUrlInput" type="file" name="image" accept=".png, .jpg, .jpeg" class="custom-file-input">
+                            <small id="helpId" class="text-muted" >formatos permitidos: jpg,png y jpeg</small>
+                          </div> 
+                        </form >
+
                         <div class="form-group" id="categoryInputDiv">
                           
                         </div>
-    
-                        <div class="form-group">
-                          <label for="imageUrlInput">URL de la imagen</label>
-                          <input type="text" name="" id="imageUrlInput" class="form-control" placeholder="" aria-describedby="helpId">
-                        </div>
-    
+
                         <div class="form-group">
                           <label for="productPriceInput">Precio del producto</label>
                           <input type="text" name="" id="productPriceInput" class="form-control" placeholder="" aria-describedby="helpId">

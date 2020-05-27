@@ -396,6 +396,13 @@
             
             return $result;
         }
+
+        public static function createProductImg($database, $businessKey, $productKey, $pathProductImg){
+            $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productKey . '/urlImg')
+                                    ->set($pathProductImg);
+            
+            return $result;
+        }
     }
 
 ?>
