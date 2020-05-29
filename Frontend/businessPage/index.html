@@ -59,50 +59,12 @@
           </nav>
          
         </div>
-          <!--
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="../LandingPageV2/">Wachalo</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse  " id="navbarNav">
-              <ul class="navbar-nav ml-auto ">
-                <li class="nav-item">
-                  <a class="nav-item nav-link active" id="v-home-tab" data-toggle="pill" href="#v-home" role="tab" aria-controls="v-home" aria-selected="true">Inicio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">perfil</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-item nav-link" id="v-pills-Productregistry-tab" data-toggle="pill" href="#v-pills-Productregistry" role="tab" aria-controls="v-pills-Productregistry" aria-selected="false">Registro de producto</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-item nav-link" id="v-pills-branchOffice-tab" data-toggle="pill" href="#v-pills-branchOffice" role="tab" aria-controls="v-pills-branchOffice" aria-selected="false">Registro de Sucursales</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mensajes</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="v-pills-messages-tab"  data-toggle="pill" href="#v-pills-messages">mensaje</a>
-                </li>
-        
-              </ul>
-            </div>
-          </nav>
-           
-           -->
-          
-        
-       
-       
-
 
         <div class="col-12 col-md-9 pl-0 pr-0">
           <div class="tab-content" id="v-pills-tabContent">
-            
-            <!------------------INICIO ----------------<div class="banner"><img src="../img/businessPage/banner1.jpg"  alt=""></div>-->
+            <!-- -------- -------- -------- -------- -------- -------- -------- -----------> 
+            <!------------------------------------INICIO ---------------------------------->
+            <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
             <div class="tab-pane fade show active" id="v-home" role="tabpanel" aria-labelledby="v-home-tab">
               
               <div class="container px-3 ">
@@ -124,11 +86,19 @@
               </div>
 
             </div>
+            <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
+            <!---------------------------------- PROFILE ---------------------------------->
+            <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
 
-            <!------------------ Profile ------------------>
             <div class="tab-pane fade"  id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" id="profileBusinessDiv">
               <div id="bannerProfile">
-                <div class="bannerImg" style = "background-image: url(../img/businessPage/banner1.jpg);"></div>
+                <div class="bannerImg" style = "background-image: url(../img/businessPage/banner1.jpg);">
+                  <div id="bannerOverlay">
+                    <h3 class="changeImgTxt">
+                      <i class="fas fa-edit"></i>
+                    </h3>
+                  </div>
+                </div>
               </div>
               
               <div class="container px-5 " id="sectionProfilebusiness">
@@ -207,7 +177,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="changeImgProfileModalLabel">Comprar Producto</h5>
+                    <h5 class="modal-title" id="changeImgProfileModalLabel">Cambiar Imagen de Perfil</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -216,13 +186,13 @@
                     
                     <form method='POST' id='formImageProfile' enctype="multipart/form-data">
                       <div class="custom-file">
-                        <label class="custom-file-label" for="quantInput">Selecciona La imagen</label>
+                        <label class="custom-file-label">Selecciona La imagen</label>
                         <input type="file" name="image" accept=".png, .jpg, .jpeg" class="custom-file-input">
                       </div> 
                     </form >
 
                   </div>
-                  <div class="modal-footer" id="buyOption">
+                  <div class="modal-footer" id="changeProfileOption">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" >Subir</button>
                   </div>
@@ -231,7 +201,37 @@
             </div>
 
 
-            <!------------------ ProductForm ---------------->
+            <!--MODAL UploadBannerPic-->
+            <div class="modal fade" id="changeImgBannerModal" tabindex="-1" role="dialog" aria-labelledby="changeImgBannerModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="changeImgBannerModalLabel">Cambiar Banner de Perfil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    
+                    <form method='POST' id='formImageBanner' enctype="multipart/form-data">
+                      <div class="custom-file">
+                        <label class="custom-file-label">Selecciona La imagen</label>
+                        <input type="file" name="image" accept=".png, .jpg, .jpeg" class="custom-file-input">
+                      </div> 
+                    </form >
+
+                  </div>
+                  <div class="modal-footer" id="changeBannerOption">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" >Subir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
+            <!--------------------------------- ProductForm ------------------------------->
+            <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
             <div class="tab-pane fade" id="v-pills-Productregistry" role="tabpanel" aria-labelledby="v-pills-Productregistry-tab">
               <div class="container pl-3 ">
                 
@@ -361,8 +361,10 @@
 
                 </div>
             </div>
-
-            <!----------------branchOffice---------------->
+            
+            <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
+            <!--------------------------------branchOffice--------------------------------->
+            <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
             <div class="tab-pane fade " id="v-pills-branchOffice" role="tabpanel" aria-labelledby="v-pills-branchOffice-tab">
               <div class="container px-3 ">
                 

@@ -397,6 +397,13 @@
             return $result;
         }
 
+        public static function changePathBannerImg($database, $businessKey, $pathBannerImg){
+            $result = $database     ->getReference('businesses/' . $businessKey . '/bannerImg')
+                                    ->set($pathBannerImg);
+            
+            return $result;
+        }
+
         public static function createProductImg($database, $businessKey, $productKey, $pathProductImg){
             $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productKey . '/urlImg')
                                     ->set($pathProductImg);

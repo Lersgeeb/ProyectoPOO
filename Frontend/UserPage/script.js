@@ -135,9 +135,14 @@ function renderProfile(user){
     profileFormDiv.innerHTML = `<div class="col-12 col-md-6">
                                     <label for="">Foto de perfil</label>
                                     <div class="imgDiv">
-                                        <img src="${user.imageProfile}" class="rounded-circle" style="width: 8em; height: 8em;" alt="">
+                                        <div class="rounded-circle profileUserImg" style="background-image: url('${user.imageProfile}'); width: 8em; height: 8em;">
+                                            <div class="rounded-circle" id="changeUserImgDiv">
+                                                <h3 class="changeImgTxt">
+                                                    <i class="fas fa-edit"></i>
+                                                </h3>
+                                            </div>
+                                        </div>
                                     </div>
-                                    
                                 </div>
 
                                 <div class="col-12 col-md-6">

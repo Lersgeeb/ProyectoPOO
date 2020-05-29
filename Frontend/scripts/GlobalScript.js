@@ -1,6 +1,6 @@
 var users = {};
 
-/*----------------------------------------------Business----------------------------------------------*/
+/*----------------------------------------------BusinessSign----------------------------------------------*/
 
 async function getBusinessOnline(){
     
@@ -160,6 +160,27 @@ async function getAllProducts(){
 
     if(products.request.status == 200){
         return products.data;
+    }
+}
+
+async function addProductToCart(businessName, productIndex, quant){
+    cartNewProduct = {
+        "businessName": businessName,
+        "productIndex": productIndex,  
+        "quant":quant,
+    }
+
+    cartUrl = '../../Backend/api/cartApi.php';
+
+    const productAdded = await axios({
+        method:'POST',
+        url: cartUrl, 
+        responsetype:'json',
+        data:cartNewProduct
+    });
+
+    if(productAdded.request.status == 200){
+        return productAdded.data;
     }
 }
 
@@ -402,28 +423,6 @@ async function removeCartProduct(cartProductIndex){
         params:{
             "cartProcuctKey":cartProductIndex
         }
-    });
-
-    if(productAdded.request.status == 200){
-        return productAdded.data;
-    }
-}
-
-/*Principal*/
-async function addProductToCart(businessName, productIndex, quant){
-    cartNewProduct = {
-        "businessName": businessName,
-        "productIndex": productIndex,  
-        "quant":quant,
-    }
-
-    cartUrl = '../../Backend/api/cartApi.php';
-
-    const productAdded = await axios({
-        method:'POST',
-        url: cartUrl, 
-        responsetype:'json',
-        data:cartNewProduct
     });
 
     if(productAdded.request.status == 200){

@@ -257,6 +257,24 @@ a:hover {
   overflow: hidden;
   background-position: center center; 
   background-size: cover;
+  position: relative;
+}
+
+
+#bannerOverlay{
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #373435d5;
+  color: white;
+  cursor: pointer;
+}
+
+.bannerImg:hover #bannerOverlay{
+  display: inline-block;
 }
 
 .profileImg{

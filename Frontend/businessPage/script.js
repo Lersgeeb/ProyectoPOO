@@ -118,7 +118,13 @@ function getData(sells){
 function renderProfile(businessOnline){
     business = businessOnline;
     bannerProfile = document.getElementById('bannerProfile');
-    bannerProfile.innerHTML = `<div  class="bannerImg"  style = "background-image: url(${business.bannerImg});"></div>`
+    bannerProfile.innerHTML = ` <div  class="bannerImg"  style = "background-image: url(${business.bannerImg});">
+                                    <div id="bannerOverlay" onclick="showFormImgBanner('${business.businessName}')">
+                                        <h3 class="changeImgTxt">
+                                            <i class="fas fa-edit"></i>
+                                        </h3>
+                                    </div>
+                                </div>`
 
     headerprofiles = document.getElementById('headerprofiles');
     headerprofiles.innerHTML = `<div class="businessInfo">
@@ -182,11 +188,23 @@ function showFormImgProfile(businessName){
     
     $('#changeImgProfileModal').modal('show');
 
-    buyOptionDiv = document.getElementById('buyOption');
-    buyOptionDiv.innerHTML = `  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+    changeProfileOption = document.getElementById('changeProfileOption');
+    changeProfileOption.innerHTML = `  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-warning" onClick="changeProfileImgBusiness('${businessName}',this)">Cambiar</button>`
     
 }
+
+function showFormImgBanner(businessName){
+    
+    $('#changeImgBannerModal').modal('show');
+
+    changeBannerOption = document.getElementById('changeBannerOption');
+    changeBannerOption.innerHTML = `   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-warning" onClick="changeBannerImgBusiness('${businessName}',this)">Cambiar</button>`
+    
+}
+
+/*AXIOS PROFILE */
 
 async function changeProfileImgBusiness(businessName,input){
     profileImgUrl = '../../Backend/api/uploadProfileBusiness.php';
@@ -203,10 +221,25 @@ async function changeProfileImgBusiness(businessName,input){
         renderProfile(businessOnline);
         $('#changeImgProfileModal').modal('hide');
     }
-
 }
 
-/*---------------------------------ProductForm ---------------------------------------*/
+async function changeBannerImgBusiness(businessName,input){
+    bannerImgUrl = '../../Backend/api/uploadBannerBusiness.php';
+    form = document.getElementById('formImageBanner');
+    let formdata = new FormData(form);
+    formdata.append('nameFile', businessName)
+
+    setLoading(true,input,'Subiendo...')
+    const pathImgBenner = await axios.post(bannerImgUrl, formdata)
+
+    if(pathImgBenner.request.status == 200){
+        businessOnline = await getBusinessOnline();
+        renderProfile(businessOnline);
+        $('#changeImgBannerModal').modal('hide');
+    }
+}
+
+/*--------------------------------------ProductForm --------------------------------------------*/
 
 //Render ProductForm
 function renderCategories(){
@@ -315,22 +348,6 @@ async function newProduct(input){
     }
 }
 
-async function createProductImg(businessName,productKey){
-    productImgUrl = '../../Backend/api/uploadProductImg.php';
-    form = document.getElementById('formImageProduct');
-    let formdata = new FormData(form);
-    formdata.append('filename', productKey);
-    formdata.append('productKey', productKey);
-    formdata.append('businessName', businessName);
-    
-    const pathImgProduct = await axios.post(productImgUrl, formdata)
-
-    if(pathImgProduct.request.status == 200){
-        return true;
-    }
-
-}
-
 function showSaleForm(productId){
     $('#modalSaleOnProduct').modal('show');
     saleOnProductButtons = document.getElementById('saleOnProductButtons');
@@ -392,7 +409,23 @@ async function removeProduct(productId,input){
     }
 }
 
-/*---------------------------------------Branch Offices---------------------------------------*/
+/*AXIOS ProductForm */
+async function createProductImg(businessName,productKey){
+    productImgUrl = '../../Backend/api/uploadProductImg.php';
+    form = document.getElementById('formImageProduct');
+    let formdata = new FormData(form);
+    formdata.append('filename', productKey);
+    formdata.append('productKey', productKey);
+    formdata.append('businessName', businessName);
+    
+    const pathImgProduct = await axios.post(productImgUrl, formdata)
+
+    if(pathImgProduct.request.status == 200){
+        return true;
+    }
+}
+
+/*------------------------------------------Branch Offices------------------------------------------*/
 
 //Render BranchOffices
 function renderMap(zoom,lat,lon,withMarker){
