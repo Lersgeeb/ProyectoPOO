@@ -26,7 +26,7 @@ function renderNav(user){
           <i class="fas fa-circle-notch fa-spin"></i>
         </span> 
         <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-        <span>${user.userName} &nbsp</span> <img src="${user.imageProfile}" class="rounded-circle" style="width: 1.8em;">
+        <span>${user.userName} &nbsp</span> <img src="${user.imageProfile}?${Math.random()}" class="rounded-circle" style="width: 1.8em;">
         </button>
         <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
         <div class="px-4 accountInfo">
@@ -46,7 +46,7 @@ function renderNav(user){
 
 function renderProfileHeader(user){
     profileHeaderInfo = document.getElementById('profileHeaderInfo');
-    profileHeaderInfo.innerHTML = ` <img src="${user.imageProfile}" class="rounded-circle" style="width: 9em; height: 9em;" alt="">
+    profileHeaderInfo.innerHTML = ` <img src="${user.imageProfile}?${Math.random()}" class="rounded-circle" style="width: 9em; height: 9em;" alt="">
                                     <h3 class="jumbotron-heading mt-3">${user.firstname.split(" ")[0]} ${user.lastName}</h3>`;
 }
 
@@ -135,8 +135,8 @@ function renderProfile(user){
     profileFormDiv.innerHTML = `<div class="col-12 col-md-6">
                                     <label for="">Foto de perfil</label>
                                     <div class="imgDiv">
-                                        <div class="rounded-circle profileUserImg" style="background-image: url('${user.imageProfile}'); width: 8em; height: 8em;">
-                                            <div class="rounded-circle" id="changeUserImgDiv">
+                                        <div class="rounded-circle profileUserImg" style="background-image: url('${user.imageProfile}?${Math.random()}'); width: 8em; height: 8em;">
+                                            <div class="rounded-circle" id="changeUserImgDiv" onclick="showFormImgProfile('${user.userName}')">
                                                 <h3 class="changeImgTxt">
                                                     <i class="fas fa-edit"></i>
                                                 </h3>
@@ -181,6 +181,35 @@ function renderProfile(user){
     
 }
 
+function showFormImgProfile(username){
+    
+    $('#changeImgProfileModal').modal('show');
+
+    changeProfileOption = document.getElementById('changeProfileOption');
+    changeProfileOption.innerHTML = `   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-warning" onClick="changeProfileImgUser('${username}',this)">Cambiar</button>`
+}
+
+/*AXIOS PROFILE*/
+
+async function changeProfileImgUser(username,input){
+    profileImgUrl = '../../Backend/api/uploadProfileUser.php';
+    form = document.getElementById('formImageProfile');
+    let formdata = new FormData(form);
+    formdata.append('nameFile', username)
+
+    setLoading(true,input,'Subiendo...')
+    const pathImgProfile = await axios.post(profileImgUrl, formdata)
+
+    if(pathImgProfile.request.status == 200){
+        userOnline = await getUserOnline();
+        renderNav(userOnline);
+        renderProfileHeader(userOnline);
+        renderProfile(userOnline);
+        $('#changeImgProfileModal').modal('hide');
+    }
+}
+
 async function renderCart(){
     productRow= document.getElementById('productRow');
     productRow.innerHTML = '';
@@ -188,7 +217,6 @@ async function renderCart(){
     products = await getCartProducts();
     total = 0;
 
-    console.log(products)
     if(products){
         cartProductIndex = 0;
     
@@ -269,4 +297,5 @@ function setLoading(status, input, changeText){
       
     }
 }
+
 render();

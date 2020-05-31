@@ -68,7 +68,7 @@ function renderNav(user){
                                             <i class="fas fa-circle-notch fa-spin"></i>
                                 </span> 
                                 <button type="button" class="btn  btn-outline-warning dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                <span>${user.userName} &nbsp</span> <img src="${user.imageProfile}" class="rounded-circle" style="width: 1.8em;">
+                                <span>${user.userName} &nbsp</span> <img src="${user.imageProfile}?${Math.random()}" class="rounded-circle" style="width: 1.8em;">
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" style="width: 6em;" aria-labelledby="dropdownMenuOffset">
                                 <div class="px-4 accountInfo">
@@ -100,7 +100,7 @@ function renderProducts(value, userOnline){
         if(value == 'Mejores Promociones' || value == null || value==product.category){
             productRows.innerHTML += `  <div class="col-md-6 col-lg-3">
                                             <div class="card mb-4 box-shadow">
-                                            <img class="card-img-top imageProducts" style="max-height:15em;" src="${product.urlImg}" alt="Card image cap">
+                                            <img class="card-img-top imageProducts" style="max-height:15em;" src="${product.urlImg}?${Math.random()}" alt="Card image cap">
                                             <div class="card-body">
                                                 <p class="rateProduct mb-0">
                                                 ${renderRate(product.inSale.rate)}
@@ -117,7 +117,7 @@ function renderProducts(value, userOnline){
                                                 </div>                      
                                             </div>
                                                 <p class="card-text descProducts mb-0">${product.description}</p>
-                                                <p class="text-muted companyName">${product.from}</p>
+                                                <p class="text-muted companyName" onclick="goBusinessProfile('${product.from}')">${product.from}</p>
                                                 <p class="productDate">Quedan ${product.inSale.duration}</p>
                                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                                 <div class="btn-group">
@@ -179,6 +179,10 @@ async function addToCart(businessName, productIndex,input){
         document.getElementById('quantInput').value = '';
         $('#cartModal').modal('hide');
     }
+}
+
+function goBusinessProfile(businessName){
+    window.location.href = `../BusinessProfile/?business=${businessName}`;
 }
 
 

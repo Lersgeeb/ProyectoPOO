@@ -110,6 +110,7 @@ body,html{
   #headerprofiles{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }
   
   #headerprofiles{
@@ -256,11 +257,21 @@ body,html{
   /*loading*/
 
 .loading{
-  color: white;
+  color: var(--myBlack);
   display: none;
+}
+
+.loadingProduct{
+  color: var(--myBlack);
+  font-size: 4em;
+  font-weight: 600;
+  padding-left: 0.5em;
+  padding-top: 0.5em;
 }
 
 .loadingVisible{
   color: white;
   display: inline-block;
 }
+
+

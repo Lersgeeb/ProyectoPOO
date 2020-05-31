@@ -118,7 +118,7 @@ function getData(sells){
 function renderProfile(businessOnline){
     business = businessOnline;
     bannerProfile = document.getElementById('bannerProfile');
-    bannerProfile.innerHTML = ` <div  class="bannerImg"  style = "background-image: url(${business.bannerImg});">
+    bannerProfile.innerHTML = ` <div  class="bannerImg"  style = "background-image: url(${business.bannerImg}?${Math.random()});">
                                     <div id="bannerOverlay" onclick="showFormImgBanner('${business.businessName}')">
                                         <h3 class="changeImgTxt">
                                             <i class="fas fa-edit"></i>
@@ -155,7 +155,7 @@ function renderProfile(businessOnline){
             if(product.inSale){
                 productInSaleProfile.innerHTML += `  <div class="col-md-6 col-lg-3">
                                                         <div class="card mb-4 box-shadow">
-                                                        <img style="max-height: 10em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                        <img style="max-height: 10em;" class="card-img-top imageProducts" src="${product.urlImg}?${Math.random()}" alt="Card image cap">
                                                         <div class="card-body">
                                                             <p class="rateProduct mb-0">
                                                             ${renderRate(product.inSale.rate)}                
@@ -268,7 +268,7 @@ async function renderProduts(){
             product = products[productId];
             registeredProducts.innerHTML += `    <div class="col-md-6 col-lg-3">
                                                     <div class="card mb-4 box-shadow">
-                                                    <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                    <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}?${Math.random()}" alt="Card image cap">
                                                     <div class="card-body">
                                                         <div class="price nowPrice">Precio: L.${product.price}</div>
                                                         <small class="text-muted">${product.category}</small>
@@ -287,7 +287,7 @@ async function renderProduts(){
             if(product.inSale){
                 onSaleProducts.innerHTML += `   <div class="col-md-6 col-lg-3">
                                                     <div class="card mb-4 box-shadow">
-                                                    <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}" alt="Card image cap">
+                                                    <img style="height: 1em;" class="card-img-top imageProducts" src="${product.urlImg}?${Math.random()}" alt="Card image cap">
                                                     <div class="card-body">
                                                         <p class="rateProduct mb-0">
                                                             ${renderRate(product.inSale.rate)}                  

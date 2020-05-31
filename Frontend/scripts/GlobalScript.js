@@ -429,3 +429,20 @@ async function removeCartProduct(cartProductIndex){
         return productAdded.data;
     }
 }
+
+/*BusinessProfile */
+
+async function getBusinessByName(businessName){
+    
+    businessesURL = `../../Backend/api/businessesApi.php?businessName=${businessName}`;
+
+    const business = await axios({
+        method:'GET',
+        url: businessesURL,
+        responsetype:'json'
+    });
+
+    if(business.request.status == 200)
+        return business.data;
+
+}

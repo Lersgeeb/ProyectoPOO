@@ -255,4 +255,11 @@
 
             return $result;
         }
+
+        public static function changePathProfileImg($database, $userKey, $pathProfileImg){
+                $result = $database     ->getReference('users/' . $userKey . '/imageProfile')
+                                        ->set($pathProfileImg);
+                
+                return $result;
+        }
     }
