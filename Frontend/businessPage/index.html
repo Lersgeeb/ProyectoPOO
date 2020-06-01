@@ -361,6 +361,50 @@
 
                 </div>
             </div>
+
+            <!--MODAL branchOfficeProduct-->
+            <div class="modal fade" id="branchOfficeProductModal" tabindex="-1" role="dialog" aria-labelledby="branchOfficeProductModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="branchOfficeProductModalLabel">Agregar Sucursales</h5>
+                    
+                  </div>
+                  <div class="modal-body" id="confBranchOffices">
+                    
+                    <div class="colMap">
+                      <div id="mapDivModal">
+                        <span class="fa-1x loadingVisible" id="loadingNavBar"">
+                          <i class="fas fa-circle-notch fa-spin"></i>
+                        </span> 
+                      </div>
+                    </div>
+
+                    <div id="tableBranches">
+                      <table class="table  table-hover">
+                        <thead class="thead-dark">
+                          <tr class="text-center">
+                            <th scope="col">Latitud</th>
+                            <th scope="col">Longitud</th>
+                            <th scope="col">Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody id="LatLonRowModal">
+                          
+                          
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                    
+
+                  </div>
+                  <div class="modal-footer" >
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Salir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             <!-- -------- -------- -------- -------- -------- -------- -------- ----------->
             <!--------------------------------branchOffice--------------------------------->
@@ -459,7 +503,7 @@
         </div>
       </div>
 
-      <!-- addSaleOnProduct-->
+      <!-- MODAL addSaleOnProduct-->
       <div class="modal fade" id="modalSaleOnProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

@@ -305,7 +305,7 @@ async function renderProduts(){
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-warning" onclick="showBranchOffConfProduct('${productId}')" ><i class="fas fa-map-marker-alt"></i></button>
                                                             <button type="button" onClick="removeSale('${productId}',this)" class="btn btn-sm btn-outline-warning"><i class="far fa-trash-alt"></i></button>
                                                         </div>
                                                         </div>                                              
@@ -317,8 +317,92 @@ async function renderProduts(){
     }
 }
 
+async function renderModalMap(zoom,productId){
+   
+    product = await getProductByKey(productId);
+    businessOnline = await getBusinessOnline();
+
+    renderBranchOfficeTableModal(business, product, productId);
+
+    country = businessOnline.country
+    lat = country.lat
+    lon = country.lon
+
+    var container = L.DomUtil.get('mapModal');
+    if(container != null){
+    container._leaflet_id = null;
+    }
+    
+    document.getElementById('mapDivModal').innerHTML = `<div id="mapModal"></div>
+                                                             <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>`;
+    var mymapModal = L.map('mapModal').setView([lat, lon], zoom );
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymapModal);
+
+    var popup = L.popup();
+    mymapModal.on('click', onMapClick = (e) => {popup.setLatLng(e.latlng)
+                                            .setContent( e.latlng.toString())
+                                            .openOn(mymapModal);})
+
+    let totalbranches = businessOnline.branchOffices;
+    let productBranches = product.branchesOffices;
+
+    if(productBranches){
+        for(productBranchesKey in productBranches){
+            productBranch = productBranches[productBranchesKey];
+
+            if(totalbranches[productBranch]){
+                branch = totalbranches[productBranch];
+                var marker = L.marker([branch[0], branch[1]]).addTo(mymapModal);
+            }
+        }
+    }
+    setTimeout(function(){ mymapModal.invalidateSize()}, 400);
+    
+   
+}
+
+
 function renderRate(rate){
     return `${'<i class="fas fa-star"></i>'.repeat(rate)}${'<i class="far fa-star"></i>'.repeat(5-rate)}`
+}
+
+function renderBranchOfficeTableModal(business,product,productKey){
+    LatLonRow = document.getElementById('LatLonRowModal')
+    LatLonRow.innerHTML = ''
+
+    let branchOffices = business.branchOffices;
+    let productBranches = product.branchesOffices;
+
+    if(productBranches){
+        for(productBranchesKey in productBranches){
+            productBranch = productBranches[productBranchesKey];
+
+            if(branchOffices[productBranch]){
+                branchOffices[productBranch][2] = productBranchesKey;
+            }
+        }
+    }
+
+    if(branchOffices){
+        for (branchOfficekey in branchOffices){
+            branchOffice = branchOffices[branchOfficekey];
+            LatLonRow.innerHTML +=  `   <tr class="text-center"  >
+                                        <td>${branchOffice[0]}</td>
+                                        <td>${branchOffice[1]}</td>
+                                        <td>${branchOffice[2]?
+                                            `<i onclick="removeBranchOnProduct('${productId}','${branchOffice[2]}',this)" class="far fa-trash-alt" style="cursor:pointer"></i>`:
+                                            `<i onclick="addBranchOnProduct('${productKey}','${branchOfficekey}',this)" class="fas fa-plus" style="cursor:pointer"></i>`}</td>
+                                        </tr>`
+            branchOffice[2] = null;
+        }
+    }
+    
 }
 
 //Funcionalidades ProductForm
@@ -346,6 +430,11 @@ async function newProduct(input){
             await renderProduts();
             setLoading(false, input,'Crear')
     }
+}
+
+async function showBranchOffConfProduct(productId){
+    $('#branchOfficeProductModal').modal('show');
+    await renderModalMap(6,productId);
 }
 
 function showSaleForm(productId){
@@ -407,6 +496,18 @@ async function removeProduct(productId,input){
         businessOnline = await getBusinessOnline();
         renderProfile(businessOnline);
     }
+}
+
+async function addBranchOnProduct(productKey, branchKey, input){
+    setLoading(true, input.parentNode, " ");
+    await addBranchToProduct(productKey, branchKey);
+    await renderModalMap(6,productKey);
+}
+
+async function removeBranchOnProduct(productKey, branchProductKey, input){
+    setLoading(true, input.parentNode, " ");
+    await removeBranchToProduct(productKey, branchProductKey);
+    await renderModalMap(6,productKey);
 }
 
 /*AXIOS ProductForm */

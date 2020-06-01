@@ -469,8 +469,33 @@ background-color: var(--myBlack);
 }
 
 .productsSection{
-  padding: 1em 2em;
-  
+  padding: 1em 2em; 
+}
+
+#mapDivModal{
+  display: flex;
+  justify-content: center;
+  height: 22em;
+  position: relative;
+}
+
+#mapModal{
+  height: 22em;
+  position: absolute;
+  top: 0; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#branchOfficeProductModal .modal-body{
+  background-color: var(--backgroundgrey);
+}
+
+#branchOfficeProductModal .modal-content{
+  color: var(--principal);
+  background-color: var(--myBlack);
 }
 
 /*------------------------------------------------branch offices------------------------------------------------*/

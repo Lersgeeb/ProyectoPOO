@@ -9,6 +9,7 @@
         private $urlImg;
         private $inSale;
         private $key;
+        private $branchesOffices;
         /*private $sale;
         private $rate;
         private $rateQuant;
@@ -24,6 +25,8 @@
             if(array_key_exists("inSale",$product))
                 $this->inSale = $product["inSale"];
             
+            if(array_key_exists("branchesOffices",$product))
+                $this->branchesOffices = $product["branchesOffices"];
         }
 
         
@@ -176,19 +179,20 @@
                         "description" => $this->description,
                         "from" => $this->from,
                         "urlImg" => $this->urlImg,
-                        "inSale" => $this->inSale
+                        "inSale" => $this->inSale,
+                        "branchesOffices" => $this->branchesOffices
                 );
 
             return $product;
         }
 
 
-        public static function getProductByKey($database, $key){
-                $result = $database ->getReference($key)
+        public static function getProductByKey($database, $businessKey, $productkey){
+                $result = $database ->getReference('businesses/' . $businessKey . '/products/' . $productkey )
                                     ->getSnapshot()
                                     ->getValue();
     
-                return $result;
+                echo json_encode($result);
         }
 
         public static function addSaleOnProduct($database, $businessKey, $productkey, $sale){
@@ -219,7 +223,19 @@
             return !empty($this->inSale);
         }
 
+        public static function addBranchOffice($database, $businessKey, $productkey, $branchKey){
+                $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productkey .'/branchesOffices')
+                                        ->push($branchKey);
+                return $result;
+        }
 
+        public static function removeBranchOffice($database, $businessKey, $productkey, $branchProductKey){
+                $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productkey .'/branchesOffices/' . $branchProductKey)
+                                        ->set(null);
+                return $result;
+        }
+
+        
 
 
       

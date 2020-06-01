@@ -271,6 +271,55 @@ async function removeProductOfBusiness(productKey){
     }
 }
 
+async function getProductByKey(productKey){
+    productUrl = `../../Backend/api/productsApi.php?productKey=${productKey}`;
+
+    const product = await axios({
+        method:'GET',
+        url: productUrl, 
+        responsetype:'json',
+    });
+
+    if(product.request.status == 200){
+        return product.data;
+    }
+}
+
+async function addBranchToProduct(productKey, branchKey){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    const added = await axios({
+        method:'PUT',
+        url: productUrl, 
+        responsetype:'json',
+        data:{
+            "branchKey":branchKey,
+            "productKey":productKey
+        }
+    });
+
+    if(added.request.status == 200){
+        return added.data;
+    }
+}
+
+async function removeBranchToProduct(productKey, branchProductKey){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    const deleted = await axios({
+        method:'DELETE',
+        url: productUrl, 
+        responsetype:'json',
+        params:{
+            "branchProductKey":branchProductKey,
+            "productKey":productKey
+        }
+    });
+
+    if(deleted.request.status == 200){
+        return deleted.data;
+    }
+}
 
 async function addBranchOfficeBusiness(lat,lon){
     branchOfficeUrl = '../../Backend/api/branchOfficeApi.php';

@@ -18,6 +18,16 @@
                     }
                 }
             }
+            else if(isset( $_GET['productKey'] )){
+                if(isset($_COOKIE['key'])){
+                    $tokenfromDb = Businesses::getTokenFromKey($database->getDatabase(), $_COOKIE['key']);
+                    if($tokenfromDb == $_COOKIE['token']){
+                        if( isset($_GET['productKey']) ){
+                            Product::getProductByKey( $database->getDatabase(), $_COOKIE['key'],$_GET['productKey']);
+                        }
+                    }
+                }
+            }
             elseif( isset($_GET["businessName"]) && isset($_GET["id"])){
                 $businesses = new Businesses($database->getDatabase());
                 $business = $businesses->getBusinessByName($_GET["businessName"]);
@@ -41,18 +51,27 @@
             $businesses = new Businesses($database->getDatabase());
             $business = $businesses->getBusinessByName($_POST['from']);
             $result = $business->addProduct($_POST,$database->getDatabase());
-            echo $result;
+            echo $result;    
+            
             break;
             exit();
 
         case 'PUT':
             if(isset($_COOKIE['key'])){
+                $_PUT = json_decode(file_get_contents('php://input'),true);
                 $tokenfromDb = Businesses::getTokenFromKey($database->getDatabase(), $_COOKIE['key']);
                 if($tokenfromDb == $_COOKIE['token']){
-                    $_PUT = json_decode(file_get_contents('php://input'),true);
-                    $sale = Product::addSaleOnProduct( $database->getDatabase(), $_COOKIE['key'],$_PUT['productKey'],$_PUT['inSale']);
-                    if($sale)
-                        echo "Producto puesto en Oferta";
+                    if(isset($_PUT['branchKey']) && $_PUT['productKey']){
+                        $response = Product::addBranchOffice($database->getDatabase(), $_COOKIE['key'], $_PUT['productKey'], $_PUT['branchKey']);
+                        echo true;
+
+                    }
+                    else{
+                        $sale = Product::addSaleOnProduct( $database->getDatabase(), $_COOKIE['key'],$_PUT['productKey'],$_PUT['inSale']);
+                        if($sale)
+                            echo "Producto puesto en Oferta";
+                    }
+                    
                 }
             }
             break;
@@ -65,6 +84,10 @@
                     if(isset($_GET['inSale']) && isset($_GET['productKey'])){
                         Product::removeSaleOnProduct( $database->getDatabase(), $_COOKIE['key'],$_GET['productKey']);
                         echo "Oferta Eliminada";
+                    }
+                    elseif( isset($_GET['productKey']) && isset($_GET['branchProductKey']) ){
+                        Product::removeBranchOffice( $database->getDatabase(), $_COOKIE['key'],$_GET['productKey'],$_GET['branchProductKey']);
+                        echo true;
                     }
                     elseif( isset($_GET['productKey']) ){
                         Product::removeProduct( $database->getDatabase(), $_COOKIE['key'],$_GET['productKey']);
