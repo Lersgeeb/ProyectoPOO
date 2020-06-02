@@ -378,7 +378,22 @@
         }
 
         
+        public function getProductForModal($product, $id){
+            $product[$id]["country"] = $this->country;
+            $branchModal = [];
 
+            $totalBranchOffice = $this->branchOffices;
+            $branchOfficeProduct = $product[$id]["branchesOffices"];
+
+            if($branchOfficeProduct){
+                foreach($branchOfficeProduct as $value){
+                    $branchModal[] =  $totalBranchOffice[$value];
+                }
+            }
+            $product[$id]["branchesOffices"] = $branchModal;
+
+            return $product;
+        }
 
         public function addProduct($product,$database){
 

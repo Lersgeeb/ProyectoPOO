@@ -230,6 +230,7 @@
         }
 
         public static function removeBranchOffice($database, $businessKey, $productkey, $branchProductKey){
+                echo 'businesses/' . $businessKey . '/products/' . $productkey .'/branchesOffices/' . $branchProductKey;
                 $result = $database     ->getReference('businesses/' . $businessKey . '/products/' . $productkey .'/branchesOffices/' . $branchProductKey)
                                         ->set(null);
                 return $result;

@@ -184,6 +184,24 @@ async function addProductToCart(businessName, productIndex, quant){
     }
 }
 
+async function getProductByIdForModal(id,businessName){
+    productUrl = '../../Backend/api/productsApi.php';
+
+    const product = await axios({
+        method:'GET',
+        url: productUrl, 
+        responsetype:'json',
+        params:{
+            "id":id,
+            "businessName":businessName,
+            "modal":true
+        }
+    });
+
+    if(product.request.status == 200){
+        return product.data;
+    }
+}
 /*----------------------------------------------BusinessPage----------------------------------------------*/
 
 

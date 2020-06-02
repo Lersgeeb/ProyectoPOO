@@ -319,6 +319,9 @@ async function renderProduts(){
 
 async function renderModalMap(zoom,productId){
    
+    LatLonRow = document.getElementById('LatLonRowModal');
+    LatLonRow.innerHTML = '';
+
     product = await getProductByKey(productId);
     businessOnline = await getBusinessOnline();
 
@@ -396,7 +399,7 @@ function renderBranchOfficeTableModal(business,product,productKey){
                                         <td>${branchOffice[0]}</td>
                                         <td>${branchOffice[1]}</td>
                                         <td>${branchOffice[2]?
-                                            `<i onclick="removeBranchOnProduct('${productId}','${branchOffice[2]}',this)" class="far fa-trash-alt" style="cursor:pointer"></i>`:
+                                            `<i onclick="removeBranchOnProduct('${productKey}','${branchOffice[2]}',this)" class="far fa-trash-alt" style="cursor:pointer"></i>`:
                                             `<i onclick="addBranchOnProduct('${productKey}','${branchOfficekey}',this)" class="fas fa-plus" style="cursor:pointer"></i>`}</td>
                                         </tr>`
             branchOffice[2] = null;

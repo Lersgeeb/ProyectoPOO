@@ -20,7 +20,7 @@ categories = [
 ];
 
 var products = null;
-
+var userOnline;
 /*-------------------------------------------------------HEADER-------------------------------------------------------*/
 
 //Cambia la imagen del encabezado de la Pagina 
@@ -42,7 +42,7 @@ function startTimer() {
 /*-------------------------------------------------------RENDERS------------------------------------------------------- */
 async function render(){
 
-    const userOnline = await getUserOnline();
+    userOnline = await getUserOnline();
     renderNav(userOnline);
     renderCategoriesBar();
     products = await getAllProducts();
@@ -100,32 +100,32 @@ function renderProducts(value, userOnline){
         if(value == 'Mejores Promociones' || value == null || value==product.category){
             productRows.innerHTML += `  <div class="col-md-6 col-lg-3">
                                             <div class="card mb-4 box-shadow">
-                                            <img class="card-img-top imageProducts" style="max-height:15em;" src="${product.urlImg}?${Math.random()}" alt="Card image cap">
-                                            <div class="card-body">
-                                                <p class="rateProduct mb-0">
-                                                ${renderRate(product.inSale.rate)}
-                                                </p>
-                                                <div class="quantUser" style="text-align: center;">
-                                                ${product.inSale.rateQuant}<i class="fas fa-user"></i>
-                                                </div>
+                                                <img class="card-img-top imageProducts" style="max-height:15em;" src="${product.urlImg}?${Math.random()}" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <p class="rateProduct mb-0">
+                                                    ${renderRate(product.inSale.rate)}
+                                                    </p>
+                                                    <div class="quantUser" style="text-align: center;">
+                                                    ${product.inSale.rateQuant}<i class="fas fa-user"></i>
+                                                    </div>
 
-                                                <div class="saleProduct"> 
-                                                <div class="sale"><h2>${product.inSale.sale * 100}%</h2></div>
-                                                <div class="prices">
-                                                    <div class="price beforePrice">Antes: L.${product.price}</div> 
-                                                    <div class="price nowPrice">Ahora: L.${product.price * (1-product.inSale.sale)}</div>
-                                                </div>                      
-                                            </div>
-                                                <p class="card-text descProducts mb-0">${product.description}</p>
-                                                <p class="text-muted companyName" onclick="goBusinessProfile('${product.from}')">${product.from}</p>
-                                                <p class="productDate">Quedan ${product.inSale.duration}</p>
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-warning">+ Detalles</button>
-                                                    ${ userOnline ? `<button type="button" onClick="showCartForm('${product.from}','${keyProduct}')" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
+                                                    <div class="saleProduct"> 
+                                                        <div class="sale"><h2>${product.inSale.sale * 100}%</h2></div>
+                                                        <div class="prices">
+                                                            <div class="price beforePrice">Antes: L.${product.price}</div> 
+                                                            <div class="price nowPrice">Ahora: L.${product.price * (1-product.inSale.sale)}</div>
+                                                        </div>                      
+                                                    </div>
+                                                    <p class="card-text descProducts mb-0">${product.description}</p>
+                                                    <p class="text-muted companyName" onclick="goBusinessProfile('${product.from}')">${product.from}</p>
+                                                    <p class="productDate">Quedan ${product.inSale.duration}</p>
+                                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-warning" onclick="showDetail('${keyProduct}','${product.from}',this)">+ Detalles</button>
+                                                            ${ userOnline ? `<button type="button" onClick="showCartForm('${product.from}','${keyProduct}')" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
+                                                        </div>
+                                                    </div>                                              
                                                 </div>
-                                                </div>                                              
-                                            </div>
                                             </div>
                                         </div>`;
         }
@@ -146,6 +146,101 @@ function renderCategoriesBar(){
     }
 }
 
+async function showDetail(idProduct,businessName,input){
+    
+    setLoading(true,input,' ');
+    productJson = await getProductByIdForModal(idProduct,businessName);
+    
+    detailProduct = document.getElementById('detailProduct')
+    
+    detailProduct.innerHTML = '';
+    for(productKey in productJson){
+        product = productJson[productKey];
+        
+        detailProduct.innerHTML = ` <div class="headerDetail">
+                                        <img class="modalImg" src="${product.urlImg}?${Math.random()}" alt="">
+                                        <div class="descProduct">
+                                            <h3 class="modal-title" id="categoryDetail">${product.category}</h3>
+                                            <small class="text-muted" id="fromDetail">${product.from}</small>
+                                            <p id="descDetail">${product.description}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="rateModalDiv">
+                                    <div class="modalstars">
+                                        ${renderRate(product.inSale.rate)} 
+                                    </div>
+                                    <div id="userQuantRate">
+                                        ${product.inSale.rateQuant} <i class="fas fa-user"></i>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="buyProductModal">  
+                                        <div class="saleProduct saleProductModal"> 
+                                            <div class="sale saleModal"><h2>${product.inSale.sale * 100}%</h2></div>
+                                            <div class="prices">
+                                                <div class="price beforePrice">Antes: L.${product.price}</div> 
+                                                <div class="price nowPrice">Ahora: L.${product.price * (1-product.inSale.sale)}</div>
+                                            </div>
+                                        </div>
+                                        ${userOnline ? `
+                                        <div class="quantModal ">
+                                            <button type="button" class="btn btn-warning" id="buyButtonModal" > <i class="fas fa-cart-plus"></i> </button>
+                                            <div class="form-group">
+                                                <label for="quantProductModal">Cantidad</label>
+                                                <input class="form-control" type="number" id="quantProductModal" value="0">
+                                            </div>
+                                        </div>`:''}                
+                                    </div>`;
+        renderMap(6,product.country,product.branchesOffices);    
+    } 
+
+    
+    
+    
+    setLoading(false,input,'+ Detalles');
+    $('#detailModal').modal('show');
+
+}
+
+function renderMap(zoom,country,branches){
+   
+    lat = country.lat;
+    lon = country.lon;
+    
+
+    /*if(!(lat && lon)){
+        country = businessOnline.country
+        lat = country.lat
+        lon = country.lon
+    }*/
+    
+    document.getElementById('mapDiv').innerHTML = `<div id="map"></div>
+                                                    <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>`;
+    
+    var mymap = L.map('map').setView([lat, lon], zoom );
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+
+    var popup = L.popup();
+    mymap.on('click', onMapClick = (e) => {popup.setLatLng(e.latlng)
+                                            .setContent( e.latlng.toString())
+                                            .openOn(mymap);})
+
+    if(branches){
+        for(branch of branches){
+            var marker = L.marker([branch[0], branch[1]]).addTo(mymap);
+        }
+    }
+
+    setTimeout(function(){ mymap.invalidateSize()}, 400);
+}
 
 /*-------------------------------------------------------Funcionalidades-------------------------------------------------------*/
 async function logOut(){

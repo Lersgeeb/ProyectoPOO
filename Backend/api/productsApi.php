@@ -28,6 +28,12 @@
                     }
                 }
             }
+            elseif( isset($_GET["businessName"]) && isset($_GET["id"]) && isset($_GET["modal"])){
+                $businesses = new Businesses($database->getDatabase());
+                $business = $businesses->getBusinessByName($_GET["businessName"]);
+                $product = $business->getProductOfBusinessById($_GET["id"]);
+                echo json_encode($business->getProductForModal($product, $_GET["id"]));
+            }
             elseif( isset($_GET["businessName"]) && isset($_GET["id"])){
                 $businesses = new Businesses($database->getDatabase());
                 $business = $businesses->getBusinessByName($_GET["businessName"]);
@@ -86,6 +92,7 @@
                         echo "Oferta Eliminada";
                     }
                     elseif( isset($_GET['productKey']) && isset($_GET['branchProductKey']) ){
+                        echo $_GET['branchProductKey'];
                         Product::removeBranchOffice( $database->getDatabase(), $_COOKIE['key'],$_GET['productKey'],$_GET['branchProductKey']);
                         echo true;
                     }
