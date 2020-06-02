@@ -1,4 +1,6 @@
 
+var userOnline;
+
 async function render(){
     renderProfile();
 
@@ -119,7 +121,7 @@ async function renderProfile(){
                                                             </div>
                                                             <div class="d-flex justify-content-between align-items-center mt-3">
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-sm btn-outline-warning">+ Detalles</button>
+                                                                <button type="button" class="btn btn-sm btn-outline-warning" onclick="showDetail('${productId}','${product.from}',this)">Detalles</button>
                                                             </div>
                                                             </div>                                              
                                                         </div>
@@ -127,6 +129,135 @@ async function renderProfile(){
                                                     </div>`;
             }
         }
+    }
+}
+
+function renderMap(zoom,country,branches){
+   
+    lat = country.lat;
+    lon = country.lon;
+    
+
+    /*if(!(lat && lon)){
+        country = businessOnline.country
+        lat = country.lat
+        lon = country.lon
+    }*/
+    
+    document.getElementById('mapDiv').innerHTML = `<div id="map"></div>
+                                                    <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>`;
+    
+    var mymap = L.map('map').setView([lat, lon], zoom );
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+
+    var popup = L.popup();
+    mymap.on('click', onMapClick = (e) => {popup.setLatLng(e.latlng)
+                                            .setContent( e.latlng.toString())
+                                            .openOn(mymap);})
+
+    if(branches){
+        for(branch of branches){
+            var marker = L.marker([branch[0], branch[1]]).addTo(mymap);
+        }
+    }
+
+    setTimeout(function(){ mymap.invalidateSize()}, 400);
+}
+
+async function showDetail(idProduct,businessName,input){
+    
+    setLoading(true,input,' ');
+    productJson = await getProductByIdForModal(idProduct,businessName);
+    
+    detailProduct = document.getElementById('detailProduct')
+    
+    detailProduct.innerHTML = '';
+    for(productKey in productJson){
+        product = productJson[productKey];
+        
+        detailProduct.innerHTML = ` <div class="headerDetail">
+                                        <img class="modalImg" src="${product.urlImg}?${Math.random()}" alt="">
+                                        <div class="descProduct">
+                                            <h3 class="modal-title" id="categoryDetail">${product.category}</h3>
+                                            <small class="text-muted" id="fromDetail">${product.from}</small>
+                                            <p id="descDetail">${product.description}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="rateModalDiv">
+                                    <div class="modalstars">
+                                        ${renderRate(product.inSale.rate)} 
+                                    </div>
+                                    <div id="userQuantRate">
+                                        ${product.inSale.rateQuant} <i class="fas fa-user"></i>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="buyProductModal">  
+                                        <div class="saleProduct saleProductModal"> 
+                                            <div class="sale saleModal"><h2>${product.inSale.sale * 100}%</h2></div>
+                                            <div class="prices">
+                                                <div class="price beforePrice beforePriceModal">Antes: L.${product.price}</div> 
+                                                <div class="price nowPrice nowPriceModal">Ahora: L.${product.price * (1-product.inSale.sale)}</div>
+                                            </div>
+                                        </div>
+                                        ${userOnline ? `
+                                        <div class="quantModal ">
+                                            <button type="button" class="btn btn-warning" id="buyButtonModal" onclick="addToCartModal('${businessName}', '${productKey}', this)" > <i class="fas fa-cart-plus"></i> </button>
+                                            <div class="form-group">
+                                                <label for="quantProductModal">Cantidad</label>
+                                                <input class="form-control" type="number" id="quantProductModal" value="0">
+                                            </div>
+                                        </div>`:`
+                                        <div class="SignInPls ">
+                                            <a type="button" class="btn btn-warning" href="../SignUp/" id="signButton" > Iniciar Sesión</a>
+                                            <small class="text-muted">Para compras directas</small>
+                                        </div>`}                
+                                    </div>`;
+        renderMap(6,product.country,product.branchesOffices);    
+    } 
+
+    
+    
+    
+    setLoading(false,input,'Detalles');
+    $('#detailModal').modal('show');
+
+}
+
+function setLoading(status, input, changeText){
+    if(status){  
+        input.innerHTML = ` <span class="fa-1x loadingVisible">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                            </span>
+                            ${changeText}`;
+        input.disabled = true;
+    }
+    else{
+        input.innerHTML = `${changeText}`;
+        input.disabled = false;
+      
+    }
+}
+
+async function addToCartModal(businessName,  productKey, input){
+    
+    quant = document.getElementById('quantProductModal').value
+    if(quant && quant>0){    
+        let checkIcon = '<i class="fas fa-check"></i>';
+        setLoading(true,input," ");
+        productAdded = await addProductToCart(businessName, productKey, quant);
+        console.log('Producto Añadido');
+        setLoading(false,input, checkIcon);
+        input.disabled = true;
+        document.getElementById('quantProductModal').value = '0';
     }
 }
 render();

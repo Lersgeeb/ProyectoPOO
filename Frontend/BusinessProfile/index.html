@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/all.min.css">
     <link rel="stylesheet" href="./style.css">
@@ -62,6 +71,82 @@
         </div>   
     </div>
 
+    <!--MODAL DETALLLES-->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">Detalle</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <div class="container-fluid">
+
+              <div id="detailProduct">
+                <div class="headerDetail">
+                    <img class="modalImg" src="../img/Principal/products/pcHP.jpg" alt="">
+                    <div class="descProduct">
+                        <h3 class="modal-title" id="categoryDetail">Tecnología</h3>
+                        <small class="text-muted" id="fromDetail">Jetstereo</small>
+                        <p id="descDetail">HP Pavilion 27" PC, Intel Core i5+8400T & UHD Graphics 630, 8GB RAM, 16 GB Optane, 2 TB HD, Windows 10</p>
+                    </div>
+                </div>
+    
+                <div class="rateModalDiv">
+                  <div class="modalstars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>  
+                    <i class="far fa-star"></i>  
+                  </div>
+                  <div id="userQuantRate">
+                    200 <i class="fas fa-user"></i>
+                  </div>
+                </div>
+                
+                <div class="buyProductModal">  
+                  <div class="saleProduct saleProductModal"> 
+                    <div class="sale saleModal"><h2>$35%</h2></div>
+                    <div class="prices">
+                        <div class="price beforePrice beforePriceModal">Antes: L.90000</div> 
+                        <div class="price nowPrice nowPriceModal">Ahora: 30000</div>
+                    </div>
+                  </div>
+
+                  <div class="SignInPls ">
+                    <button type="button" class="btn btn-warning" id="signButton" > Iniciar Sesión</button>
+                    <small class="text-muted">Para compras directas</small>
+                  </div>  
+
+                </div>
+              </div>
+
+
+              <div class="branchModalDiv">
+                
+                <div class="branchTitle mt-4">
+                  Disponible en las siguientes sucursales
+                </div>
+
+                <div id="mapDiv">
+                  <div id="map"></div>
+                  <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
+                </div>
+
+              </div>
+            </div> 
+           
+          </div>
+          <div class="modal-footer" id="buyOption">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="../scripts/jquery.min.js"></script>
     <script src="../scripts/pooper.min.js"></script>

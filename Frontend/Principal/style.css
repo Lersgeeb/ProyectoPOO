@@ -394,7 +394,9 @@
 }
 
 .saleModal{
-  margin-right: 1.7em;
+  margin-right: 1.5em;
+  padding-left:1em;
+  padding-right:1em;
 }
 
 .quantModal{
@@ -412,6 +414,16 @@
 
 .quantModal #quantProductModal{
   max-width:100px;
+}
+
+.SignInPls{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#signButton{
+  margin: 0em 0.5em;
 }
 
 .branchTitle{

@@ -229,7 +229,6 @@ async function renderCart(){
     
             productRow.innerHTML += ` <tr class="text-center"  >
                                         <th scope="row" style="padding:0 !important;"><img src="${product.urlImg}"   style="width: 6em; height: 5em;" alt=""></th>
-                                        <td >${product.keyProduct}</td>
                                         <td>L. ${priceWithSale}</td>
                                         <td> x${product.quant}</td>
                                         <td>L. ${totalProduct}</td>
@@ -242,7 +241,6 @@ async function renderCart(){
     totalRow = document.getElementById('totalRow');
     totalRow.innerHTML =    `<tr class="text-center"  >
                                 <th scope="row">Total a pagar</th>
-                                <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td id="totalTD">L. ${total}</td>

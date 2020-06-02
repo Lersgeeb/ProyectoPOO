@@ -254,10 +254,149 @@ body,html{
     }
   }
 
+/*MODAL DETAILE*/
+
+.headerDetail{
+  display: flex;
+  padding-bottom: 1em;
+  border-bottom:1px solid rgb(235, 235, 235) ;
+}
+
+.modalImg{
+  width: 120px;
+  height: 110px;
+}
+
+.descProduct{
+  padding-left:  2em;
+}
+
+#categoryDetail{
+  font-weight: 600;
+}
+
+#fromDetail{
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#fromDetail:hover {
+  text-decoration: underline;
+}
+
+#descDetail{
+  font-size: 0.8em;
+}
+
+
+.rateModalDiv{
+  text-align: center;
+}
+
+.modalstars{
+  text-align: center;
+  color:var(--principal);
+}
+
+.modalstars .fa-star{
+  margin-top: 0.8em;
+  font-size: 0.9em;
+}
+
+#userQuantRate{
+  margin-bottom: 0.8em;
+}
+
+.buyProductModal{
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid var(--backgroundgrey);
+}
+
+.saleProductModal{
+  display: flex;
+  justify-content: space-around;
+}
+
+.saleModal{
+  margin-right: 1.5em;
+  padding: 1.2em 1em;
+  background-color: var(--complement);
+  color: white;
+  border: none;
+}
+
+.saleModal h2{
+  margin-bottom: 0;;
+}
+
+.beforePriceModal{
+  text-decoration: line-through;
+  font-size: 0.8em;
+  color: brown;
+}
+
+.nowPriceModal{
+  color: var(--myBlack);
+  font-weight: bold;
+}
+
+.quantModal{
+  display: flex;
+}
+
+#buyButtonModal{
+  margin: 2em 0.5em;
+  color: white;
+}
+
+.quantModal label{
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.quantModal #quantProductModal{
+  max-width:100px;
+}
+
+.SignInPls{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#signButton{
+  color: white;
+  margin: 0em 0.5em;
+}
+
+.branchTitle{
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+#mapDiv{
+  margin: 1em 0em;
+  display: flex;
+  justify-content: center;
+  height: 16em;
+  position: relative;
+}
+
+#map{
+  height: 22em;
+  position: absolute;
+  top: 0; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
   /*loading*/
 
 .loading{
-  color: var(--myBlack);
+  color: white;;
   display: none;
 }
 

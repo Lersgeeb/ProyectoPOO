@@ -121,8 +121,8 @@ function renderProducts(value, userOnline){
                                                     <p class="productDate">Quedan ${product.inSale.duration}</p>
                                                     <div class="d-flex justify-content-between align-items-center mt-3">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-warning" onclick="showDetail('${keyProduct}','${product.from}',this)">+ Detalles</button>
-                                                            ${ userOnline ? `<button type="button" onClick="showCartForm('${product.from}','${keyProduct}')" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i> Comprar</button>` : ''}
+                                                            <button type="button" class="btn btn-sm btn-warning" onclick="showDetail('${keyProduct}','${product.from}',this)">Detalles</button>
+                                                            ${ userOnline ? `<button type="button" onClick="showCartForm('${product.from}','${keyProduct}')" class="btn btn-sm btn-warning"><i class="fas fa-cart-plus"></i></button>` : ''}
                                                         </div>
                                                     </div>                                              
                                                 </div>
@@ -161,7 +161,7 @@ async function showDetail(idProduct,businessName,input){
                                         <img class="modalImg" src="${product.urlImg}?${Math.random()}" alt="">
                                         <div class="descProduct">
                                             <h3 class="modal-title" id="categoryDetail">${product.category}</h3>
-                                            <small class="text-muted" id="fromDetail">${product.from}</small>
+                                            <small class="text-muted" id="fromDetail" onclick="goBusinessProfile('${product.from}')">${product.from}</small>
                                             <p id="descDetail">${product.description}</p>
                                         </div>
                                     </div>
@@ -185,12 +185,16 @@ async function showDetail(idProduct,businessName,input){
                                         </div>
                                         ${userOnline ? `
                                         <div class="quantModal ">
-                                            <button type="button" class="btn btn-warning" id="buyButtonModal" > <i class="fas fa-cart-plus"></i> </button>
+                                            <button type="button" class="btn btn-warning" id="buyButtonModal" onclick="addToCartModal('${businessName}', '${productKey}', this)" > <i class="fas fa-cart-plus"></i> </button>
                                             <div class="form-group">
                                                 <label for="quantProductModal">Cantidad</label>
                                                 <input class="form-control" type="number" id="quantProductModal" value="0">
                                             </div>
-                                        </div>`:''}                
+                                        </div>`:`
+                                        <div class="SignInPls ">
+                                            <a type="button" class="btn btn-warning" href="../SignUp/" id="signButton" > Iniciar Sesión</a>
+                                            <small class="text-muted">Para compras directas</small>
+                                        </div>`}                
                                     </div>`;
         renderMap(6,product.country,product.branchesOffices);    
     } 
@@ -198,7 +202,7 @@ async function showDetail(idProduct,businessName,input){
     
     
     
-    setLoading(false,input,'+ Detalles');
+    setLoading(false,input,'Detalles');
     $('#detailModal').modal('show');
 
 }
@@ -253,26 +257,40 @@ async function logOut(){
     }
 }
 
-function showCartForm(businessName,productIndex){
+function showCartForm(businessName,productKey){
     
     $('#cartModal').modal('show');
     buyOptionDiv = document.getElementById('buyOption');
     buyOptionDiv.innerHTML = `  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-warning" onclick="addToCart('${businessName}','${productIndex}',this)">Comprar</button>`
+                                <button type="button" class="btn btn-warning" onclick="addToCart('${businessName}','${productKey}',this)">Comprar</button>`
     
 }
 
 
-async function addToCart(businessName, productIndex,input){
+async function addToCart(businessName, productKey,input){
     
     quant = document.getElementById('quantInput').value
     if(quant && quant!='0'){
         setLoading(true,input," ");
-        productAdded = await addProductToCart(businessName,productIndex, quant);
+        productAdded = await addProductToCart(businessName,productKey, quant);
         console.log('Producto Añadido');
         setLoading(false,input,"Producto Añadido");
         document.getElementById('quantInput').value = '';
         $('#cartModal').modal('hide');
+    }
+}
+
+async function addToCartModal(businessName,  productKey, input){
+    
+    quant = document.getElementById('quantProductModal').value
+    if(quant && quant>0){    
+        let checkIcon = '<i class="fas fa-check"></i>';
+        setLoading(true,input," ");
+        productAdded = await addProductToCart(businessName, productKey, quant);
+        console.log('Producto Añadido');
+        setLoading(false,input, checkIcon);
+        input.disabled = true;
+        document.getElementById('quantProductModal').value = '0';
     }
 }
 

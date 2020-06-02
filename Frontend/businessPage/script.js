@@ -320,7 +320,11 @@ async function renderProduts(){
 async function renderModalMap(zoom,productId){
    
     LatLonRow = document.getElementById('LatLonRowModal');
-    LatLonRow.innerHTML = '';
+    LatLonRow.innerHTML =  `   <tr class="text-center"  >
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                </tr>`
 
     product = await getProductByKey(productId);
     businessOnline = await getBusinessOnline();
