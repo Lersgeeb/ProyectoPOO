@@ -156,7 +156,7 @@ async function signUpBusiness(){
             const newBusiness = await authentication(businessUser.email, businessUser.password);
             if(newBusiness){
                 renderNav(newBusiness);
-                $('#modalSignUp').modal('hide');
+                $('#modalSignUp').modal('hide');    
             }
         }
         

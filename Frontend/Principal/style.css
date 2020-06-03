@@ -362,6 +362,13 @@
   font-size: 0.8em;
 }
 
+.likedProduct{
+  text-align: center;
+  margin-top: 1em;
+  font-size: 1.3em;
+  color: #E44654;
+  cursor: pointer;
+}
 
 .rateModalDiv{
   text-align: center;
@@ -477,5 +484,11 @@
 
 .loadingVisible{
   color: white;
+  display: inline-block;
+}
+
+
+.likedProduct .loadingVisible{
+  color: #E44654;
   display: inline-block;
 }

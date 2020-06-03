@@ -53,11 +53,13 @@ function renderProfileHeader(user){
 async function renderProductsLiked(){
     productsLikedDiv = document.getElementById('productsLikedDiv');
     
-    products = await getproductsLiked()
+    let products = await getproductsLiked()
+    console.log(JSON.stringify(products));
+    console.log(products);
     productsLikedDiv.innerHTML = '';
     if(products){
         for(keyProduct in products){
-            product = products[keyProduct];
+            let product = products[keyProduct];
 
             productsLikedDiv.innerHTML += `  <div class="col-md-6 col-lg-3">
                                                 <div class="card mb-4 box-shadow">
@@ -69,14 +71,15 @@ async function renderProductsLiked(){
                                                                 <span class="cart">
                                                                     <i class="fas fa-cart-plus"></i>
                                                                 </span>
-                                                                <span class="like ml-2">
-                                                                    <i class="fas fa-heart"></i>  
+                                                                <span class="like ml-2" id="like">
+                                                                    <i onclick="removeProductfromLiked('${product.key}',this)" class="fas fa-heart"></i>  
                                                                 </span>   
                                                             </div>      
                                                         </div>                                                                                           
                                                     </div>                                              
                                                 </div>
                                             </div>`;
+                                               
         }
     }
     else{
@@ -188,6 +191,13 @@ function showFormImgProfile(username){
     changeProfileOption = document.getElementById('changeProfileOption');
     changeProfileOption.innerHTML = `   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                         <button type="button" class="btn btn-warning" onClick="changeProfileImgUser('${username}',this)">Cambiar</button>`
+}
+
+
+async function removeProductfromLiked(productLikedKey,input){
+    setLoading(true, input.parentNode, " ");
+    await removeProductLiked(productLikedKey);
+    renderProductsLiked();
 }
 
 /*AXIOS PROFILE*/

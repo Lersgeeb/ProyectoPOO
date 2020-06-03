@@ -346,3 +346,8 @@ font-size: 0.8em;
   display: inline-block;
 }
 
+#like .loadingVisible{
+  font-size: 1em;
+  color: #dc3545;
+  display: inline-block;
+}

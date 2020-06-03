@@ -417,16 +417,18 @@ async function getBusiness(businessName){
 
 
 async function getproductsLiked(){
-    userOnline = await getUserOnline();
+    let userOnline = await getUserOnline();
     if(userOnline){
-        products = userOnline.productsLiked;
+        let products = userOnline.productsLiked;
         if(products){
-            productsJson = {};
-            for(product of products){
+            let productsJson = {};
+            for(productLikedKey in products){
+                let product = products[productLikedKey];
                 productliked =  await getProductByIndex(product.businessName, product.productIndex);
                 
                 for (keyProduct in productliked){
-                    product = productliked[keyProduct];
+                    let product = productliked[keyProduct];
+                    product["key"] = productLikedKey;
                     productsJson[keyProduct] = product;
                 }
             }
@@ -458,7 +460,7 @@ async function getfollowBusinesses(){
 async function getCartProducts(){
     userOnline = await getUserOnline();
     if(userOnline){
-        products= userOnline.cart;
+        let products= userOnline.cart;
         if(products){
 
             productsJson = {};
@@ -474,7 +476,6 @@ async function getCartProducts(){
                     productsJson[cartproductKey] = product;
                 }
             }
-        
             return productsJson;
         }
     }
@@ -497,6 +498,59 @@ async function removeCartProduct(cartProductIndex){
     }
 }
 
+async function addProductLiked(businessName, productIndex){
+    userUrl = '../../Backend/api/usersApi.php';
+
+    const added = await axios({
+        method:'PUT',
+        url: userUrl, 
+        responsetype:'json',
+        data:{
+            "businessName":businessName,
+            "productIndex":productIndex,
+            "productLiked":true
+        }
+    });
+
+    if(added.request.status == 200){
+        return added.data;
+    }
+}
+
+async function removeProductLiked(productLikedKey){
+    userUrl = '../../Backend/api/usersApi.php';
+
+    const deleted = await axios({
+        method:'DELETE',
+        url: userUrl, 
+        responsetype:'json',
+        params:{
+            "productLikedKey":productLikedKey
+        }
+    });
+
+    if(deleted.request.status == 200){
+        return deleted.data;
+    }
+}
+
+async function isLiked(productId){
+    userUrl = '../../Backend/api/usersApi.php';
+
+    const liked = await axios({
+        method:'GET',
+        url: userUrl, 
+        responsetype:'json',
+        params:{
+            "productId":productId
+        }
+    });
+
+    if(liked.request.status == 200){
+        return liked.data;
+    }
+}
+
 /*BusinessProfile */
 
 async function getBusinessByName(businessName){
@@ -513,3 +567,13 @@ async function getBusinessByName(businessName){
         return business.data;
 
 }
+
+var x = 20;
+if(true){
+    let x = 10
+    if(true){
+        console.log(x)
+    }
+}
+
+console.log(x)

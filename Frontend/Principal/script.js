@@ -158,7 +158,12 @@ async function showDetail(idProduct,businessName,input){
         product = productJson[productKey];
         
         detailProduct.innerHTML = ` <div class="headerDetail">
-                                        <img class="modalImg" src="${product.urlImg}?${Math.random()}" alt="">
+                                        <div>
+                                            <img class="modalImg" src="${product.urlImg}?${Math.random()}" alt="">
+                                            <div class="likedProduct" id="liked">
+                                                
+                                            </div>
+                                        </div>
                                         <div class="descProduct">
                                             <h3 class="modal-title" id="categoryDetail">${product.category}</h3>
                                             <small class="text-muted" id="fromDetail" onclick="goBusinessProfile('${product.from}')">${product.from}</small>
@@ -166,6 +171,8 @@ async function showDetail(idProduct,businessName,input){
                                         </div>
                                     </div>
 
+                                    
+                                    
                                     <div class="rateModalDiv">
                                     <div class="modalstars">
                                         ${renderRate(product.inSale.rate)} 
@@ -196,7 +203,10 @@ async function showDetail(idProduct,businessName,input){
                                             <small class="text-muted">Para compras directas</small>
                                         </div>`}                
                                     </div>`;
+        
+        await renderLike(product.from, productKey);
         renderMap(6,product.country,product.branchesOffices);    
+
     } 
 
     
@@ -205,6 +215,35 @@ async function showDetail(idProduct,businessName,input){
     setLoading(false,input,'Detalles');
     $('#detailModal').modal('show');
 
+}
+
+async function renderLike(businessName,productId){
+    if(userOnline){
+        liked = document.getElementById('liked');
+        key = await isLiked(productId);
+        console.log(key);
+
+        if(key){
+            liked.innerHTML = `<i onclick="removeProductfromLiked('${key}', '${businessName}', '${productId}', this)" class="fas fa-heart"></i>`
+        }
+        else{
+            liked.innerHTML = `<i onclick="addProductToLiked('${businessName}', '${productId}',  this)" class="far fa-heart"></i>`
+        }
+    }
+}
+
+async function addProductToLiked(businessName, productId, input){
+    setLoading(true, input.parentNode, " ");
+    await addProductLiked(businessName,productId);    
+    renderLike(businessName, productId);
+    
+    
+}
+
+async function removeProductfromLiked(productLikedKey,businessName, productId, input){
+    setLoading(true, input.parentNode, " ");
+    await removeProductLiked(productLikedKey);
+    renderLike(businessName, productId);
 }
 
 function renderMap(zoom,country,branches){

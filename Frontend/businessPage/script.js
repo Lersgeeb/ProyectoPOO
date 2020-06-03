@@ -435,7 +435,12 @@ async function newProduct(input){
         if(added)
             await createProductImg(businessOnline.businessName, added)
             await renderProduts();
+            categoryInput.value = ' ';
+            imageUrlInput.value = ' ';
+            productPriceInput.value = ' ';
+            productDescInput.value = ' ';
             setLoading(false, input,'Crear')
+
     }
 }
 
@@ -471,6 +476,9 @@ async function addSaleOnProduct(productId,input){
             setLoading(false,input,'Crear Oferta');
             businessOnline = await getBusinessOnline();
             renderProfile(businessOnline);
+
+            saleOnProductInput.value = ' ';
+            saleDurationInput.value = ' ';
             
         }
         
@@ -608,6 +616,9 @@ async function addBranchOffice(input){
             businessOnline = await getBusinessOnline();
             renderBranchOfficeTableRows();    
             setLoading(false,input,markerIcon);
+
+            lat.value = ' ';
+            lon.value = ' ';
         }
 
     }

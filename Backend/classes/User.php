@@ -262,4 +262,36 @@
                 
                 return $result;
         }
+
+        public static function addProductLiked($database, $userKey, $businessName, $productIndex){
+                $productsLiked = array(
+                        "businessName"=> $businessName,
+                        "productIndex"=> $productIndex
+                );
+                
+                $result = $database     ->getReference('users/' . $userKey . '/productsLiked')
+                                        ->push($productsLiked);
+
+                return $result->getKey();
+        }
+
+        public static function removeProductLiked($database, $userKey, $productLikedKey){
+                
+                $result = $database     ->getReference('users/' . $userKey . '/productsLiked/' . $productLikedKey)
+                                        ->set(null);
+                echo true;
+        }
+
+        public static function isliked($database, $userKey, $productId){
+                $productsLiked = $database      ->getReference('users/' . $userKey . '/productsLiked')
+                                                ->getSnapshot()
+                                                ->getValue();
+                if($productsLiked){
+                        foreach($productsLiked as $key=>$productLiked){
+                                if($productLiked["productIndex"] == $productId){
+                                        echo $key;
+                                }
+                        }
+                }
+        }
     }
