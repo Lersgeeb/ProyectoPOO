@@ -432,7 +432,7 @@ async function newProduct(input){
         
         setLoading(true, input,'Creando...')
         added = await addProductOnBusiness(product);
-        if(added)
+        if(added){
             await createProductImg(businessOnline.businessName, added)
             await renderProduts();
             categoryInput.value = ' ';
@@ -440,6 +440,7 @@ async function newProduct(input){
             productPriceInput.value = ' ';
             productDescInput.value = ' ';
             setLoading(false, input,'Crear')
+        }
 
     }
 }

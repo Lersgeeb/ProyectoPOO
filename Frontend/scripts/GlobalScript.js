@@ -567,13 +567,3 @@ async function getBusinessByName(businessName){
         return business.data;
 
 }
-
-var x = 20;
-if(true){
-    let x = 10
-    if(true){
-        console.log(x)
-    }
-}
-
-console.log(x)
