@@ -435,8 +435,7 @@ async function newProduct(input){
         if(added){
             await createProductImg(businessOnline.businessName, added)
             await renderProduts();
-            categoryInput.value = ' ';
-            imageUrlInput.value = ' ';
+            
             productPriceInput.value = ' ';
             productDescInput.value = ' ';
             setLoading(false, input,'Crear')
